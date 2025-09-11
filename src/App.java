@@ -8,6 +8,7 @@ import java.util.List;
 import comons.SeedData;
 import repository.EmployeeRepository;
 import repository.EmployeeRepository;
+import repository.SupplierRepository;
 
 public class App {
     public static void main(String[] args) {
@@ -24,6 +25,10 @@ public class App {
        "Andrew received his BTS commercial...", "2",3,null
 
         );
+
+        SupplierRepository repository = new SupplierRepository();
+
+        repository.GetAll();
 
 
 
