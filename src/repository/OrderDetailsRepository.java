@@ -15,10 +15,12 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
 import models.Employee;
+import models.Order;
+import models.OrderDetails;
 
-public class EmployeeRepository implements IFile<Employee> {
+public class OrderDetailsRepository implements IFile<OrderDetails> {
 
-    private static final String FilePath= "src/data/data_order.json";
+    private static final String FilePath= "src/data/data_OrderDetails.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
             .enable(SerializationFeature.INDENT_OUTPUT);
@@ -27,13 +29,13 @@ public class EmployeeRepository implements IFile<Employee> {
 
 
     @Override
-    public List<Employee> load()    {
+    public List<OrderDetails> load()    {
         try{
             File file = new File(FilePath);
             if (!file.exists()) {
                 return new ArrayList<>();
             }
-            return mapper.readValue(file, new TypeReference<List<Employee>>() {});
+            return mapper.readValue(file, new TypeReference<List<OrderDetails>>() {});
         } catch (IOException ex) {
             ex.printStackTrace();
             return new ArrayList<>();
@@ -42,9 +44,9 @@ public class EmployeeRepository implements IFile<Employee> {
     }
 
     @Override
-    public void Save(List<Employee> employees)  {
+    public void Save(List<OrderDetails> orderDetails)  {
         try {
-            mapper.writeValue(new File(FilePath), employees);
+            mapper.writeValue(new File(FilePath), orderDetails);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,36 +54,36 @@ public class EmployeeRepository implements IFile<Employee> {
     }
 
     @Override
-    public Employee GetOne (String id) {
-        List<Employee> employees = load();
-        int employeeID = Integer.parseInt(id);
-        Optional<Employee> results = employees.stream()
-                .filter(c -> c.getEmployeeID() == employeeID).findFirst();
+    public OrderDetails GetOne (String id) {
+        List<OrderDetails> ordersDetails = load();
+        //int orderDetailsID = Integer.parseInt(id);
+        Optional<OrderDetails> results = ordersDetails.stream()
+                .filter(c -> c.getOrderID().equals(id)).findFirst();
         return results.orElse(null);
     }
 
 
 
     @Override
-    public List<Employee> GetAll() {
+    public List<OrderDetails> GetAll() {
         return load();
     }
 
     @Override
     public void Delete(String id) {
-        List<Employee> employees = load();
-        employees.removeIf(c -> c.getEmployeeID() == Integer.parseInt(id));
-        Save(employees);
+        List<OrderDetails>  orderDetails = load();
+        orderDetails.removeIf(c -> c.getOrderID().equals(id));
+        Save(orderDetails);
     }
 
     @Override
-    public void Update(Employee entity) {
-        List<Employee> employees = load();
+    public void Update(OrderDetails entity) {
+        List<OrderDetails> orderDetails = load();
        //int employeeID = Integer.parseInt(id);
-        List<Employee> updatedEmployees = employees.stream()
-                .map(c  -> c.getEmployeeID() == entity.getEmployeeID() ? entity : c)
+        List<OrderDetails> updateOrderDetails = orderDetails.stream()
+                .map(c  -> c.getOrderID() == entity.getOrderID() ? entity : c)
                 .collect(Collectors.toList());
-        Save(updatedEmployees);
+        Save(updateOrderDetails);
 
     }
 

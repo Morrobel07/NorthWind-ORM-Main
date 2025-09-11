@@ -2,7 +2,7 @@ package models;
 
 public class OrderDetails  {
 
-    private Order orderID;
+    private Order orderDetailsId;
     private Product productID;
     private double unitPrice;
     private int quantity;
@@ -11,7 +11,7 @@ public class OrderDetails  {
     public OrderDetails(){}
 
     public OrderDetails(Order order, Product product, double unitPrice, int quantity, double discount) {
-        this.orderID = order;
+        this.orderDetailsId = order;
         this.productID = product;
         this.unitPrice = unitPrice;
         this.quantity = quantity;
@@ -20,11 +20,11 @@ public class OrderDetails  {
 
     // Métodos getter y setter
     public Order getOrderID() {
-        return orderID;
+        return orderDetailsId;
     }
 
     public void setOrderID(Order orderID) {
-        this.orderID = orderID;
+        this.orderDetailsId = orderID;
     }
 
     public Product getProductID() {
@@ -62,7 +62,7 @@ public class OrderDetails  {
     @Override
     public String toString() {
         return "OrderDetails {\n" +
-                "order=" + orderID + ",\n" +
+                "order=" + orderDetailsId + ",\n" +
                 "product=" + productID + ",\n" +
                 "unitPrice=" + unitPrice + ",\n" +
                 "quantity=" + quantity + ",\n" +

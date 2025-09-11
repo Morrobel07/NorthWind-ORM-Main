@@ -15,25 +15,25 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
 import models.Employee;
+import models.Product;
 
-public class EmployeeRepository implements IFile<Employee> {
+public class ProductRepository implements IFile<Product> {
 
-    private static final String FilePath= "src/data/data_order.json";
-    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .enable(SerializationFeature.INDENT_OUTPUT);
-    public List<Employee> employees = new ArrayList<>();
+    private static final String FilePath= "src/data/data_Product.json";
+    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+
+    public List<Product> products = new ArrayList<>();
 
 
 
     @Override
-    public List<Employee> load()    {
+    public List<Product> load()    {
         try{
             File file = new File(FilePath);
             if (!file.exists()) {
                 return new ArrayList<>();
             }
-            return mapper.readValue(file, new TypeReference<List<Employee>>() {});
+            return mapper.readValue(file, new TypeReference<List<Product>>() {});
         } catch (IOException ex) {
             ex.printStackTrace();
             return new ArrayList<>();
@@ -42,9 +42,9 @@ public class EmployeeRepository implements IFile<Employee> {
     }
 
     @Override
-    public void Save(List<Employee> employees)  {
+    public void Save(List<Product> products)  {
         try {
-            mapper.writeValue(new File(FilePath), employees);
+            mapper.writeValue(new File(FilePath), products);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,34 +52,34 @@ public class EmployeeRepository implements IFile<Employee> {
     }
 
     @Override
-    public Employee GetOne (String id) {
-        List<Employee> employees = load();
-        int employeeID = Integer.parseInt(id);
-        Optional<Employee> results = employees.stream()
-                .filter(c -> c.getEmployeeID() == employeeID).findFirst();
+    public Product GetOne (String id) {
+        List<Product> products = load();
+        int productID = Integer.parseInt(id);
+        Optional<Product> results = products.stream()
+                .filter(c -> c.getProductID() == productID).findFirst();
         return results.orElse(null);
     }
 
 
 
     @Override
-    public List<Employee> GetAll() {
+    public List<Product> GetAll() {
         return load();
     }
 
     @Override
     public void Delete(String id) {
-        List<Employee> employees = load();
-        employees.removeIf(c -> c.getEmployeeID() == Integer.parseInt(id));
-        Save(employees);
+        List<Product> products = load();
+        products.removeIf(c -> c.getProductID() == Integer.parseInt(id));
+        Save(products);
     }
 
     @Override
-    public void Update(Employee entity) {
-        List<Employee> employees = load();
+    public void Update(Product entity) {
+        List<Product> products = load();
        //int employeeID = Integer.parseInt(id);
-        List<Employee> updatedEmployees = employees.stream()
-                .map(c  -> c.getEmployeeID() == entity.getEmployeeID() ? entity : c)
+        List<Product> updatedEmployees = products.stream()
+                .map(c  -> c.getProductID() == entity.getProductID() ? entity : c)
                 .collect(Collectors.toList());
         Save(updatedEmployees);
 
