@@ -8,6 +8,8 @@ public class OrderDetails  {
     private int quantity;
     private double discount;
 
+    public OrderDetails(){}
+
     public OrderDetails(Order order, Product product, double unitPrice, int quantity, double discount) {
         this.orderID = order;
         this.productID = product;
@@ -55,6 +57,17 @@ public class OrderDetails  {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetails {\n" +
+                "order=" + orderID + ",\n" +
+                "product=" + productID + ",\n" +
+                "unitPrice=" + unitPrice + ",\n" +
+                "quantity=" + quantity + ",\n" +
+                "discount=" + discount + "\n" +
+                "}";
     }
 
    

@@ -15,6 +15,8 @@ public class Product  {
     private int reorderLevel;
     private boolean discontinued;
 
+    public Product(){}
+
     public Product(int productID, String productName, Supplier supplierID, Categorie categoryID,
             String quantityPerUnit, double unitPrice, int unitsInStock, int unitsOnOrder, int reorderLevel,
             boolean discontinued) {
@@ -115,6 +117,23 @@ public class Product  {
 
     public void setDiscontinued(boolean discontinued) {
         this.discontinued = discontinued;
+    }
+
+    @Override
+    public String toString() {
+        return "Product {\n" +
+                "productID=" + productID + ",\n" +
+                "productName=" + productName + ",\n" +
+                "SuplierId=" + supplierID + ",\n" +
+                "categoryId=" + categoryID + ",\n" +
+                "quantityPerUnit=" + quantityPerUnit + ",\n" +
+                "unitPrice=" + unitPrice + ",\n" +
+                "unitsInStock=" + unitsInStock + ",\n" +
+                "unitsOnOrder=" + unitsOnOrder + ",\n" +
+                "reorderLevel=" + reorderLevel + ",\n" +
+                "discontinued=" + discontinued + "\n" +
+                "}";
+
     }
 
 

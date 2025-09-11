@@ -12,7 +12,6 @@ import repository.EmployeeRepository;
 public class App {
     public static void main(String[] args) {
 
-        SeedData seedData = new SeedData();
 
 
         Employee emp = new Employee(
@@ -31,6 +30,8 @@ public class App {
         EmployeeRepository repo = new EmployeeRepository();
 
         EmployeeController employeeController = new EmployeeController(repo);
+
+        System.out.println(employeeController.getAllEmployees().get(1));
 
 
 

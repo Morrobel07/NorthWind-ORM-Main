@@ -19,6 +19,8 @@ public class Order  {
     private String shipPostalCode;
     private String shipCountry;
 
+    public Order (){}
+
     public Order(int orderID, Customer customersID, Employee employeeID, LocalDate orderDate,
             LocalDate requiredDate, LocalDate shippedDate, Shipper shipVia, double freight,
             String shipName, String shipAddress, String shipCity, String shipRegion, String shipPostalCode,
@@ -149,6 +151,27 @@ public class Order  {
 
     public void setShipCountry(String shipCountry) {
         this.shipCountry = shipCountry;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Order {\n" +
+                "orderId=" + orderID + ",\n" +
+                "customer=" + customersID + ",\n" +
+                "employee=" + employeeID + ",\n" +
+                "orderDate=" + orderDate + ",\n" +
+                " requiereDate" + requiredDate + ",\n" +
+                "shippedDate=" + shippedDate + ",\n" +
+                "shipper=" + shipVia + ",\n" +
+                "freight=" + freight + ",\n" +
+                "shipName='" + shipName + "',\n" +
+                "shipAddress='" + shipAddress + "',\n" +
+                "shipCity='" + shipCity + "',\n" +
+                "shipRegion='" + shipRegion + "',\n" +
+                "shipostalcode" + shipPostalCode + "',\n" +
+                "shipCountry='" + shipCountry + "'\n" +
+                "}";
     }
 
    

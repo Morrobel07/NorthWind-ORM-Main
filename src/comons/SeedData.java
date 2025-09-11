@@ -9,13 +9,13 @@ import java.util.List;
 
 public class SeedData {
 
-     private static final EmployeeRepository repo = new EmployeeRepository();
+     private static final EmployeeRepository repoE = new EmployeeRepository();
 
 
 
     public static void seedDataEmployees( ) {
 
-        List<Employee> employees = repo.GetAll();
+        List<Employee> employees = repoE.GetAll();
 
 
 
@@ -31,7 +31,7 @@ public class SeedData {
                     )
 
 
-            ); repo.Save(employees);
+            ); repoE.Save(employees);
         } else {
             System.out.println("Ya existen empleados");
         }

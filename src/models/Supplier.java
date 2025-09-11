@@ -15,6 +15,9 @@ public class Supplier  {
     private String fax;
     private String homePage;
 
+    public Supplier(){}
+
+
     public Supplier(int supplierID, String companyName, String contactName, String contactTitle, String address,
             String city, String region, String postalCode, String country, String phone, String fax,
             String homePage) {
@@ -130,9 +133,20 @@ public class Supplier  {
 
     @Override
     public String toString() {
-        return "Supplier [supplierID=" + supplierID + ", companyName=" + companyName + ", contactName=" + contactName
-                + ", contactTitle=" + contactTitle + ", address=" + address + ", city=" + city + ", region=" + region + ", postalCode=" + postalCode
-                + ", country=" + country + ", phone=" + phone + ", fax=" + fax + ", homePage=" + homePage + "]";
+        return "Supplier{\n" +
+                "supplierID=" + supplierID + ",\n" +
+                "companyName=" + companyName + ",\n" +
+                "contactTitle=" + contactTitle + ",\n" +
+                "address=" + address + ",\n" +
+                "city=" + city + "',\n" +
+                "region=" + region + ",\n" +
+                "postalCode=" + postalCode + "',\n" +
+                "country=" + country + ",\n" +
+                "phone=" + phone + ",\n" +
+                "fax=" + fax + ",\n" +
+                "homePage=" + homePage + "\n" +
+                "}";
+
     }   
 
     

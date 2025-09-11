@@ -36,4 +36,23 @@
   "notes" : "2",
   "reportsTo" : 3,
   "photoPath" : null
+}, {
+  "employeeID" : 2,
+  "lastName" : "Fuller",
+  "firstName" : "Andrew",
+  "title" : "Vice President, Sales",
+  "titleOfCourtesy" : "Dr.",
+  "birthDate" : "1952-02-19",
+  "hireDate" : "1992-08-14",
+  "address" : "908 W. Capital Way",
+  "city" : "Tacoma",
+  "region" : "WA",
+  "postalCode" : "98401",
+  "country" : "USA",
+  "homePhone" : "(206) 555-9482",
+  "extension" : "3457",
+  "photo" : "Andrew received his BTS commercial...",
+  "notes" : "2",
+  "reportsTo" : 3,
+  "photoPath" : null
 } ]

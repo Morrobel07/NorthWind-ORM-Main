@@ -18,10 +18,8 @@ import models.Employee;
 
 public class EmployeeRepository implements IFile<Employee> {
 
-    private static final String FilePath= "src/data/data_order.json";
-    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .enable(SerializationFeature.INDENT_OUTPUT);
+    private static final String FilePath= "src/data/data_Employee.json";
+    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     public List<Employee> employees = new ArrayList<>();
 
 

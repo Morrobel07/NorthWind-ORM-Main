@@ -15,6 +15,9 @@ public class Customer  {
     private String phone;
     private String fax;
 
+    public Customer() {}
+
+
     public Customer(int customerID, String companyName, String contactName, String contactTitle,
             String address, String city, String region, String postalCode,
             String country, String phone, String fax) {
@@ -117,6 +120,23 @@ public class Customer  {
 
     public void setFax(String fax) {
         this.fax = fax;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer {\n" +
+                "  customerID=" + customerID + ",\n" +
+                "  companyName='" + companyName + "',\n" +
+                "  contactName='" + contactName + "',\n" +
+                "  contactTitle='" + contactTitle + "',\n" +
+                "  address='" + address + "',\n" +
+                "  city='" + city + "',\n" +
+                "  region='" + region + "',\n" +
+                "  postalCode='" + postalCode + "',\n" +
+                "  country='" + country + "',\n" +
+                "  phone='" + phone + "',\n" +
+                "  fax='" + fax + "'\n" +
+                "}";
     }
 
     

@@ -7,12 +7,16 @@ public class Categorie {
     private String description;
     private String picture;
 
+    public Categorie(){}
+
     public Categorie(int categoryID, String categoryName, String description, String picture) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.description = description;
         this.picture = picture;
     }
+
+
 
     public int getCategoryID() {
         return categoryID;
@@ -44,6 +48,16 @@ public class Categorie {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    @Override
+    public String toString() {
+        return "Categorie {\n" +
+                "categoryId=" + categoryID + ",\n" +
+                "categoryName='" + categoryName + "',\n" +
+                "description='" + description + "',\n" +
+                "picture='" + picture + "'\n" +
+                "}";
     }
 
 }

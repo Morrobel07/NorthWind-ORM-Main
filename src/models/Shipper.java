@@ -6,6 +6,8 @@ public class Shipper  {
     private String companyName;
     private String phone;
 
+    public Shipper(){}
+
     public Shipper(int shipperID, String companyName, String phone) {
 
         this.shipperID = shipperID;
@@ -36,6 +38,15 @@ public class Shipper  {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Shipper {\n" +
+                "shipperID=" + shipperID + ",\n" +
+                "companyName=" + companyName + ",\n" +
+                "phone=" + phone + "\n" +
+                "}";
     }
 
  
