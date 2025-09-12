@@ -13,6 +13,11 @@ public class EmployeeController {
           this.repository = repository;
       }
 
+
+      /**
+     * Obtiene la lista completa de todos los empleados.
+     * @return Una lista de objetos Employee, o null si ocurre un error.
+     */
       public List<Employee> getAllEmployees() {
           try{
               return repository.GetAll();
@@ -22,6 +27,12 @@ public class EmployeeController {
           }
       }
 
+
+    /**
+     * Busca y devuelve un empleado específico por su ID.
+     * @param id El ID del empleado a buscar.
+     * @return El objeto Employee si se encuentra, o null si no existe o si ocurre un error.
+     */
       public Employee getEmployeeById(String id) {
           try {
               return repository.GetOne(id);
@@ -31,6 +42,11 @@ public class EmployeeController {
           }
       }
 
+
+    /**
+     * Agrega un nuevo empleado al repositorio.
+     * @param employee El objeto Employee a agregar.
+     */
       public void addEmployee(Employee employee) {
           try {
               List<Employee> employees =  getAllEmployees();
@@ -43,6 +59,12 @@ public class EmployeeController {
 
       }
 
+
+
+    /**
+     * Actualiza la información de un empleado existente.
+     * @param employee El objeto Employee con los datos actualizados.
+     */
       public void updateEmployee(Employee employee) {
         try {
             repository.Update(employee);
@@ -52,6 +74,10 @@ public class EmployeeController {
         }
       }
 
+    /**
+     * Elimina un empleado del repositorio usando su ID.
+     * @param id El ID del empleado a eliminar.
+     */
       public void deleteEmployee(String id) {
           try {
               repository.Delete(id);
