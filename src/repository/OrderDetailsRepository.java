@@ -21,10 +21,9 @@ import models.OrderDetails;
 public class OrderDetailsRepository implements IFile<OrderDetails> {
 
     private static final String FilePath= "src/data/data_OrderDetails.json";
-    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .enable(SerializationFeature.INDENT_OUTPUT);
+    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     public List<Employee> employees = new ArrayList<>();
+
 
 
 
@@ -32,7 +31,7 @@ public class OrderDetailsRepository implements IFile<OrderDetails> {
     public List<OrderDetails> load()    {
         try{
             File file = new File(FilePath);
-            if (!file.exists()) {
+            if (!file.exists() || file.length() == 0) {
                 return new ArrayList<>();
             }
             return mapper.readValue(file, new TypeReference<List<OrderDetails>>() {});

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeedData {
-    private static   EmployeeRepository repoE = new EmployeeRepository();
-    private  static SupplierRepository repoS = new SupplierRepository();
+    private static EmployeeRepository repoE = new EmployeeRepository();
+    private static SupplierRepository repoS = new SupplierRepository();
     private static ShipperRepository repoShiper = new ShipperRepository();
     private static ProductRepository repoProduct = new ProductRepository();
     private static OrderDetailsRepository repoOrderDetails = new OrderDetailsRepository();
@@ -18,127 +18,130 @@ public class SeedData {
     private static CustomerRepository repoCustomer = new CustomerRepository();
 
 
-
-
-
-
-
-    public static  void seedDataEmployees( ) {
+    public List<Employee> seedDataEmployees() {
 
         List<Employee> employees = repoE.GetAll();
-
-
-
-        if (employees.isEmpty()){
+        if (employees.isEmpty()) {
             employees.add(
                     new Employee(
-                            1, "Davolio", "Nancy", "Sales Representative","Shipero",
+                            1, "Davolio", "Nancy", "Sales Representative", "Shipero",
                             LocalDate.of(1968, 12, 8),
                             LocalDate.of(1992, 5, 1), "507 - 20th Ave. E. Apt. 2A",
                             "Seattle", "WA", "98122",
                             "USA", "(206) 555-9857", "5467",
-                            "Education includes a BA in psychology...", "2", 3,null
+                            "Education includes a BA in psychology...", "2", 3, null
                     )
 
 
-            ); repoE.Save(employees);
+            );
+            repoE.Save(employees);
         } else {
             System.out.println("Ya existen empleados");
         }
-
-
-
-
-
-
+        return employees;
     }
 
-    public static void seedDataSuppliers( ) {
+    public List<Supplier> seedDataSuppliers() {
         List<Supplier> suppliers = repoS.GetAll();
-        if (suppliers.isEmpty()){
+        if (suppliers.isEmpty()) {
             suppliers.add(
                     new Supplier(
                             1, "Exotic Liquid", "Charlotte Cooper", "Purchasing Manager ",
                             "49Gilbert St.", "London", null, "EC1 4SD", "UK",
                             "(171) 555-2222", null, null
                     )
-            ); repoS.Save(suppliers);
+            );
+            repoS.Save(suppliers);
 
         } else {
 
             System.out.println("Ya existen Suppliers");
         }
+        return suppliers;
     }
 
-    public static  void seedDAtaShipper(){
+    public List<Shipper> seedDAtaShipper() {
         List<Shipper> shippers = repoShiper.GetAll();
 
-        if (shippers.isEmpty()){
+        if (shippers.isEmpty()) {
             shippers.add(
                     new Shipper(
                             1, "Speedy Express", "Thomasecd"
                     )
-            ); repoShiper.Save(shippers);
+            );
+            repoShiper.Save(shippers);
 
-    }else{
+        } else {
             System.out.println("Ya existen shippers");
         }
+        return shippers;
     }
 
-    public static void seedDataProduct() {
+    public List<Product> seedDataProduct() {
         List<Product> products = repoProduct.load();
-        Supplier s1 = new Supplier();
 
-        if (products.isEmpty()) {
+
+         {
             products.add(
                     new Product(
-                            1, "Chais",null, null,"10 boxes x 20 bags", 18.00, 100, 0, 10,
+                            1, "Chais", null, null, "10 boxes x 20 bags", 18.00, 100, 0, 10,
                             false
                     )
             );
             repoProduct.Save(products);
         }
+        return products;
 
     }
 
-    public static void seedDataOrderDetails() {
+    public List<OrderDetails> seedDataOrderDetails() {
         List<OrderDetails> orderDetails = repoOrderDetails.load();
         if (orderDetails.isEmpty()) {
             orderDetails.add(
                     new OrderDetails(
-                            null,null,19.45,5,0
+                            null, null, 19.45, 5, 0
                     )
-            );repoOrderDetails.Save(orderDetails);
-        }else  {
+            );
+            repoOrderDetails.Save(orderDetails);
+        } else {
             System.out.println("Ya existen order details");
         }
+
+        return orderDetails;
     }
 
-    public static void seedDataOrder() {
+    public List<Order> seedDataOrder() {
         List<Order> orders = repoOrder.load();
         if (orders.isEmpty()) {
             orders.add(
                     new Order(
-                            1,null,null,null,null,null,null,0,null,null,null,null,null,null
+                            1, null, null, null, null, null, null, 0, null, null, null, null, null, null
                     )
-            );repoOrder.Save(orders);
-        }else  {
+            );
+            repoOrder.Save(orders);
+        } else {
             System.out.println("Ya existen orders");
         }
+
+        return orders;
     }
 
-    public static void seedDataCategorie() {
+    public List<Categorie> seedDataCategorie() {
         List<Categorie> categories = repoCategorie.load();
         if (categories.isEmpty()) {
             categories.add(
                     new Categorie(
-                            1,"Beverages","Soft drinks, coffees, teas, beers, and ales",null
+                            1, "Beverages", "Soft drinks, coffees, teas, beers, and ales", null
                     )
-            );repoCategorie.Save(categories);
+            );
+            repoCategorie.Save(categories);
+        }else {
+            System.out.println("Ya existen Categories");
         }
+        return categories;
     }
 
-    public static void seedDataCustomer() {
+    public List<Customer> seedDataCustomer() {
         List<Customer> customers = repoCustomer.load();
         if (customers.isEmpty()) {
             customers.add(
@@ -149,14 +152,15 @@ public class SeedData {
             );
             repoCustomer.Save(customers);
 
-        }else   {
+        } else {
             System.out.println("Ya existen customers");
         }
+        return customers;
     }
 
-
-
 }
+
+
 
 
 

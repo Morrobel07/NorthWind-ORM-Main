@@ -7,7 +7,7 @@ import repository.OrderRepository;
 import java.util.List;
 
 public class OrderController {
-      private IFile<Order> repository ;
+      private final IFile<Order> repository ;
 
       public OrderController(IFile<Order> repository) {
           this.repository = repository;

@@ -7,7 +7,7 @@ import repository.SupplierRepository;
 import java.util.List;
 
 public class SupplierController {
-      private IFile<Supplier> repository ;
+      private final IFile<Supplier> repository ;
 
       public SupplierController(IFile<Supplier> repository) {
           this.repository = repository;

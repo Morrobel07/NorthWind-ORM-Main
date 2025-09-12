@@ -7,7 +7,7 @@ import repository.ShipperRepository;
 import java.util.List;
 
 public class ShipperController {
-      private IFile<Shipper> repository ;
+      private final  IFile<Shipper> repository ;
 
       public ShipperController(IFile<Shipper> repository) {
           this.repository = repository;

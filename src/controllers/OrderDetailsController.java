@@ -7,7 +7,7 @@ import repository.OrderDetailsRepository;
 import java.util.List;
 
 public class OrderDetailsController {
-      private IFile<OrderDetails> repository ;
+      private final IFile<OrderDetails> repository ;
 
       public OrderDetailsController(IFile<OrderDetails> repository) {
           this.repository = repository;

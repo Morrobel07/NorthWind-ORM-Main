@@ -7,7 +7,7 @@ import repository.CustomerRepository;
 import java.util.List;
 
 public class CustomerController {
-      private IFile<Customer> repository ;
+      private final IFile<Customer> repository ;
 
       public CustomerController (IFile<Customer> repository) {
           this.repository = repository;

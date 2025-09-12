@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
+import comons.SeedData;
+import models.Categorie;
 import models.Customer;
 import models.Employee;
 
@@ -29,7 +31,8 @@ public class CustomerRepository implements IFile<Customer> {
     public List<Customer> load()    {
         try{
             File file = new File(FilePath);
-            if (!file.exists()) {
+            if (!file.exists() || file.length() == 0) {
+
                 return new ArrayList<>();
             }
             return mapper.readValue(file, new TypeReference<List<Customer>>() {});

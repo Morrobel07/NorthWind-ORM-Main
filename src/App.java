@@ -1,14 +1,17 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import comons.SeedData;
+import controllers.CategorieController;
 import controllers.EmployeeController;
+import controllers.ProductController;
 import models.Employee;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import comons.SeedData;
+import comons.SeedData.*;
+import models.Product;
+import repository.*;
 import repository.EmployeeRepository;
-import repository.EmployeeRepository;
-import repository.SupplierRepository;
 
 public class App {
     public static void main(String[] args) {
@@ -26,9 +29,9 @@ public class App {
 
         );
 
-        SupplierRepository repository = new SupplierRepository();
 
-        repository.GetAll();
+
+
 
 
 
@@ -36,7 +39,14 @@ public class App {
 
         EmployeeController employeeController = new EmployeeController(repo);
 
-        System.out.println(employeeController.getAllEmployees().get(1));
+        System.out.println(employeeController.getEmployeeById("1"));
+
+        SeedData seedData = new SeedData();
+        seedData.seedDataProduct();
+        ProductRepository repoP = new ProductRepository();
+        ProductController productController = new ProductController(repoP);
+
+        System.out.println(productController.getAllProducts());
 
 
 

@@ -14,16 +14,19 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
+import comons.SeedData;
 import models.Employee;
 import models.Shipper;
 
 public class ShipperRepository implements IFile<Shipper> {
 
     private static final String FilePath= "src/data/data_shipper.json";
-    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .enable(SerializationFeature.INDENT_OUTPUT);
+    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     public List<Employee> employees = new ArrayList<>();
+    private SeedData seed ;
+
+   
+
 
 
 
@@ -31,7 +34,7 @@ public class ShipperRepository implements IFile<Shipper> {
     public List<Shipper> load()    {
         try{
             File file = new File(FilePath);
-            if (!file.exists()) {
+            if (!file.exists() || file.length() == 0) {
                 return new ArrayList<>();
             }
             return mapper.readValue(file, new TypeReference<List<Shipper>>() {});

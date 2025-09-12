@@ -7,7 +7,7 @@ import repository.EmployeeRepository;
 import java.util.List;
 
 public class EmployeeController {
-      private IFile<Employee> repository ;
+      private final IFile<Employee> repository ;
 
       public EmployeeController(IFile<Employee> repository) {
           this.repository = repository;

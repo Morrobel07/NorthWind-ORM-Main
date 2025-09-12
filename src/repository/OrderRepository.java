@@ -17,7 +17,7 @@ import comons.IFile;
 import models.Employee;
 import models.Order;
 
-public class OrderRepository implements IFile<Order> {
+public class OrderRepository implements IFile<Order>   {
 
     private static final String FilePath= "src/data/data_order.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
@@ -29,7 +29,7 @@ public class OrderRepository implements IFile<Order> {
     public List<Order> load()    {
         try{
             File file = new File(FilePath);
-            if (!file.exists()) {
+            if (!file.exists() || file.length() == 0) {
                 return new ArrayList<>();
             }
             return mapper.readValue(file, new TypeReference<List<Order>>() {});

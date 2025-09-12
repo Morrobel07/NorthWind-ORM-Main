@@ -7,7 +7,7 @@ import repository.ProductRepository;
 import java.util.List;
 
 public class ProductController {
-      private IFile<Product> repository ;
+      private final  IFile<Product> repository ;
 
       public ProductController(IFile<Product> repository) {
           this.repository = repository;

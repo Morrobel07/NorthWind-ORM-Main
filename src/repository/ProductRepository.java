@@ -21,7 +21,6 @@ public class ProductRepository implements IFile<Product> {
 
     private static final String FilePath= "src/data/data_Product.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-
     public List<Product> products = new ArrayList<>();
 
 
@@ -30,7 +29,7 @@ public class ProductRepository implements IFile<Product> {
     public List<Product> load()    {
         try{
             File file = new File(FilePath);
-            if (!file.exists()) {
+            if (!file.exists() || file.length() == 0) {
                 return new ArrayList<>();
             }
             return mapper.readValue(file, new TypeReference<List<Product>>() {});

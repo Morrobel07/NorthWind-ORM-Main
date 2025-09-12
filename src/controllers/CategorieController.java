@@ -7,7 +7,7 @@ import repository.CategorieRepository;
 import java.util.List;
 
 public class CategorieController {
-      private IFile<Categorie> repository ;
+      private final  IFile<Categorie> repository ;
 
       public CategorieController(IFile<Categorie> repository) {
           this.repository = repository;
