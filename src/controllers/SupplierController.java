@@ -1,62 +1,62 @@
 package controllers;
 
 import comons.IFile;
-import models.Employee;
-import repository.EmployeeRepository;
+import models.Supplier;
+import repository.SupplierRepository;
 
 import java.util.List;
 
-public class EmployeeController {
-      private IFile<Employee> repository ;
+public class SupplierController {
+      private IFile<Supplier> repository ;
 
-      public EmployeeController(IFile<Employee> repository) {
+      public SupplierController(IFile<Supplier> repository) {
           this.repository = repository;
       }
 
-      public List<Employee> getAllEmployees() {
+      public List<Supplier> getAllSuppliers() {
           try{
               return repository.GetAll();
           }catch (Exception e){
-              System.out.println( "Error al obtener todos los empleados "+ e.getMessage());
+              System.out.println( "Error al obtener todos los proveedores "+ e.getMessage());
               return null;
           }
       }
 
-      public Employee getEmployeeById(String id) {
+      public Supplier getSupplierById(String id) {
           try {
               return repository.GetOne(id);
           } catch (Exception e) {
-              System.out.println( "Error al obtener todos los empleados "+ e.getMessage());
+              System.out.println( "Error al obtener todos los proveedores "+ e.getMessage());
               return null;
           }
       }
 
-      public void addEmployee(Employee employee) {
+      public void addSupplier(Supplier supplier) {
           try {
-              List<Employee> employees =  getAllEmployees();
-              employees.add(employee);
-              repository.Save(employees);
-              System.out.println("Empleado agregado correctamente");
+              List<Supplier> suppliers =  getAllSuppliers();
+              suppliers.add(supplier);
+              repository.Save(suppliers);
+              System.out.println("Proveedor agregado correctamente");
            } catch (Exception e) {
-              System.out.println( "Error al agregar empleado"+ e.getMessage());
+              System.out.println( "Error al agregar proveedor"+ e.getMessage());
           }
 
       }
 
-      public void updateEmployee(Employee employee) {
+      public void updateSupplier(Supplier supplier) {
         try {
-            repository.Update(employee);
-            System.out.println("Empleado actualizado correctamente");
+            repository.Update(supplier);
+            System.out.println("Proveedor actualizado correctamente");
         }catch (Exception e) {
-            System.out.println( "Error al actualizar empleado"+ e.getMessage());
+            System.out.println( "Error al actualizar proveedor"+ e.getMessage());
         }
       }
 
-      public void deleteEmployee(String id) {
+      public void deleteSupplier(String id) {
           try {
               repository.Delete(id);
           }catch (Exception e) {
-              System.out.println( "Error al eliminar empleado"+ e.getMessage());
+              System.out.println( "Error al eliminar proveedor"+ e.getMessage());
           }
       }
 

@@ -1,62 +1,62 @@
 package controllers;
 
 import comons.IFile;
-import models.Employee;
-import repository.EmployeeRepository;
+import models.Order;
+import repository.OrderRepository;
 
 import java.util.List;
 
-public class EmployeeController {
-      private IFile<Employee> repository ;
+public class OrderController {
+      private IFile<Order> repository ;
 
-      public EmployeeController(IFile<Employee> repository) {
+      public OrderController(IFile<Order> repository) {
           this.repository = repository;
       }
 
-      public List<Employee> getAllEmployees() {
+      public List<Order> getAllOrders() {
           try{
               return repository.GetAll();
           }catch (Exception e){
-              System.out.println( "Error al obtener todos los empleados "+ e.getMessage());
+              System.out.println( "Error al obtener todas las ordenes "+ e.getMessage());
               return null;
           }
       }
 
-      public Employee getEmployeeById(String id) {
+      public Order getOrderById(String id) {
           try {
               return repository.GetOne(id);
           } catch (Exception e) {
-              System.out.println( "Error al obtener todos los empleados "+ e.getMessage());
+              System.out.println( "Error al obtener todas las ordenes "+ e.getMessage());
               return null;
           }
       }
 
-      public void addEmployee(Employee employee) {
+      public void addOrder(Order order) {
           try {
-              List<Employee> employees =  getAllEmployees();
-              employees.add(employee);
-              repository.Save(employees);
-              System.out.println("Empleado agregado correctamente");
+              List<Order> orders =  getAllOrders();
+              orders.add(order);
+              repository.Save(orders);
+              System.out.println("Orden agregada correctamente");
            } catch (Exception e) {
-              System.out.println( "Error al agregar empleado"+ e.getMessage());
+              System.out.println( "Error al agregar la orden"+ e.getMessage());
           }
 
       }
 
-      public void updateEmployee(Employee employee) {
+      public void updateOrder(Order order) {
         try {
-            repository.Update(employee);
-            System.out.println("Empleado actualizado correctamente");
+            repository.Update(order);
+            System.out.println("Orden actualizada correctamente");
         }catch (Exception e) {
-            System.out.println( "Error al actualizar empleado"+ e.getMessage());
+            System.out.println( "Error al actualizar la orden"+ e.getMessage());
         }
       }
 
-      public void deleteEmployee(String id) {
+      public void deleteOrder(String id) {
           try {
               repository.Delete(id);
           }catch (Exception e) {
-              System.out.println( "Error al eliminar empleado"+ e.getMessage());
+              System.out.println( "Error al eliminar orden"+ e.getMessage());
           }
       }
 

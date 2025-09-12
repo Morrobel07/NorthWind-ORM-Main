@@ -1,62 +1,62 @@
 package controllers;
 
 import comons.IFile;
-import models.Employee;
-import repository.EmployeeRepository;
+import models.Shipper;
+import repository.ShipperRepository;
 
 import java.util.List;
 
-public class EmployeeController {
-      private IFile<Employee> repository ;
+public class ShipperController {
+      private IFile<Shipper> repository ;
 
-      public EmployeeController(IFile<Employee> repository) {
+      public ShipperController(IFile<Shipper> repository) {
           this.repository = repository;
       }
 
-      public List<Employee> getAllEmployees() {
+      public List<Shipper> getAllShippers() {
           try{
               return repository.GetAll();
           }catch (Exception e){
-              System.out.println( "Error al obtener todos los empleados "+ e.getMessage());
+              System.out.println( "Error al obtener el shipping "+ e.getMessage());
               return null;
           }
       }
 
-      public Employee getEmployeeById(String id) {
+      public Shipper getShipperById(String id) {
           try {
               return repository.GetOne(id);
           } catch (Exception e) {
-              System.out.println( "Error al obtener todos los empleados "+ e.getMessage());
+              System.out.println( "Error al obtener todos los shipping "+ e.getMessage());
               return null;
           }
       }
 
-      public void addEmployee(Employee employee) {
+      public void addShipper(Shipper shipper) {
           try {
-              List<Employee> employees =  getAllEmployees();
-              employees.add(employee);
-              repository.Save(employees);
-              System.out.println("Empleado agregado correctamente");
+              List<Shipper> shippers =  getAllShippers();
+              shippers.add(shipper);
+              repository.Save(shippers);
+              System.out.println("Shipping agregado correctamente");
            } catch (Exception e) {
-              System.out.println( "Error al agregar empleado"+ e.getMessage());
+              System.out.println( "Error al agregar shipping"+ e.getMessage());
           }
 
       }
 
-      public void updateEmployee(Employee employee) {
+      public void updateShipper(Shipper shipper) {
         try {
-            repository.Update(employee);
-            System.out.println("Empleado actualizado correctamente");
+            repository.Update(shipper);
+            System.out.println("Shipping actualizado correctamente");
         }catch (Exception e) {
-            System.out.println( "Error al actualizar empleado"+ e.getMessage());
+            System.out.println( "Error al actualizar shipping"+ e.getMessage());
         }
       }
 
-      public void deleteEmployee(String id) {
+      public void deleteShipper(String id) {
           try {
               repository.Delete(id);
           }catch (Exception e) {
-              System.out.println( "Error al eliminar empleado"+ e.getMessage());
+              System.out.println( "Error al eliminar shipping"+ e.getMessage());
           }
       }
 

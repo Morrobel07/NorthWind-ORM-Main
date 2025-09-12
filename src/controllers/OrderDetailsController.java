@@ -1,62 +1,62 @@
 package controllers;
 
 import comons.IFile;
-import models.Employee;
-import repository.EmployeeRepository;
+import models.OrderDetails;
+import repository.OrderDetailsRepository;
 
 import java.util.List;
 
-public class EmployeeController {
-      private IFile<Employee> repository ;
+public class OrderDetailsController {
+      private IFile<OrderDetails> repository ;
 
-      public EmployeeController(IFile<Employee> repository) {
+      public OrderDetailsController(IFile<OrderDetails> repository) {
           this.repository = repository;
       }
 
-      public List<Employee> getAllEmployees() {
+      public List<OrderDetails> getAllOrderDetails() {
           try{
               return repository.GetAll();
           }catch (Exception e){
-              System.out.println( "Error al obtener todos los empleados "+ e.getMessage());
+              System.out.println( "Error al obtener la informacion de la orden "+ e.getMessage());
               return null;
           }
       }
 
-      public Employee getEmployeeById(String id) {
+      public OrderDetails getOrderDetailsById(String id) {
           try {
               return repository.GetOne(id);
           } catch (Exception e) {
-              System.out.println( "Error al obtener todos los empleados "+ e.getMessage());
+              System.out.println( "Error al obtener la informacion "+ e.getMessage());
               return null;
           }
       }
 
-      public void addEmployee(Employee employee) {
+      public void addOrderDetails(OrderDetails orderdetails) {
           try {
-              List<Employee> employees =  getAllEmployees();
-              employees.add(employee);
-              repository.Save(employees);
-              System.out.println("Empleado agregado correctamente");
+              List<OrderDetails> orderDetails2 =  getAllOrderDetails();
+              orderDetails2.add(orderdetails);
+              repository.Save(orderDetails2);
+              System.out.println("Informacion agregada correctamente");
            } catch (Exception e) {
-              System.out.println( "Error al agregar empleado"+ e.getMessage());
+              System.out.println( "Error al agregar la informacion"+ e.getMessage());
           }
 
       }
 
-      public void updateEmployee(Employee employee) {
+      public void updateOrderDetails(OrderDetails orderDetails) {
         try {
-            repository.Update(employee);
-            System.out.println("Empleado actualizado correctamente");
+            repository.Update(orderDetails);
+            System.out.println("Informacion actualizada correctamente");
         }catch (Exception e) {
-            System.out.println( "Error al actualizar empleado"+ e.getMessage());
+            System.out.println( "Error al actualizar la informacion"+ e.getMessage());
         }
       }
 
-      public void deleteEmployee(String id) {
+      public void deleteOrderDetails(String id) {
           try {
               repository.Delete(id);
           }catch (Exception e) {
-              System.out.println( "Error al eliminar empleado"+ e.getMessage());
+              System.out.println( "Error a eliminar la informacion"+ e.getMessage());
           }
       }
 
