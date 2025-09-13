@@ -1,8 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import comons.SeedData;
-import controllers.CategorieController;
-import controllers.EmployeeController;
-import controllers.ProductController;
+import controllers.*;
+import models.Customer;
 import models.Employee;
 
 import java.time.LocalDate;
@@ -30,32 +29,20 @@ public class App {
         );
 
 
+        Customer custom = new Customer(
+                1,"moroco","eeeee","EEEEE","boca canasta","Bani","peravia","94000",
+                "Rd","00000000","klk"
+        );
 
+        Customer custom2 = new Customer(
+                2,"moroco","eeeee","EEEEE","boca canasta","Bani","peravia","94000",
+                "Rd","00000000","klk"
+        );
 
-
-
-
-        EmployeeRepository repo = new EmployeeRepository();
-
-        EmployeeController employeeController = new EmployeeController(repo);
-
-        System.out.println(employeeController.getEmployeeById("1"));
-
-        SeedData seedData = new SeedData();
-        seedData.seedDataProduct();
-        ProductRepository repoP = new ProductRepository();
-        ProductController productController = new ProductController(repoP);
-
-        System.out.println(productController.getAllProducts());
-
-
-
-
-
-
-
-
-
+        CustomerRepository cr = new CustomerRepository();
+        CustomerController controler = new  CustomerController(cr);
+        //controler.addCustomer(custom2);
+        System.out.println(controler.getCustomerById("2"));
 
 
 
