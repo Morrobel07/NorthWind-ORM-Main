@@ -34,6 +34,12 @@ public class ProductController {
       public void addProduct(Product product) {
           try {
               List<Product> products =  getAllProducts();
+
+              int newId = products.isEmpty() ?
+                      1 : products.stream().
+                              mapToInt(e -> e.getProductID()).
+                              max().orElse(0) +1;
+              product.setProductID(newId);
               products.add(product);
               repository.Save(products);
               System.out.println("Producto agregado correctamente");

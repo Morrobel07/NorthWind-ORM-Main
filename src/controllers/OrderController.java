@@ -34,6 +34,12 @@ public class OrderController {
       public void addOrder(Order order) {
           try {
               List<Order> orders =  getAllOrders();
+
+              int newId = orders.isEmpty() ?
+                      1 : orders.stream().
+                              mapToInt(e -> e.getOrderID()).
+                              max().orElse(0) +1;
+              order.setOrderID(newId);
               orders.add(order);
               repository.Save(orders);
               System.out.println("Orden agregada correctamente");

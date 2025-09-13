@@ -34,6 +34,12 @@ public class ShipperController {
       public void addShipper(Shipper shipper) {
           try {
               List<Shipper> shippers =  getAllShippers();
+
+              int newId = shippers.isEmpty() ?
+                      1 : shippers.stream().
+                              mapToInt(e -> e.getShipperID()).
+                              max().orElse(0) + 1;
+              shipper.setShipperID(newId);
               shippers.add(shipper);
               repository.Save(shippers);
               System.out.println("Shipping agregado correctamente");

@@ -2,12 +2,12 @@ package controllers;
 
 import comons.IFile;
 import models.OrderDetails;
-import repository.OrderDetailsRepository;
 
 import java.util.List;
 
 public class OrderDetailsController {
       private final IFile<OrderDetails> repository ;
+      
 
       public OrderDetailsController(IFile<OrderDetails> repository) {
           this.repository = repository;
@@ -33,10 +33,12 @@ public class OrderDetailsController {
 
       public void addOrderDetails(OrderDetails orderdetails) {
           try {
-              List<OrderDetails> orderDetails2 =  getAllOrderDetails();
-              orderDetails2.add(orderdetails);
-              repository.Save(orderDetails2);
-              System.out.println("Informacion agregada correctamente");
+              List<OrderDetails> orderDetailsList =  getAllOrderDetails();
+              if (orderDetailsList.isEmpty()) {
+                  orderDetailsList.add(orderdetails);
+                  repository.Save(orderDetailsList);
+                  System.out.println("Informacion agregada correctamente");
+              }
            } catch (Exception e) {
               System.out.println( "Error al agregar la informacion"+ e.getMessage());
           }

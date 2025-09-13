@@ -34,6 +34,12 @@ public class SupplierController {
     public void addSupplier(MySupplier supplier) {
         try {
             List<MySupplier> suppliers = getAllSuppliers();
+
+            int newId = suppliers.isEmpty() ?
+                    1 : suppliers.stream().
+                            mapToInt(e -> e.getSupplierID()).
+                            max().orElse(0) + 1;
+            supplier.setSupplierID(newId);
             suppliers.add(supplier);
             repository.Save(suppliers);
             System.out.println("Proveedor agregado correctamente");

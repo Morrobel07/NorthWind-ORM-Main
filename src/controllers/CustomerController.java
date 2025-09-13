@@ -34,6 +34,13 @@ public class CustomerController {
       public void addCustomer(Customer customer) {
           try {
               List<Customer> customers =  getAllCustomers();
+
+              int newId = customers.isEmpty() ?
+                      1 : customers.stream().
+                              mapToInt(e -> e.getCustomerID()).
+                              max().orElse(0) +1
+                              ;
+              customer.setCustomerID(newId);
               customers.add(customer);
               repository.Save(customers);
               System.out.println("Cliente agregado correctamente");

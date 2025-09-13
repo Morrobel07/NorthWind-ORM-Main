@@ -51,6 +51,8 @@ public class EmployeeRepository implements IFile<Employee> {
      */
     @Override
     public void Save(List<Employee> employees)  {
+
+
         try {
             mapper.writeValue(new File(FilePath), employees);
         } catch (IOException e) {
@@ -75,20 +77,11 @@ public class EmployeeRepository implements IFile<Employee> {
 
 
 
-    /**
-     * Devuelve la lista completa de todos los empleados.
-     * @return Una lista con todos los objetos Employee.
-     */
     @Override
     public List<Employee> GetAll() {
         return load();
     }
 
-
-    /**
-     * Elimina un empleado del repositorio basado en su ID.
-     * @param id El ID del empleado a eliminar (en formato String).
-     */
     @Override
     public void Delete(String id) {
         List<Employee> employees = load();
@@ -96,12 +89,6 @@ public class EmployeeRepository implements IFile<Employee> {
         Save(employees);
     }
 
-
-    /**
-     * Actualiza un empleado existente en el repositorio.
-     * El empleado a actualizar se identifica por el ID contenido en el objeto `entity`.
-     * @param entity El objeto Employee con los datos actualizados.
-     */
     @Override
     public void Update(Employee entity) {
         List<Employee> employees = load();

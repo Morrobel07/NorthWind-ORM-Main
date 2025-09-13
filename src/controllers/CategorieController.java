@@ -33,7 +33,15 @@ public class CategorieController {
 
       public void addCategorie(Categorie categorie) {
           try {
+
               List<Categorie> categories =  getAllCategories();
+
+              int newId = categories.isEmpty() ? 1 :
+                      categories.stream().
+                              mapToInt(e -> e.getCategoryID()).
+                              max().orElse(0) +1;
+
+              categorie.setCategoryID(newId);
               categories.add(categorie);
               repository.Save(categories);
               System.out.println("Categoria agregada correctamente");
