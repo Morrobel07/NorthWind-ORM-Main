@@ -50,6 +50,12 @@ public class EmployeeController {
       public void addEmployee(Employee employee) {
           try {
               List<Employee> employees =  getAllEmployees();
+
+              int newId = employees.isEmpty() ? 1 :
+                      employees.stream().
+                              mapToInt(e -> e.getEmployeeID()).
+                              max().orElse(0) +1;
+              employee.setEmployeeID(newId);
               employees.add(employee);
               repository.Save(employees);
               System.out.println("Empleado agregado correctamente");
