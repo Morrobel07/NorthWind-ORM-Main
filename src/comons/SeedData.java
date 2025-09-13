@@ -17,7 +17,6 @@ public class SeedData {
     private static CategorieRepository repoCategorie = new CategorieRepository();
     private static CustomerRepository repoCustomer = new CustomerRepository();
 
-
     public List<Employee> seedDataEmployees() {
 
         List<Employee> employees = repoE.GetAll();
@@ -29,9 +28,7 @@ public class SeedData {
                             LocalDate.of(1992, 5, 1), "507 - 20th Ave. E. Apt. 2A",
                             "Seattle", "WA", "98122",
                             "USA", "(206) 555-9857", "5467",
-                            "Education includes a BA in psychology...", "2", 3, null
-                    )
-
+                            "Education includes a BA in psychology...", "2", 3, null)
 
             );
             repoE.Save(employees);
@@ -41,16 +38,14 @@ public class SeedData {
         return employees;
     }
 
-    public List<Supplier> seedDataSuppliers() {
-        List<Supplier> suppliers = repoS.GetAll();
+    public List<MySupplier> seedDataSuppliers() {
+        List<MySupplier> suppliers = repoS.GetAll();
         if (suppliers.isEmpty()) {
             suppliers.add(
-                    new Supplier(
+                    new MySupplier(
                             1, "Exotic Liquid", "Charlotte Cooper", "Purchasing Manager ",
                             "49Gilbert St.", "London", null, "EC1 4SD", "UK",
-                            "(171) 555-2222", null, null
-                    )
-            );
+                            "(171) 555-2222", null, null));
             repoS.Save(suppliers);
 
         } else {
@@ -66,9 +61,7 @@ public class SeedData {
         if (shippers.isEmpty()) {
             shippers.add(
                     new Shipper(
-                            1, "Speedy Express", "Thomasecd"
-                    )
-            );
+                            1, "Speedy Express", "Thomasecd"));
             repoShiper.Save(shippers);
 
         } else {
@@ -80,14 +73,11 @@ public class SeedData {
     public List<Product> seedDataProduct() {
         List<Product> products = repoProduct.load();
 
-
-         {
+        {
             products.add(
                     new Product(
                             1, "Chais", null, null, "10 boxes x 20 bags", 18.00, 100, 0, 10,
-                            false
-                    )
-            );
+                            false));
             repoProduct.Save(products);
         }
         return products;
@@ -99,9 +89,7 @@ public class SeedData {
         if (orderDetails.isEmpty()) {
             orderDetails.add(
                     new OrderDetails(
-                            null, null, 19.45, 5, 0
-                    )
-            );
+                            null, null, 19.45, 5, 0));
             repoOrderDetails.Save(orderDetails);
         } else {
             System.out.println("Ya existen order details");
@@ -115,9 +103,7 @@ public class SeedData {
         if (orders.isEmpty()) {
             orders.add(
                     new Order(
-                            1, null, null, null, null, null, null, 0, null, null, null, null, null, null
-                    )
-            );
+                            1, null, null, null, null, null, null, 0, null, null, null, null, null, null));
             repoOrder.Save(orders);
         } else {
             System.out.println("Ya existen orders");
@@ -131,11 +117,9 @@ public class SeedData {
         if (categories.isEmpty()) {
             categories.add(
                     new Categorie(
-                            1, "Beverages", "Soft drinks, coffees, teas, beers, and ales", null
-                    )
-            );
+                            1, "Beverages", "Soft drinks, coffees, teas, beers, and ales", null));
             repoCategorie.Save(categories);
-        }else {
+        } else {
             System.out.println("Ya existen Categories");
         }
         return categories;
@@ -146,10 +130,9 @@ public class SeedData {
         if (customers.isEmpty()) {
             customers.add(
                     new Customer(
-                            1, "Alfreds Futterkiste", "Maria Anders", "Sales Representative", "Obere Str. 57", "Berlin", null,
-                            "12209", "Germany", "030-0074321", "030-00"
-                    )
-            );
+                            1, "Alfreds Futterkiste", "Maria Anders", "Sales Representative", "Obere Str. 57", "Berlin",
+                            null,
+                            "12209", "Germany", "030-0074321", "030-00"));
             repoCustomer.Save(customers);
 
         } else {
@@ -159,8 +142,3 @@ public class SeedData {
     }
 
 }
-
-
-
-
-

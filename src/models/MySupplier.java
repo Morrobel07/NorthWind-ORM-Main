@@ -1,6 +1,6 @@
 package models;
 
-public class Supplier  {
+public class MySupplier {
 
     private int supplierID;
     private String companyName;
@@ -15,10 +15,10 @@ public class Supplier  {
     private String fax;
     private String homePage;
 
-    public Supplier(){}
+    public MySupplier() {
+    }
 
-
-    public Supplier(int supplierID, String companyName, String contactName, String contactTitle, String address,
+    public MySupplier(int supplierID, String companyName, String contactName, String contactTitle, String address,
             String city, String region, String postalCode, String country, String phone, String fax,
             String homePage) {
         this.supplierID = supplierID;
@@ -147,8 +147,6 @@ public class Supplier  {
                 "homePage=" + homePage + "\n" +
                 "}";
 
-    }   
-
-    
+    }
 
 }

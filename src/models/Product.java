@@ -1,12 +1,10 @@
 package models;
 
-import java.util.function.Supplier;
-
-public class Product  {
+public class Product {
 
     private int productID;
     private String productName;
-    private Supplier supplierID;
+    private MySupplier supplierID;
     private Categorie categoryID;
     private String quantityPerUnit;
     private double unitPrice;
@@ -15,9 +13,10 @@ public class Product  {
     private int reorderLevel;
     private boolean discontinued;
 
-    public Product(){}
+    public Product() {
+    }
 
-    public Product(int productID, String productName, Supplier supplierID, Categorie categoryID,
+    public Product(int productID, String productName, MySupplier supplierID, Categorie categoryID,
             String quantityPerUnit, double unitPrice, int unitsInStock, int unitsOnOrder, int reorderLevel,
             boolean discontinued) {
         this.productID = productID;
@@ -30,14 +29,8 @@ public class Product  {
         this.unitsOnOrder = unitsOnOrder;
         this.reorderLevel = reorderLevel;
         this.discontinued = discontinued;
-    
-            }
 
-    
-
-    
-
-    
+    }
 
     public int getProductID() {
         return productID;
@@ -55,11 +48,11 @@ public class Product  {
         this.productName = productName;
     }
 
-    public Supplier getSupplierID() {
+    public MySupplier getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplierID(Supplier supplierID) {
+    public void setSupplierID(MySupplier supplierID) {
         this.supplierID = supplierID;
     }
 
@@ -136,7 +129,4 @@ public class Product  {
 
     }
 
-
-
 }
-
