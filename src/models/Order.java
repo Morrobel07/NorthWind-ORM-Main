@@ -2,7 +2,7 @@ package models;
 
 import java.time.LocalDate;
 
-public class Order  {
+public class Order {
 
     private int orderID;
     private Customer customersID;
@@ -19,26 +19,24 @@ public class Order  {
     private String shipPostalCode;
     private String shipCountry;
 
-    public Order (){}
+    public Order() {
+    }
 
-    public Order(int orderID, Customer customersID, Employee employeeID, LocalDate orderDate,
-            LocalDate requiredDate, LocalDate shippedDate, Shipper shipVia, double freight,
-            String shipName, String shipAddress, String shipCity, String shipRegion, String shipPostalCode,
-            String shipCountry) {
-        this.orderID = orderID;
-        this.customersID = customersID;
-        this.employeeID = employeeID;
-        this.orderDate = orderDate;
-        this.requiredDate = requiredDate;
-        this.shippedDate = shippedDate;
-        this.shipVia = shipVia;
-        this.freight = freight;
-        this.shipName = shipName;
-        this.shipAddress = shipAddress;
-        this.shipCity = shipCity;
-        this.shipRegion = shipRegion;
-        this.shipPostalCode = shipPostalCode;
-        this.shipCountry = shipCountry;
+    private Order(Builder builder) {
+        this.orderID = builder.orderID;
+        this.customersID = builder.customersID;
+        this.employeeID = builder.employeeID;
+        this.orderDate = builder.orderDate;
+        this.requiredDate = builder.requiredDate;
+        this.shippedDate = builder.shippedDate;
+        this.shipVia = builder.shipVia;
+        this.freight = builder.freight;
+        this.shipName = builder.shipName;
+        this.shipAddress = builder.shipAddress;
+        this.shipCity = builder.shipCity;
+        this.shipRegion = builder.shipRegion;
+        this.shipPostalCode = builder.shipPostalCode;
+        this.shipCountry = builder.shipCountry;
     }
 
     public int getOrderID() {
@@ -49,110 +47,96 @@ public class Order  {
         this.orderID = orderID;
     }
 
-    public Customer getCustomers() {
-        return customersID;
-    }
+    public static class Builder {
+        private int orderID;
+        private Customer customersID;
+        private Employee employeeID;
+        private LocalDate orderDate;
+        private LocalDate requiredDate;
+        private LocalDate shippedDate;
+        private Shipper shipVia;
+        private double freight;
+        private String shipName;
+        private String shipAddress;
+        private String shipCity;
+        private String shipRegion;
+        private String shipPostalCode;
+        private String shipCountry;
 
-    public void setCustomers(Customer customersID) {
-        this.customersID = customersID;
-    }
+        public Builder orderID(int orderID) {
+            this.orderID = orderID;
+            return this;
+        }
 
-    public Employee getEmployee() {
-        return employeeID;
-    }
+        public Builder customersID(Customer customersID) {
+            this.customersID = customersID;
+            return this;
+        }
 
-    public void setEmployee(Employee employeeID) {
-        this.employeeID = employeeID;
-    }
+        public Builder employeeID(Employee employeeID) {
+            this.employeeID = employeeID;
+            return this;
+        }
 
-    public LocalDate getOrderDate() {
-        return orderDate;
-    }
+        public Builder orderDate(LocalDate orderDate) {
+            this.orderDate = orderDate;
+            return this;
+        }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
-    }
+        public Builder requiredDate(LocalDate requiredDate) {
+            this.requiredDate = requiredDate;
+            return this;
+        }
 
-    public LocalDate getRequiredDate() {
-        return requiredDate;
-    }
+        public Builder shippedDate(LocalDate shippedDate) {
+            this.shippedDate = shippedDate;
+            return this;
+        }
 
-    public void setRequiredDate(LocalDate requiredDate) {
-        this.requiredDate = requiredDate;
-    }
+        public Builder shipVia(Shipper shipVia) {
+            this.shipVia = shipVia;
+            return this;
+        }
 
-    public LocalDate getShippedDate() {
-        return shippedDate;
-    }
+        public Builder freight(double freight) {
+            this.freight = freight;
+            return this;
+        }
 
-    public void setShippedDate(LocalDate shippedDate) {
-        this.shippedDate = shippedDate;
-    }
+        public Builder shipName(String shipName) {
+            this.shipName = shipName;
+            return this;
+        }
 
-    public Shipper getShipper() {
-        return shipVia;
-    }
+        public Builder shipAddress(String shipAddress) {
+            this.shipAddress = shipAddress;
+            return this;
+        }
 
-    public void setShipper(Shipper shipVia) {
-        this.shipVia = shipVia;
-    }
+        public Builder shipCity(String shipCity) {
+            this.shipCity = shipCity;
+            return this;
+        }
 
-    public double getFreight() {
-        return freight;
-    }
+        public Builder shipRegion(String shipRegion) {
+            this.shipRegion = shipRegion;
+            return this;
+        }
 
-    public void setFreight(double freight) {
-        this.freight = freight;
-    }
+        public Builder shipPostalCode(String shipPostalCode) {
+            this.shipPostalCode = shipPostalCode;
+            return this;
+        }
 
-    public String getShipName() {
-        return shipName;
-    }
+        public Builder shipCountry(String shipCountry) {
+            this.shipCountry = shipCountry;
+            return this;
+        }
 
-    public void setShipName(String shipName) {
-        this.shipName = shipName;
+        public Order build() {
+            return new Order(this);
+        }
     }
-
-    public String getShipAddress() {
-        return shipAddress;
-    }
-
-    public void setShipAddress(String shipAddress) {
-        this.shipAddress = shipAddress;
-    }
-
-    public String getShipCity() {
-        return shipCity;
-    }
-
-    public void setShipCity(String shipCity) {
-        this.shipCity = shipCity;
-    }
-
-    public String getShipRegion() {
-        return shipRegion;
-    }
-
-    public void setShipRegion(String shipRegion) {
-        this.shipRegion = shipRegion;
-    }
-
-    public String getShipPostalCode() {
-        return shipPostalCode;
-    }
-
-    public void setShipPostalCode(String shipPostalCode) {
-        this.shipPostalCode = shipPostalCode;
-    }
-
-    public String getShipCountry() {
-        return shipCountry;
-    }
-
-    public void setShipCountry(String shipCountry) {
-        this.shipCountry = shipCountry;
-    }
-
 
     @Override
     public String toString() {
@@ -174,5 +158,4 @@ public class Order  {
                 "}";
     }
 
-   
 }

@@ -1,6 +1,6 @@
 package models;
 
-public class OrderDetails  {
+public class OrderDetails {
 
     private Order orderDetailsId;
     private Product productID;
@@ -8,14 +8,15 @@ public class OrderDetails  {
     private int quantity;
     private double discount;
 
-    public OrderDetails(){}
+    public OrderDetails() {
+    }
 
-    public OrderDetails(Order order, Product product, double unitPrice, int quantity, double discount) {
-        this.orderDetailsId = order;
-        this.productID = product;
-        this.unitPrice = unitPrice;
-        this.quantity = quantity;
-        this.discount = discount;
+    private OrderDetails(Builder builder) {
+        this.orderDetailsId = builder.orderDetailsId;
+        this.productID = builder.productID;
+        this.unitPrice = builder.unitPrice;
+        this.quantity = builder.quantity;
+        this.discount = builder.discount;
     }
 
     // Métodos getter y setter
@@ -27,36 +28,41 @@ public class OrderDetails  {
         this.orderDetailsId = orderID;
     }
 
-    public Product getProductID() {
-        return productID;
-    }
+    public static class Builder {
+        private Order orderDetailsId;
+        private Product productID;
+        private double unitPrice;
+        private int quantity;
+        private double discount;
 
-    public void setProductID(Product productID) {
-        this.productID = productID;
-    }
+        public Builder orderID(Order orderDetailsId) {
+            this.orderDetailsId = orderDetailsId;
+            return this;
+        }
 
-    public double getUnitPrice() {
-        return unitPrice;
-    }
+        public Builder productID(Product productID) {
+            this.productID = productID;
+            return this;
+        }
 
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
+        public Builder unitPrice(double unitPrice) {
+            this.unitPrice = unitPrice;
+            return this;
+        }
 
-    public int getQuantity() {
-        return quantity;
-    }
+        public Builder quantity(int quantity) {
+            this.quantity = quantity;
+            return this;
+        }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+        public Builder discount(double discount) {
+            this.discount = discount;
+            return this;
+        }
 
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
+        public OrderDetails build() {
+            return new OrderDetails(this);
+        }
     }
 
     @Override
@@ -70,5 +76,4 @@ public class OrderDetails  {
                 "}";
     }
 
-   
 }

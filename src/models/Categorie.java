@@ -7,16 +7,12 @@ public class Categorie {
     private String description;
     private String picture;
 
-    public Categorie(){}
-
-    public Categorie(int categoryID, String categoryName, String description, String picture) {
-        this.categoryID = categoryID;
-        this.categoryName = categoryName;
-        this.description = description;
-        this.picture = picture;
+    private Categorie(Builder builder) {
+        this.categoryID = builder.categoryID;
+        this.categoryName = builder.categoryName;
+        this.description = builder.description;
+        this.picture = builder.picture;
     }
-
-
 
     public int getCategoryID() {
         return categoryID;
@@ -26,28 +22,36 @@ public class Categorie {
         this.categoryID = categoryID;
     }
 
-    public String getCategoryName() {
-        return categoryName;
-    }
+    public static class Builder {
+        private int categoryID;
+        private String categoryName;
+        private String description;
+        private String picture;
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
+        public Builder categoryID(int categoryID) {
+            this.categoryID = categoryID;
+            return this;
+        }
 
-    public String getDescription() {
-        return description;
-    }
+        public Builder categoryName(String categoryName) {
+            this.categoryName = categoryName;
+            return this;
+        }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
 
-    public String getPicture() {
-        return picture;
-    }
+        public Builder picture(String picture) {
+            this.picture = picture;
+            return this;
+        }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+        public Categorie build() {
+            return new Categorie(this);
+        }
+
     }
 
     @Override

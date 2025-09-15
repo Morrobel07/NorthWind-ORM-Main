@@ -2,7 +2,7 @@ package models;
 
 import java.time.LocalDate;
 
-public class Employee  {
+public class Employee {
 
     private int employeeID;
     private String lastName;
@@ -23,30 +23,28 @@ public class Employee  {
     private int reportsTo;
     private String photoPath;
 
-    public Employee() {}
+    public Employee() {
+    }
 
-    public Employee(int employeeID, String lastName, String firstName, String title, String titleOfCourtesy,
-            LocalDate birthDate, LocalDate hireDate, String address, String city, String region, String postalCode,
-            String country, String homePhone, String extension, String photo, String notes, int reportsTo,
-            String photoPath) {
-        this.employeeID = employeeID;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.title = title;
-        this.titleOfCourtesy = titleOfCourtesy;
-        this.birthDate = birthDate;
-        this.hireDate = hireDate;
-        this.address = address;
-        this.city = city;
-        this.region = region;
-        this.postalCode = postalCode;
-        this.country = country;
-        this.homePhone = homePhone;
-        this.extension = extension;
-        this.photo = photo;
-        this.notes = notes;
-        this.reportsTo = reportsTo;
-        this.photoPath = photoPath;
+    public Employee(Builder builder) {
+        this.employeeID = builder.employeeID;
+        this.lastName = builder.lastName;
+        this.firstName = builder.firstName;
+        this.title = builder.title;
+        this.titleOfCourtesy = builder.titleOfCourtesy;
+        this.birthDate = builder.birthDate;
+        this.hireDate = builder.hireDate;
+        this.address = builder.address;
+        this.city = builder.city;
+        this.region = builder.region;
+        this.postalCode = builder.postalCode;
+        this.country = builder.country;
+        this.homePhone = builder.homePhone;
+        this.extension = builder.extension;
+        this.photo = builder.photo;
+        this.notes = builder.notes;
+        this.reportsTo = builder.reportsTo;
+        this.photoPath = builder.photoPath;
     }
 
     public int getEmployeeID() {
@@ -57,140 +55,121 @@ public class Employee  {
         this.employeeID = employeeID;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
+    public static class Builder {
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+        private int employeeID;
+        private String lastName;
+        private String firstName;
+        private String title;
+        private String titleOfCourtesy;
+        private LocalDate birthDate;
+        private LocalDate hireDate;
+        private String address;
+        private String city;
+        private String region;
+        private String postalCode;
+        private String country;
+        private String homePhone;
+        private String extension;
+        private String photo;
+        private String notes;
+        private int reportsTo;
+        private String photoPath;
 
-    public String getFirstName() {
-        return firstName;
-    }
+        public Builder employeeID(int employeeID) {
+            this.employeeID = employeeID;
+            return this;
+        }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
 
-    public String getTitle() {
-        return title;
-    }
+        public Builder firstName(String firsName) {
+            this.firstName = firsName;
+            return this;
+        }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
 
-    public String getTitleOfCourtesy() {
-        return titleOfCourtesy;
-    }
+        public Builder titleOfCourtesy(String titleOfCourtesy) {
+            this.titleOfCourtesy = titleOfCourtesy;
+            return this;
+        }
 
-    public void setTitleOfCourtesy(String titleOfCourtesy) {
-        this.titleOfCourtesy = titleOfCourtesy;
-    }
+        public Builder birthDate(LocalDate birDate) {
+            this.birthDate = birDate;
+            return this;
+        }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
+        public Builder hireDate(LocalDate hireDate) {
+            this.hireDate = hireDate;
+            return this;
+        }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+        public Builder address(String address) {
+            this.address = address;
+            return this;
+        }
 
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
+        public Builder city(String city) {
+            this.city = city;
+            return this;
+        }
 
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
-    }
+        public Builder region(String region) {
+            this.region = region;
+            return this;
+        }
 
-    public String getAddress() {
-        return address;
-    }
+        public Builder postalCode(String postalCode) {
+            this.postalCode = postalCode;
+            return this;
+        }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+        public Builder country(String country) {
+            this.country = country;
+            return this;
+        }
 
-    public String getCity() {
-        return city;
-    }
+        public Builder homePhone(String homePhone) {
+            this.homePhone = homePhone;
+            return this;
+        }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+        public Builder extension(String extension) {
+            this.extension = extension;
+            return this;
+        }
 
-    public String getRegion() {
-        return region;
-    }
+        public Builder photo(String photo) {
+            this.photo = photo;
+            return this;
+        }
 
-    public void setRegion(String region) {
-        this.region = region;
-    }
+        public Builder notes(String notes) {
+            this.notes = notes;
+            return this;
+        }
 
-    public String getPostalCode() {
-        return postalCode;
-    }
+        public Builder reportsTo(int reportsTo) {
+            this.reportsTo = reportsTo;
+            return this;
+        }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
+        public Builder photoPath(String photoPath) {
+            this.photoPath = photoPath;
+            return this;
+        }
 
-    public String getCountry() {
-        return country;
-    }
+        public Employee build() {
+            return new Employee(this);
+        }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getHomePhone() {
-        return homePhone;
-    }
-
-    public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
-    }
-
-    public String getExtension() {
-        return extension;
-    }
-
-    public void setExtension(String extension) {
-        this.extension = extension;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public int getReportsTo() {
-        return reportsTo;
-    }
-
-    public void setReportsTo(int reportsTo) {
-        this.reportsTo = reportsTo;
-    }
-
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
     }
 
     @Override
@@ -216,7 +195,5 @@ public class Employee  {
                 "  photoPath='" + photoPath + "'\n" +
                 "}";
     }
-
-   
 
 }

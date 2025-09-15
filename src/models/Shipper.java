@@ -1,18 +1,19 @@
 package models;
 
-public class Shipper  {
+public class Shipper {
 
     private int shipperID;
     private String companyName;
     private String phone;
 
-    public Shipper(){}
+    public Shipper() {
+    }
 
-    public Shipper(int shipperID, String companyName, String phone) {
+    public Shipper(Builder builder) {
 
-        this.shipperID = shipperID;
-        this.companyName = companyName;
-        this.phone = phone;
+        this.shipperID = builder.shipperID;
+        this.companyName = builder.companyName;
+        this.phone = builder.phone;
 
     }
 
@@ -24,20 +25,29 @@ public class Shipper  {
         this.shipperID = shipperID;
     }
 
-    public String getCompanyName() {
-        return companyName;
-    }
+    public static class Builder {
+        private int shipperID;
+        private String companyName;
+        private String phone;
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+        public Builder shipperID(int shipperID) {
+            this.shipperID = shipperID;
+            return this;
+        }
 
-    public String getPhone() {
-        return phone;
-    }
+        public Builder companyName(String companyName) {
+            this.companyName = companyName;
+            return this;
+        }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+        public Builder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Shipper build() {
+            return new Shipper(this);
+        }
     }
 
     @Override
@@ -49,5 +59,4 @@ public class Shipper  {
                 "}";
     }
 
- 
 }
