@@ -33,11 +33,20 @@ public class ShipperController {
 
     public void addShipper(Shipper shipper) {
         try {
-            List<Shipper> shippers = getAllShippers();
 
-            int newId = shippers.isEmpty() ? 1 : shippers.stream().mapToInt(e -> e.getShipperID()).max().orElse(0) + 1;
-            shipper.setShipperID(newId);
+            List<Shipper> shippers = getAllShippers();
+            // Implementación para evitar duplicados
+            for (Shipper e : shippers) {
+                if (e.getShipperID() == shipper.getShipperID()) {
+                    System.out.println("No puedes realizar un duplicado del id " + shipper.getShipperID());
+                    return;
+                }
+            }
             shippers.add(shipper);
+            // int newId = shippers.isEmpty() ? 1 : shippers.stream().mapToInt(e ->
+            // e.getShipperID()).max().orElse(0) + 1;
+            // shipper.setShipperID(newId);
+
             repository.Save(shippers);
             System.out.println("Shipping agregado correctamente");
         } catch (Exception e) {

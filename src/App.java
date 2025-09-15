@@ -24,7 +24,21 @@ public class App {
         public static void main(String[] args) {
 
                 System.out.println("Bienveido a la tienda de productos...\n");
+                Shipper shi = new Shipper.Builder()
+                                .companyName("fedex")
+                                .shipperID(54)
+                                .phone("5098547562")
+                                .build();
+                // ShipperRepository shipRep = new ShipperRepository();
+                // ShipperController shipControl = new ShipperController(shipRep);
+                // shipControl.deleteShipper("54");
 
+                // System.out.println(shipControl.getAllShippers());
+                Scanner input = new Scanner(System.in);
+                String condition = "y";
+                do {
+
+                } while (condition == input.nextLine());
                 /*
                  * // Cliente
                  * Customer customer1 = new Customer(1, "webDevelopers", "Juan Perez", "Juan",
