@@ -3,10 +3,11 @@
 #### Se requiere crear un sistema de ordenes para un almacen dado un diagrama de base de datos
 
  #### Requisitos mínimos a cumplir 
-- listar las opciones disponible
-- validar que hallan registros creado en caso de no haber, entonces solicitar la creacion
-- que pueda crear ordenes y al final poder tener un resumen de las misma
-- implmentar el patron builder
+- List menu options
+- Validations over entities
+- Create records for every entity
+- Implement pattern build
+- Implement custom Exceptions, to each entity
 
 
 ## Folder Structure
