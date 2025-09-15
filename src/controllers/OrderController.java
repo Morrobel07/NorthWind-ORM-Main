@@ -7,64 +7,60 @@ import repository.OrderRepository;
 import java.util.List;
 
 public class OrderController {
-      private final IFile<Order> repository ;
+    private final IFile<Order> repository;
 
-      public OrderController(IFile<Order> repository) {
-          this.repository = repository;
-      }
+    public OrderController(IFile<Order> repository) {
+        this.repository = repository;
+    }
 
-      public List<Order> getAllOrders() {
-          try{
-              return repository.GetAll();
-          }catch (Exception e){
-              System.out.println( "Error al obtener todas las ordenes "+ e.getMessage());
-              return null;
-          }
-      }
+    public List<Order> getAllOrders() {
+        try {
+            return repository.GetAll();
+        } catch (Exception e) {
+            System.out.println("Error al obtener todas las ordenes " + e.getMessage());
+            return null;
+        }
+    }
 
-      public Order getOrderById(String id) {
-          try {
-              return repository.GetOne(id);
-          } catch (Exception e) {
-              System.out.println( "Error al obtener todas las ordenes "+ e.getMessage());
-              return null;
-          }
-      }
+    public Order getOrderById(String id) {
+        try {
+            return repository.GetOne(id);
+        } catch (Exception e) {
+            System.out.println("Error al obtener todas las ordenes " + e.getMessage());
+            return null;
+        }
+    }
 
-      public void addOrder(Order order) {
-          try {
-              List<Order> orders =  getAllOrders();
+    public void addOrder(Order order) {
+        try {
+            List<Order> orders = getAllOrders();
 
-              int newId = orders.isEmpty() ?
-                      1 : orders.stream().
-                              mapToInt(e -> e.getOrderID()).
-                              max().orElse(0) +1;
-              order.setOrderID(newId);
-              orders.add(order);
-              repository.Save(orders);
-              System.out.println("Orden agregada correctamente");
-           } catch (Exception e) {
-              System.out.println( "Error al agregar la orden"+ e.getMessage());
-          }
+            int newId = orders.isEmpty() ? 1 : orders.stream().mapToInt(e -> e.getOrderID()).max().orElse(0) + 1;
+            order.setOrderID(newId);
+            orders.add(order);
+            repository.Save(orders);
+            System.out.println("Orden agregada correctamente");
+        } catch (Exception e) {
+            System.out.println("Error al agregar la orden" + e.getMessage());
+        }
 
-      }
+    }
 
-      public void updateOrder(Order order) {
+    public void updateOrder(Order order) {
         try {
             repository.Update(order);
             System.out.println("Orden actualizada correctamente");
-        }catch (Exception e) {
-            System.out.println( "Error al actualizar la orden"+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al actualizar la orden" + e.getMessage());
         }
-      }
+    }
 
-      public void deleteOrder(String id) {
-          try {
-              repository.Delete(id);
-          }catch (Exception e) {
-              System.out.println( "Error al eliminar orden"+ e.getMessage());
-          }
-      }
-
+    public void deleteOrder(String id) {
+        try {
+            repository.Delete(id);
+        } catch (Exception e) {
+            System.out.println("Error al eliminar orden" + e.getMessage());
+        }
+    }
 
 }

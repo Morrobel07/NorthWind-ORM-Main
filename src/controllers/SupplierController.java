@@ -35,10 +35,8 @@ public class SupplierController {
         try {
             List<MySupplier> suppliers = getAllSuppliers();
 
-            int newId = suppliers.isEmpty() ?
-                    1 : suppliers.stream().
-                            mapToInt(e -> e.getSupplierID()).
-                            max().orElse(0) + 1;
+            int newId = suppliers.isEmpty() ? 1
+                    : suppliers.stream().mapToInt(e -> e.getSupplierID()).max().orElse(0) + 1;
             supplier.setSupplierID(newId);
             suppliers.add(supplier);
             repository.Save(suppliers);

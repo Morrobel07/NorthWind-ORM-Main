@@ -1,4 +1,5 @@
 package repository;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,21 +22,20 @@ import models.Employee;
 
 public class CustomerRepository implements IFile<Customer> {
 
-    private static final String FilePath= "src/data/data_Customer.json";
+    private static final String FilePath = "src/data/data_Customer.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     public List<Customer> customers = new ArrayList<>();
 
-
-
     @Override
-    public List<Customer> load()    {
-        try{
+    public List<Customer> load() {
+        try {
             File file = new File(FilePath);
             if (!file.exists() || file.length() == 0) {
 
                 return new ArrayList<>();
             }
-            return mapper.readValue(file, new TypeReference<List<Customer>>() {});
+            return mapper.readValue(file, new TypeReference<List<Customer>>() {
+            });
         } catch (IOException ex) {
             ex.printStackTrace();
             return new ArrayList<>();
@@ -44,7 +44,7 @@ public class CustomerRepository implements IFile<Customer> {
     }
 
     @Override
-    public void Save(List<Customer> customers)  {
+    public void Save(List<Customer> customers) {
         try {
             mapper.writeValue(new File(FilePath), customers);
         } catch (IOException e) {
@@ -54,15 +54,13 @@ public class CustomerRepository implements IFile<Customer> {
     }
 
     @Override
-    public Customer GetOne (String id) {
+    public Customer GetOne(String id) {
         List<Customer> customers = load();
         int customerId = Integer.parseInt(id);
         Optional<Customer> results = customers.stream()
                 .filter(c -> c.getCustomerID() == customerId).findFirst();
         return results.orElse(null);
     }
-
-
 
     @Override
     public List<Customer> GetAll() {
@@ -79,13 +77,12 @@ public class CustomerRepository implements IFile<Customer> {
     @Override
     public void Update(Customer entity) {
         List<Customer> employees = load();
-       //int employeeID = Integer.parseInt(id);
+        // int employeeID = Integer.parseInt(id);
         List<Customer> updateCustomer = employees.stream()
-                .map(c  -> c.getCustomerID() == entity.getCustomerID() ? entity : c)
+                .map(c -> c.getCustomerID() == entity.getCustomerID() ? entity : c)
                 .collect(Collectors.toList());
         Save(updateCustomer);
 
     }
-
 
 }

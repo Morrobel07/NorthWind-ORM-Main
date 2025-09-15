@@ -16,20 +16,17 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productID, String productName, MySupplier supplierID, Categorie categoryID,
-            String quantityPerUnit, double unitPrice, int unitsInStock, int unitsOnOrder, int reorderLevel,
-            boolean discontinued) {
-        this.productID = productID;
-        this.productName = productName;
-        this.supplierID = supplierID;
-        this.categoryID = categoryID;
-        this.quantityPerUnit = quantityPerUnit;
-        this.unitPrice = unitPrice;
-        this.unitsInStock = unitsInStock;
-        this.unitsOnOrder = unitsOnOrder;
-        this.reorderLevel = reorderLevel;
-        this.discontinued = discontinued;
-
+    private Product(Builder builder) {
+        this.productID = builder.productID;
+        this.productName = builder.productName;
+        this.supplierID = builder.supplierID;
+        this.categoryID = builder.categoryID;
+        this.quantityPerUnit = builder.quantityPerUnit;
+        this.unitPrice = builder.unitPrice;
+        this.unitsInStock = builder.unitsInStock;
+        this.unitsOnOrder = builder.unitsOnOrder;
+        this.reorderLevel = builder.reorderLevel;
+        this.discontinued = builder.discontinued;
     }
 
     public int getProductID() {
@@ -40,76 +37,71 @@ public class Product {
         this.productID = productID;
     }
 
-    public String getProductName() {
-        return productName;
-    }
+    public static class Builder {
+        private int productID;
+        private String productName;
+        private MySupplier supplierID;
+        private Categorie categoryID;
+        private String quantityPerUnit;
+        private double unitPrice;
+        private int unitsInStock;
+        private int unitsOnOrder;
+        private int reorderLevel;
+        private boolean discontinued;
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+        public Builder productID(int productID) {
+            this.productID = productID;
+            return this;
+        }
 
-    public MySupplier getSupplierID() {
-        return supplierID;
-    }
+        public Builder productName(String productName) {
+            this.productName = productName;
+            return this;
+        }
 
-    public void setSupplierID(MySupplier supplierID) {
-        this.supplierID = supplierID;
-    }
+        public Builder supplierID(MySupplier supplierID) {
+            this.supplierID = supplierID;
+            return this;
+        }
 
-    public Categorie getCategoryID() {
-        return categoryID;
-    }
+        public Builder categoryID(Categorie categoryID) {
+            this.categoryID = categoryID;
+            return this;
+        }
 
-    public void setCategoryID(Categorie categoryID) {
-        this.categoryID = categoryID;
-    }
+        public Builder quantityPerUnit(String quantityPerUnit) {
+            this.quantityPerUnit = quantityPerUnit;
+            return this;
+        }
 
-    public String getQuantityPerUnit() {
-        return quantityPerUnit;
-    }
+        public Builder unitPrice(double unitPrice) {
+            this.unitPrice = unitPrice;
+            return this;
+        }
 
-    public void setQuantityPerUnit(String quantityPerUnit) {
-        this.quantityPerUnit = quantityPerUnit;
-    }
+        public Builder unitsInStock(int unitsInStock) {
+            this.unitsInStock = unitsInStock;
+            return this;
+        }
 
-    public double getUnitPrice() {
-        return unitPrice;
-    }
+        public Builder unitsOnOrder(int unitsOnOrder) {
+            this.unitsOnOrder = unitsOnOrder;
+            return this;
+        }
 
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
+        public Builder reorderLevel(int reorderLevel) {
+            this.reorderLevel = reorderLevel;
+            return this;
+        }
 
-    public int getUnitsInStock() {
-        return unitsInStock;
-    }
+        public Builder discontinued(boolean discontinued) {
+            this.discontinued = discontinued;
+            return this;
+        }
 
-    public void setUnitsInStock(int unitsInStock) {
-        this.unitsInStock = unitsInStock;
-    }
-
-    public int getUnitsOnOrder() {
-        return unitsOnOrder;
-    }
-
-    public void setUnitsOnOrder(int unitsOnOrder) {
-        this.unitsOnOrder = unitsOnOrder;
-    }
-
-    public int getReorderLevel() {
-        return reorderLevel;
-    }
-
-    public void setReorderLevel(int reorderLevel) {
-        this.reorderLevel = reorderLevel;
-    }
-
-    public boolean isDiscontinued() {
-        return discontinued;
-    }
-
-    public void setDiscontinued(boolean discontinued) {
-        this.discontinued = discontinued;
+        public Product build() {
+            return new Product(this);
+        }
     }
 
     @Override

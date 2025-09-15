@@ -28,7 +28,7 @@ public class CategorieRepository implements IFile<Categorie> {
 
 
     @Override
-    public List<Categorie> load()    {
+    public List<Categorie> list()    {
         try{
             File file = new File(FilePath);
             if (!file.exists() || file.length() == 0 ) {
@@ -44,7 +44,7 @@ public class CategorieRepository implements IFile<Categorie> {
     }
 
     @Override
-    public void Save(List<Categorie> categories)  {
+    public void persist(Categorie categories)  {
         try {
             mapper.writeValue(new File(FilePath), categories);
         } catch (IOException e) {
@@ -54,8 +54,8 @@ public class CategorieRepository implements IFile<Categorie> {
     }
 
     @Override
-    public Categorie GetOne (String id) {
-        List<Categorie> categories = load();
+    public Categorie findById (String id) {
+        List<Categorie> categories = list();
         int categorieID = Integer.parseInt(id);
         Optional<Categorie> results = categories.stream()
                 .filter(c -> c.getCategoryID() == categorieID).findFirst();
@@ -64,26 +64,26 @@ public class CategorieRepository implements IFile<Categorie> {
 
 
 
-    @Override
+
     public List<Categorie> GetAll() {
-        return load();
+        return list();
     }
 
     @Override
-    public void Delete(String id) {
-        List<Categorie> categories = load();
+    public void delete(String id) {
+        List<Categorie> categories = list();
         categories.removeIf(c -> c.getCategoryID() == Integer.parseInt(id));
-        Save(categories);
+        persist(categories);
     }
 
     @Override
-    public void Update(Categorie entity) {
-        List<Categorie> categories = load();
+    public void update(Categorie entity) {
+        List<Categorie> categories = list();
        //int categorieID = Integer.parseInt(id);
         List<Categorie> updatedcCategories = categories.stream()
                 .map(c  -> c.getCategoryID() == entity.getCategoryID() ? entity : c)
                 .collect(Collectors.toList());
-        Save(updatedcCategories);
+        persist(updatedcCategories);
 
     }
 

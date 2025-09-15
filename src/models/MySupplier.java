@@ -18,21 +18,19 @@ public class MySupplier {
     public MySupplier() {
     }
 
-    public MySupplier(int supplierID, String companyName, String contactName, String contactTitle, String address,
-            String city, String region, String postalCode, String country, String phone, String fax,
-            String homePage) {
-        this.supplierID = supplierID;
-        this.companyName = companyName;
-        this.contactName = contactName;
-        this.contactTitle = contactTitle;
-        this.address = address;
-        this.city = city;
-        this.region = region;
-        this.postalCode = postalCode;
-        this.country = country;
-        this.phone = phone;
-        this.fax = fax;
-        this.homePage = homePage;
+    private MySupplier(Builder builder) {
+        this.supplierID = builder.supplierID;
+        this.companyName = builder.companyName;
+        this.contactName = builder.contactName;
+        this.contactTitle = builder.contactTitle;
+        this.address = builder.address;
+        this.city = builder.city;
+        this.region = builder.region;
+        this.postalCode = builder.postalCode;
+        this.country = builder.country;
+        this.phone = builder.phone;
+        this.fax = builder.fax;
+        this.homePage = builder.homePage;
     }
 
     public int getSupplierID() {
@@ -43,92 +41,83 @@ public class MySupplier {
         this.supplierID = supplierID;
     }
 
-    public String getCompanyName() {
-        return companyName;
-    }
+    public static class Builder {
+        private int supplierID;
+        private String companyName;
+        private String contactName;
+        private String contactTitle;
+        private String address;
+        private String city;
+        private String region;
+        private String postalCode;
+        private String country;
+        private String phone;
+        private String fax;
+        private String homePage;
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+        public Builder supplierID(int supplierID) {
+            this.supplierID = supplierID;
+            return this;
+        }
 
-    public String getContactName() {
-        return contactName;
-    }
+        public Builder companyName(String companyName) {
+            this.companyName = companyName;
+            return this;
+        }
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
+        public Builder contactName(String contactName) {
+            this.contactName = contactName;
+            return this;
+        }
 
-    public String getContactTitle() {
-        return contactTitle;
-    }
+        public Builder contactTitle(String contactTitle) {
+            this.contactTitle = contactTitle;
+            return this;
+        }
 
-    public void setContactTitle(String contactTitle) {
-        this.contactTitle = contactTitle;
-    }
+        public Builder address(String address) {
+            this.address = address;
+            return this;
+        }
 
-    public String getAddress() {
-        return address;
-    }
+        public Builder city(String city) {
+            this.city = city;
+            return this;
+        }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+        public Builder region(String region) {
+            this.region = region;
+            return this;
+        }
 
-    public String getCity() {
-        return city;
-    }
+        public Builder postalCode(String postalCode) {
+            this.postalCode = postalCode;
+            return this;
+        }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+        public Builder country(String country) {
+            this.country = country;
+            return this;
+        }
 
-    public String getRegion() {
-        return region;
-    }
+        public Builder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
 
-    public void setRegion(String region) {
-        this.region = region;
-    }
+        public Builder fax(String fax) {
+            this.fax = fax;
+            return this;
+        }
 
-    public String getPostalCode() {
-        return postalCode;
-    }
+        public Builder homePage(String homePage) {
+            this.homePage = homePage;
+            return this;
+        }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getFax() {
-        return fax;
-    }
-
-    public void setFax(String fax) {
-        this.fax = fax;
-    }
-
-    public String getHomePage() {
-        return homePage;
-    }
-
-    public void setHomePage(String homePage) {
-        this.homePage = homePage;
+        public MySupplier build() {
+            return new MySupplier(this);
+        }
     }
 
     @Override
@@ -136,6 +125,7 @@ public class MySupplier {
         return "Supplier{\n" +
                 "supplierID=" + supplierID + ",\n" +
                 "companyName=" + companyName + ",\n" +
+                "contactName=" + contactName + ",\n" +
                 "contactTitle=" + contactTitle + ",\n" +
                 "address=" + address + ",\n" +
                 "city=" + city + "',\n" +

@@ -22,13 +22,18 @@ public class SeedData {
         List<Employee> employees = repoE.GetAll();
         if (employees.isEmpty()) {
             employees.add(
-                    new Employee(
-                            1, "Davolio", "Nancy", "Sales Representative", "Shipero",
-                            LocalDate.of(1968, 12, 8),
-                            LocalDate.of(1992, 5, 1), "507 - 20th Ave. E. Apt. 2A",
-                            "Seattle", "WA", "98122",
-                            "USA", "(206) 555-9857", "5467",
-                            "Education includes a BA in psychology...", "2", 3, null)
+                    new Employee.Builder()
+                            .employeeID(1)
+                            .address("Santome con capotillo")
+                            .birthDate(LocalDate.of(2000, 9, 3))
+                            .country("Puerto Rico")
+                            .city("Maracaibo")
+                            .firstName("Juan")
+                            .lastName("Sanchez")
+                            .hireDate(LocalDate.of(2015, 10, 8))
+                            .homePhone("5096854567")
+                            .postalCode("94000")
+                            .build()
 
             );
             repoE.Save(employees);
@@ -42,10 +47,14 @@ public class SeedData {
         List<MySupplier> suppliers = repoS.GetAll();
         if (suppliers.isEmpty()) {
             suppliers.add(
-                    new MySupplier(
-                            1, "Exotic Liquid", "Charlotte Cooper", "Purchasing Manager ",
-                            "49Gilbert St.", "London", null, "EC1 4SD", "UK",
-                            "(171) 555-2222", null, null));
+                    new MySupplier.Builder()
+                            .companyName("Fedex")
+                            .contactName("Gerardo fedex")
+                            .contactTitle("Gerardo")
+                            .homePage("fedex.com")
+                            .address("esquina Kenedy")
+                            .fax("5068742")
+                            .build());
             repoS.Save(suppliers);
 
         } else {
@@ -60,8 +69,11 @@ public class SeedData {
 
         if (shippers.isEmpty()) {
             shippers.add(
-                    new Shipper(
-                            1, "Speedy Express", "Thomasecd"));
+                    new Shipper.Builder()
+                            .companyName("shipperExpress")
+                            .phone("8059452454")
+                            .shipperID(0)
+                            .build());
             repoShiper.Save(shippers);
 
         } else {
@@ -75,9 +87,12 @@ public class SeedData {
 
         {
             products.add(
-                    new Product(
-                            1, "Chais", null, null, "10 boxes x 20 bags", 18.00, 100, 0, 10,
-                            false));
+                    new Product.Builder()
+                            .productID(0)
+                            .productName(null)
+                            .categoryID(null)
+                            .discontinued(false)
+                            .build());
             repoProduct.Save(products);
         }
         return products;
@@ -88,8 +103,12 @@ public class SeedData {
         List<OrderDetails> orderDetails = repoOrderDetails.load();
         if (orderDetails.isEmpty()) {
             orderDetails.add(
-                    new OrderDetails(
-                            null, null, 19.45, 5, 0));
+                    new OrderDetails.Builder()
+                            .orderID(null)
+                            .productID(null)
+                            .discount(5.50)
+                            .unitPrice(25.99)
+                            .build());
             repoOrderDetails.Save(orderDetails);
         } else {
             System.out.println("Ya existen order details");
@@ -102,8 +121,14 @@ public class SeedData {
         List<Order> orders = repoOrder.load();
         if (orders.isEmpty()) {
             orders.add(
-                    new Order(
-                            1, null, null, null, null, null, null, 0, null, null, null, null, null, null));
+                    new Order.Builder()
+                            .customersID(null)
+                            .employeeID(null)
+                            .freight(5.0)
+                            .shipAddress("Fedex")
+                            .requiredDate(LocalDate.of(2026, 1, 25))
+                            .shipCity("Baní")
+                            .build());
             repoOrder.Save(orders);
         } else {
             System.out.println("Ya existen orders");
@@ -116,8 +141,12 @@ public class SeedData {
         List<Categorie> categories = repoCategorie.load();
         if (categories.isEmpty()) {
             categories.add(
-                    new Categorie(
-                            1, "Beverages", "Soft drinks, coffees, teas, beers, and ales", null));
+                    new Categorie.Builder()
+                            .categoryID(1)
+                            .categoryName("Emparedado")
+                            .description("Tecnologia")
+                            .picture("Foto.png")
+                            .build());
             repoCategorie.Save(categories);
         } else {
             System.out.println("Ya existen Categories");
@@ -129,10 +158,17 @@ public class SeedData {
         List<Customer> customers = repoCustomer.load();
         if (customers.isEmpty()) {
             customers.add(
-                    new Customer(
-                            1, "Alfreds Futterkiste", "Maria Anders", "Sales Representative", "Obere Str. 57", "Berlin",
-                            null,
-                            "12209", "Germany", "030-0074321", "030-00"));
+                    new Customer.Builder()
+                            .companyName("Developers")
+                            .phone("8095226321")
+                            .city("San jose ocoa")
+                            .postalCode("94000")
+                            .contactName("Yimi")
+                            .region("Azua")
+                            .address("Las mercedez #17")
+                            .country("Rep. Dom.")
+                            .contactTitle("DevelopesApp")
+                            .build());
             repoCustomer.Save(customers);
 
         } else {
