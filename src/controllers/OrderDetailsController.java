@@ -6,25 +6,25 @@ import models.OrderDetails;
 import java.util.List;
 
 public class OrderDetailsController {
-      private final IFile<OrderDetails> repository ;
+      private final IFile<OrderDetails,Integer> repository ;
       
 
-      public OrderDetailsController(IFile<OrderDetails> repository) {
+      public OrderDetailsController(IFile<OrderDetails,Integer> repository) {
           this.repository = repository;
       }
 
       public List<OrderDetails> getAllOrderDetails() {
           try{
-              return repository.GetAll();
+              return repository.list();
           }catch (Exception e){
               System.out.println( "Error al obtener la informacion de la orden "+ e.getMessage());
               return null;
           }
       }
 
-      public OrderDetails getOrderDetailsById(String id) {
+      public OrderDetails getOrderDetailsById(Integer id) {
           try {
-              return repository.GetOne(id);
+              return repository.findById(id);
           } catch (Exception e) {
               System.out.println( "Error al obtener la informacion "+ e.getMessage());
               return null;
@@ -33,10 +33,13 @@ public class OrderDetailsController {
 
       public void addOrderDetails(OrderDetails orderdetails) {
           try {
-              List<OrderDetails> orderDetailsList =  getAllOrderDetails();
-              if (orderDetailsList.isEmpty()) {
-                  orderDetailsList.add(orderdetails);
-                  repository.Save(orderDetailsList);
+              List<OrderDetails> orderDetails = getAllOrderDetails();
+              for (OrderDetails o : orderDetails) {
+                  if (o.getOrderID() == orderdetails.getOrderID()) {
+                      System.out.println("No puedes realizar un duplicado del id " + orderdetails.getOrderID());
+                      return;
+                  }
+                  orderDetails.add(orderdetails);
                   System.out.println("Informacion agregada correctamente");
               }
            } catch (Exception e) {
@@ -47,16 +50,16 @@ public class OrderDetailsController {
 
       public void updateOrderDetails(OrderDetails orderDetails) {
         try {
-            repository.Update(orderDetails);
+            repository.update(orderDetails);
             System.out.println("Informacion actualizada correctamente");
         }catch (Exception e) {
             System.out.println( "Error al actualizar la informacion"+ e.getMessage());
         }
       }
 
-      public void deleteOrderDetails(String id) {
+      public void deleteOrderDetails(Integer id) {
           try {
-              repository.Delete(id);
+              repository.delete(id);
           }catch (Exception e) {
               System.out.println( "Error a eliminar la informacion"+ e.getMessage());
           }

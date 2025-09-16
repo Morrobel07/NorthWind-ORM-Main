@@ -89,6 +89,9 @@ public class App {
                                                                         .fax(fax)
                                                                         .build();
                                                         // Método add para el backend
+                                                        // se guarda el customer en esta linea
+                                                        new CustomerController(new CustomerRepository()).addCustomer(customer);
+
                                                 }
 
                                                         break;

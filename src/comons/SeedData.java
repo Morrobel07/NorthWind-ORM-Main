@@ -1,5 +1,6 @@
 package comons;
 
+import controllers.EmployeeController;
 import models.*;
 import repository.*;
 
@@ -17,9 +18,11 @@ public class SeedData {
     private static CategorieRepository repoCategorie = new CategorieRepository();
     private static CustomerRepository repoCustomer = new CustomerRepository();
 
+
+
     public List<Employee> seedDataEmployees() {
 
-        List<Employee> employees = repoE.GetAll();
+        List<Employee> employees = repoE.list(); //
         if (employees.isEmpty()) {
             employees.add(
                     new Employee.Builder()
@@ -36,7 +39,7 @@ public class SeedData {
                             .build()
 
             );
-            repoE.Save(employees);
+            repoE.persist(employees);
         } else {
             System.out.println("Ya existen empleados");
         }
@@ -44,7 +47,7 @@ public class SeedData {
     }
 
     public List<MySupplier> seedDataSuppliers() {
-        List<MySupplier> suppliers = repoS.GetAll();
+        List<MySupplier> suppliers = repoS.list();
         if (suppliers.isEmpty()) {
             suppliers.add(
                     new MySupplier.Builder()
@@ -55,7 +58,7 @@ public class SeedData {
                             .address("esquina Kenedy")
                             .fax("5068742")
                             .build());
-            repoS.Save(suppliers);
+            repoS.persist(suppliers);
 
         } else {
 
@@ -65,7 +68,7 @@ public class SeedData {
     }
 
     public List<Shipper> seedDAtaShipper() {
-        List<Shipper> shippers = repoShiper.GetAll();
+        List<Shipper> shippers = repoShiper.list();
 
         if (shippers.isEmpty()) {
             shippers.add(
@@ -74,7 +77,7 @@ public class SeedData {
                             .phone("8059452454")
                             .shipperID(0)
                             .build());
-            repoShiper.Save(shippers);
+            repoShiper.persist(shippers);
 
         } else {
             System.out.println("Ya existen shippers");
@@ -83,7 +86,7 @@ public class SeedData {
     }
 
     public List<Product> seedDataProduct() {
-        List<Product> products = repoProduct.load();
+        List<Product> products = repoProduct.list();
 
         {
             products.add(
@@ -93,14 +96,14 @@ public class SeedData {
                             .categoryID(null)
                             .discontinued(false)
                             .build());
-            repoProduct.Save(products);
+            repoProduct.persist(products);
         }
         return products;
 
     }
 
     public List<OrderDetails> seedDataOrderDetails() {
-        List<OrderDetails> orderDetails = repoOrderDetails.load();
+        List<OrderDetails> orderDetails = repoOrderDetails.list();
         if (orderDetails.isEmpty()) {
             orderDetails.add(
                     new OrderDetails.Builder()
@@ -109,7 +112,7 @@ public class SeedData {
                             .discount(5.50)
                             .unitPrice(25.99)
                             .build());
-            repoOrderDetails.Save(orderDetails);
+            repoOrderDetails.persist(orderDetails);
         } else {
             System.out.println("Ya existen order details");
         }
@@ -118,7 +121,7 @@ public class SeedData {
     }
 
     public List<Order> seedDataOrder() {
-        List<Order> orders = repoOrder.load();
+        List<Order> orders = repoOrder.list();
         if (orders.isEmpty()) {
             orders.add(
                     new Order.Builder()
@@ -129,7 +132,7 @@ public class SeedData {
                             .requiredDate(LocalDate.of(2026, 1, 25))
                             .shipCity("Baní")
                             .build());
-            repoOrder.Save(orders);
+            repoOrder.persist(orders);
         } else {
             System.out.println("Ya existen orders");
         }
@@ -138,7 +141,7 @@ public class SeedData {
     }
 
     public List<Categorie> seedDataCategorie() {
-        List<Categorie> categories = repoCategorie.load();
+        List<Categorie> categories = repoCategorie.list();
         if (categories.isEmpty()) {
             categories.add(
                     new Categorie.Builder()
@@ -147,7 +150,7 @@ public class SeedData {
                             .description("Tecnologia")
                             .picture("Foto.png")
                             .build());
-            repoCategorie.Save(categories);
+            repoCategorie.persist(categories);
         } else {
             System.out.println("Ya existen Categories");
         }
@@ -155,7 +158,7 @@ public class SeedData {
     }
 
     public List<Customer> seedDataCustomer() {
-        List<Customer> customers = repoCustomer.load();
+        List<Customer> customers = repoCustomer.list();
         if (customers.isEmpty()) {
             customers.add(
                     new Customer.Builder()
@@ -169,7 +172,7 @@ public class SeedData {
                             .country("Rep. Dom.")
                             .contactTitle("DevelopesApp")
                             .build());
-            repoCustomer.Save(customers);
+            repoCustomer.persist(customers);
 
         } else {
             System.out.println("Ya existen customers");

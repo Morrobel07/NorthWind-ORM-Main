@@ -7,9 +7,9 @@ import repository.ShipperRepository;
 import java.util.List;
 
 public class ShipperController {
-    private final IFile<Shipper> repository;
+    private final IFile<Shipper,Integer> repository;
 
-    public ShipperController(IFile<Shipper> repository) {
+    public ShipperController(IFile<Shipper,Integer> repository) {
         this.repository = repository;
     }
 
@@ -22,7 +22,7 @@ public class ShipperController {
         }
     }
 
-    public Shipper getShipperById(String id) {
+    public Shipper getShipperById(Integer id) {
         try {
             return repository.findById(id);
         } catch (Exception e) {
@@ -35,7 +35,7 @@ public class ShipperController {
         try {
 
             List<Shipper> shippers = getAllShippers();
-            // Implementación para evitar duplicados
+
             for (Shipper e : shippers) {
                 if (e.getShipperID() == shipper.getShipperID()) {
                     System.out.println("No puedes realizar un duplicado del id " + shipper.getShipperID());
@@ -43,11 +43,6 @@ public class ShipperController {
                 }
             }
             repository.add(shipper);
-            // int newId = shippers.isEmpty() ? 1 : shippers.stream().mapToInt(e ->
-            // e.getShipperID()).max().orElse(0) + 1;
-            // shipper.setShipperID(newId);
-
-            //repository.add(shippers);
             System.out.println("Shipping agregado correctamente");
         } catch (Exception e) {
             System.out.println("Error al agregar shipping" + e.getMessage());
@@ -64,9 +59,9 @@ public class ShipperController {
         }
     }
 
-    public void deleteShipper(String id) {
+    public void deleteShipper(Integer id) {
         try {
-            repository.delete();
+            repository.delete(id);
         } catch (Exception e) {
             System.out.println("Error al eliminar shipping" + e.getMessage());
         }

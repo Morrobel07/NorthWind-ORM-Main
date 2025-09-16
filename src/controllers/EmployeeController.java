@@ -8,9 +8,9 @@ import repository.EmployeeRepository;
 import java.util.List;
 
 public class EmployeeController {
-    private final IFile<Employee> repository;
+    private final IFile<Employee,Integer> repository;
 
-    public EmployeeController(IFile<Employee> repository) {
+    public EmployeeController(IFile<Employee,Integer> repository) {
         this.repository = repository;
     }
 
@@ -35,7 +35,7 @@ public class EmployeeController {
      * @return El objeto Employee si se encuentra, o null si no existe o si ocurre
      *         un error.
      */
-    public Employee getEmployeeById(String id) {
+    public Employee getEmployeeById(Integer id) {
         try {
             return repository.findById(id);
         } catch (Exception e) {
@@ -56,14 +56,16 @@ public class EmployeeController {
                 if (e.getEmployeeID() == employee.getEmployeeID()) {
                     System.out.println("No puedes realizar un duplicado del id " + employee.getEmployeeID());
                     return;
+                }
+                repository.add(employee);
+                System.out.println("Empleado agregado correctamente");
 
-            repository.add(employee);
-            System.out.println("Empleado agregado correctamente");
+            }
         } catch (Exception e) {
             System.out.println("Error al agregar empleado" + e.getMessage());
         }
-
     }
+
 
     /**
      * Actualiza la información de un empleado existente.
@@ -72,7 +74,7 @@ public class EmployeeController {
      */
     public void updateEmployee(Employee employee) {
         try {
-            repository.Update(employee);
+            repository.update(employee);
             System.out.println("Empleado actualizado correctamente");
         } catch (Exception e) {
             System.out.println("Error al actualizar empleado" + e.getMessage());
@@ -84,9 +86,9 @@ public class EmployeeController {
      * 
      * @param id El ID del empleado a eliminar.
      */
-    public void deleteEmployee(String id) {
+    public void deleteEmployee(Integer id) {
         try {
-            repository.delete();
+            repository.delete(id);
         } catch (Exception e) {
             System.out.println("Error al eliminar empleado" + e.getMessage());
         }

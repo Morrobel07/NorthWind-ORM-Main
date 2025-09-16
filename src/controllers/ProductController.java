@@ -7,24 +7,24 @@ import repository.ProductRepository;
 import java.util.List;
 
 public class ProductController {
-    private final IFile<Product> repository;
+    private final IFile<Product, Integer> repository;
 
-    public ProductController(IFile<Product> repository) {
+    public ProductController(IFile<Product, Integer> repository) {
         this.repository = repository;
     }
 
     public List<Product> getAllProducts() {
         try {
-            return repository.getAll();
+            return repository.list();
         } catch (Exception e) {
             System.out.println("Error al obtener todos los productos " + e.getMessage());
             return null;
         }
     }
 
-    public Product getProductById(String id) {
+    public Product getProductById(Integer id) {
         try {
-            return repository.getOne(id);
+            return repository.findById(id);
         } catch (Exception e) {
             System.out.println("Error al obtener todos los produtos " + e.getMessage());
             return null;
@@ -34,11 +34,13 @@ public class ProductController {
     public void addProduct(Product product) {
         try {
             List<Product> products = getAllProducts();
-
-            int newId = products.isEmpty() ? 1 : products.stream().mapToInt(e -> e.getProductID()).max().orElse(0) + 1;
-            product.setProductID(newId);
+            for (Product p : products) {
+                if (p.getProductID() == product.getProductID()) {
+                    System.out.println("No puedes realizar un duplicado del id " + product.getProductID());
+                    return;
+                }
+            }
             products.add(product);
-            repository.Save(products);
             System.out.println("Producto agregado correctamente");
         } catch (Exception e) {
             System.out.println("Error al agregar producto" + e.getMessage());
@@ -48,16 +50,16 @@ public class ProductController {
 
     public void updateProduct(Product product) {
         try {
-            repository.Update(product);
+            repository.update(product);
             System.out.println("Producto actualizado correctamente");
         } catch (Exception e) {
             System.out.println("Error al actualizar producto" + e.getMessage());
         }
     }
 
-    public void deleteProduct(String id) {
+    public void deleteProduct(Integer id) {
         try {
-            repository.Delete(id);
+            repository.delete(id);
         } catch (Exception e) {
             System.out.println("Error al eliminar producto" + e.getMessage());
         }

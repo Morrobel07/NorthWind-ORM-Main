@@ -7,24 +7,24 @@ import repository.CategorieRepository;
 import java.util.List;
 
 public class CategorieController {
-    private final IFile<Categorie> repository;
+    private final IFile<Categorie,Integer> repository;
 
-    public CategorieController(IFile<Categorie> repository) {
+    public CategorieController(IFile<Categorie,Integer> repository) {
         this.repository = repository;
     }
 
     public List<Categorie> getAllCategories() {
         try {
-            return repository.GetAll();
+            return repository.list();
         } catch (Exception e) {
             System.out.println("Error al obtener todas las categorias " + e.getMessage());
             return null;
         }
     }
 
-    public Categorie getCategorieById(String id) {
+    public Categorie getCategorieById(Integer id) {
         try {
-            return repository.GetOne(id);
+            return repository.findById(id);
         } catch (Exception e) {
             System.out.println("Error al obtener todas las categoria " + e.getMessage());
             return null;
@@ -36,13 +36,16 @@ public class CategorieController {
 
             List<Categorie> categories = getAllCategories();
 
-            int newId = categories.isEmpty() ? 1
-                    : categories.stream().mapToInt(e -> e.getCategoryID()).max().orElse(0) + 1;
+            for (Categorie c : categories){
+                if(c.getCategoryID() == categorie.getCategoryID()){
+                    System.out.println("No puedes realizar un duplicado del id " + categorie.getCategoryID());
+                    return;
+                }
+                categories.add(categorie);
+                System.out.println("Categoria agregada correctamente");
 
-            categorie.setCategoryID(newId);
-            categories.add(categorie);
-            repository.Save(categories);
-            System.out.println("Categoria agregada correctamente");
+            }
+
         } catch (Exception e) {
             System.out.println("Error al agregar categoria" + e.getMessage());
         }
@@ -51,16 +54,16 @@ public class CategorieController {
 
     public void updateCategorie(Categorie categorie) {
         try {
-            repository.Update(categorie);
+            repository.update(categorie);
             System.out.println("Categoria actualizada correctamente");
         } catch (Exception e) {
             System.out.println("Error al actualizar categoria" + e.getMessage());
         }
     }
 
-    public void deleteCategorie(String id) {
+    public void deleteCategorie(Integer id) {
         try {
-            repository.Delete(id);
+            repository.delete(id);
         } catch (Exception e) {
             System.out.println("Error al eliminar Categoria" + e.getMessage());
         }
