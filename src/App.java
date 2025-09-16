@@ -23,69 +23,89 @@ import repository.EmployeeRepository;
 public class App {
         public static void main(String[] args) {
 
-                System.out.println("Bienveido a la tienda de productos...\n");
-                Shipper shi = new Shipper.Builder()
-                                .companyName("fedex")
-                                .shipperID(54)
-                                .phone("5098547562")
-                                .build();
-                // ShipperRepository shipRep = new ShipperRepository();
-                // ShipperController shipControl = new ShipperController(shipRep);
-                // shipControl.deleteShipper("54");
-
-                // System.out.println(shipControl.getAllShippers());
+                Customer customer;
+                Employee employee;
+                Shipper shipper;
+                Order order;
+                MySupplier mySupplier;
+                Categorie categorie;
+                Product product;
+                OrderDetails orderDetails;
                 Scanner input = new Scanner(System.in);
-                String condition = "y";
-                do {
+                int option;
 
-                } while (condition == input.nextLine());
-                /*
-                 * // Cliente
-                 * Customer customer1 = new Customer(1, "webDevelopers", "Juan Perez", "Juan",
-                 * "Calle Luna",
-                 * "Santo Domingo", "Distrito Nacional", "10101", "República Dominicana",
-                 * "8091234567", "0056789");
-                 * // Empleado
-                 * Employee empoyee1 = new Employee(1, "Gonzalez", "Maria", "Gerente de Ventas",
-                 * "Sra.",
-                 * LocalDate.of(1985, 5, 15), LocalDate.of(2010, 3, 20), "Calle Sol",
-                 * "Santo Domingo", "Distrito Nacional", "10202",
-                 * "República Dominicana", "8097654321", "1234",
-                 * "maria.jpg", "Maria tiene 10 años de experiencia...", 0,
-                 * "/images/maria.jpg");
-                 * // Envios
-                 * Shipper shipper1 = new Shipper(1, "DHL", "8091112222");
-                 * 
-                 * // Orden
-                 * Order order1 = new Order(1, customer1, empoyee1, LocalDate.of(2023, 10, 1),
-                 * LocalDate.of(2023, 10, 5), LocalDate.of(2025, 8, 14), shipper1, 50.0,
-                 * "webDevelopers", "Calle Luna", "Santo Domingo", "Distrito Nacional",
-                 * "10101", "República Dominicana");
-                 * // Proveedor
-                 * MySupplier supplier1 = new MySupplier(1, "technoWorld", "Carlos Lopez",
-                 * "Carlos", "Avenida central",
-                 * "Santo domingo", "Distrito Nacional", "10303", "República Dominicana",
-                 * "8092223333", "8092223334", "www.technoworld.com");
-                 * // Categoria
-                 * Categorie categorie1 = new Categorie(1, "Electrónica",
-                 * "Dispositivos y gadgets electrónicos",
-                 * "electronics.jpg");
-                 * // Producto
-                 * Product product1 = new Product(1, "Laptop", supplier1, categorie1, "1 unit",
-                 * 800.0, 50, 10, 5,
-                 * false);
-                 * // Detalle de la orden
-                 * OrderDetails orderDetails1 = new OrderDetails(order1, product1, 60.0, 2,
-                 * 0.1);
-                 * 
-                 * OrderDetailsRepository orderDetailsRepository = new OrderDetailsRepository();
-                 * OrderDetailsController orderDetailsController = new
-                 * OrderDetailsController(orderDetailsRepository);
-                 * 
-                 * // orderDetailsController.addOrderDetails(orderDetails1);
-                 * 
-                 * System.out.println(orderDetailsController.getAllOrderDetails());
-                 */
+                do {
+                        System.out.println("1) Crear registros");
+                        System.out.println("2)Eliminar registros");
+                        System.out.println("3)Listar registros");
+                        System.out.println("4) Salir");
+                        System.out.println("Selecciona una opción");
+                        System.out.println("\n");
+                        option = Integer.parseInt(input.nextLine());
+                        // MENU OPTION
+                        switch (option) {
+                                case 1: {// FIRST OPTION
+                                        System.out.println("Elige el registro que deseas crear");
+                                        System.out.println(// ENTIDADES
+                                                        "1) Customer 2)Employees 3)Shippers 4)Order 5)Supplier 6)Categorie 7)Product 8)Order Details");
+                                        String entities = input.nextLine();
+                                        switch (entities) {
+                                                case "1": {// customer
+                                                        System.out.println("Ingresa el id del customer");
+                                                        int id = input.nextInt();
+                                                        input.nextLine();
+                                                        System.out.println("Ingresa el nombre de la comopañía");
+                                                        String companyName = input.nextLine();
+                                                        System.out.println("Ingresa el nombre de contacto");
+                                                        String contactName = input.nextLine();
+                                                        System.out.println("Ingresa el titulo del contacto");
+                                                        String contactTitle = input.nextLine();
+                                                        System.out.println("Ingresa la dirección");
+                                                        String address = input.nextLine();
+                                                        System.out.println("Ingresa la ciudad");
+                                                        String city = input.nextLine();
+                                                        System.out.println("Ingresa la region");
+                                                        String region = input.nextLine();
+                                                        System.out.println("Ingresa codigo postal");
+                                                        String postalCode = input.nextLine();
+                                                        System.out.println("Ingresa el país");
+                                                        String country = input.nextLine();
+                                                        System.out.println("Ingresa el número de teléfono");
+                                                        String phone = input.nextLine();
+                                                        System.out.println("Ingresa el fax");
+                                                        String fax = input.nextLine();
+
+                                                        customer = new Customer.Builder()
+                                                                        .customerID(id)
+                                                                        .companyName(companyName)
+                                                                        .contactName(contactName)
+                                                                        .contactTitle(contactTitle)
+                                                                        .address(address)
+                                                                        .city(city)
+                                                                        .region(region)
+                                                                        .postalCode(postalCode)
+                                                                        .country(country)
+                                                                        .phone(phone)
+                                                                        .fax(fax)
+                                                                        .build();
+                                                        // Método add para el backend
+                                                }
+
+                                                        break;
+
+                                                default:
+                                                        break;
+                                        }
+                                }
+
+                                        break;
+
+                                default:
+                                        break;
+                        }
+
+                } while (option != 4);
+                input.close();
 
         }
 }
