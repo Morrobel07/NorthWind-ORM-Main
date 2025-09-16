@@ -1,4 +1,5 @@
 package repository;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,21 +22,20 @@ import models.Order;
 
 public class CategorieRepository implements IFile<Categorie> {
 
-    private static final String FilePath= "src/data/data_Categorie.json";
+    private static final String FilePath = "src/data/data_Categorie.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     public List<Categorie> categories = new ArrayList<>();
 
-
-
     @Override
-    public List<Categorie> load()    {
-        try{
+    public List<Categorie> list() {
+        try {
             File file = new File(FilePath);
-            if (!file.exists() || file.length() == 0 ) {
+            if (!file.exists() || file.length() == 0) {
 
                 return new ArrayList<>();
             }
-            return mapper.readValue(file, new TypeReference<List<Categorie>>() {});
+            return mapper.readValue(file, new TypeReference<List<Categorie>>() {
+            });
         } catch (IOException ex) {
             ex.printStackTrace();
             return new ArrayList<>();
@@ -44,7 +44,7 @@ public class CategorieRepository implements IFile<Categorie> {
     }
 
     @Override
-    public void Save(List<Categorie> categories)  {
+    public void Save(List<Categorie> categories) {
         try {
             mapper.writeValue(new File(FilePath), categories);
         } catch (IOException e) {
@@ -54,15 +54,13 @@ public class CategorieRepository implements IFile<Categorie> {
     }
 
     @Override
-    public Categorie GetOne (String id) {
+    public Categorie GetOne(String id) {
         List<Categorie> categories = load();
         int categorieID = Integer.parseInt(id);
         Optional<Categorie> results = categories.stream()
                 .filter(c -> c.getCategoryID() == categorieID).findFirst();
         return results.orElse(null);
     }
-
-
 
     @Override
     public List<Categorie> GetAll() {
@@ -79,13 +77,12 @@ public class CategorieRepository implements IFile<Categorie> {
     @Override
     public void Update(Categorie entity) {
         List<Categorie> categories = load();
-       //int categorieID = Integer.parseInt(id);
+        // int categorieID = Integer.parseInt(id);
         List<Categorie> updatedcCategories = categories.stream()
-                .map(c  -> c.getCategoryID() == entity.getCategoryID() ? entity : c)
+                .map(c -> c.getCategoryID() == entity.getCategoryID() ? entity : c)
                 .collect(Collectors.toList());
         Save(updatedcCategories);
 
     }
-
 
 }

@@ -19,7 +19,7 @@ import comons.SeedData;
 import models.Employee;
 import models.Shipper;
 
-public class ShipperRepository implements IFile<Shipper> {
+public class ShipperRepository implements IFile<Shipper, Integer> {
 
     private static final String FilePath = "src/data/data_shipper.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
@@ -27,7 +27,7 @@ public class ShipperRepository implements IFile<Shipper> {
     private SeedData seed;
 
     @Override
-    public List<Shipper> load() {
+    public List<Shipper> list() {
         try {
             File file = new File(FilePath);
             if (!file.exists() || file.length() == 0) {
