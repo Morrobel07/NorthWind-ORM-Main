@@ -2,6 +2,7 @@ package controllers;
 
 import comons.IFile;
 import models.Employee;
+import models.Shipper;
 import repository.EmployeeRepository;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class EmployeeController {
      */
     public List<Employee> getAllEmployees() {
         try {
-            return repository.GetAll();
+            return repository.list();
         } catch (Exception e) {
             System.out.println("Error al obtener todos los empleados " + e.getMessage());
             return null;
@@ -36,7 +37,7 @@ public class EmployeeController {
      */
     public Employee getEmployeeById(String id) {
         try {
-            return repository.GetOne(id);
+            return repository.findById(id);
         } catch (Exception e) {
             System.out.println("Error al obtener todos los empleados " + e.getMessage());
             return null;
@@ -51,12 +52,12 @@ public class EmployeeController {
     public void addEmployee(Employee employee) {
         try {
             List<Employee> employees = getAllEmployees();
+            for (Employee e : employees) {
+                if (e.getEmployeeID() == employee.getEmployeeID()) {
+                    System.out.println("No puedes realizar un duplicado del id " + employee.getEmployeeID());
+                    return;
 
-            int newId = employees.isEmpty() ? 1
-                    : employees.stream().mapToInt(e -> e.getEmployeeID()).max().orElse(0) + 1;
-            employee.setEmployeeID(newId);
-            employees.add(employee);
-            repository.Save(employees);
+            repository.add(employee);
             System.out.println("Empleado agregado correctamente");
         } catch (Exception e) {
             System.out.println("Error al agregar empleado" + e.getMessage());
@@ -85,7 +86,7 @@ public class EmployeeController {
      */
     public void deleteEmployee(String id) {
         try {
-            repository.Delete(id);
+            repository.delete();
         } catch (Exception e) {
             System.out.println("Error al eliminar empleado" + e.getMessage());
         }

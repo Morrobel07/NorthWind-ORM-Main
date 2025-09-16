@@ -20,14 +20,14 @@ import models.Categorie;
 import models.Customer;
 import models.Employee;
 
-public class CustomerRepository implements IFile<Customer> {
+public class CustomerRepository implements IFile<Customer,Integer> {
 
     private static final String FilePath = "src/data/data_Customer.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     public List<Customer> customers = new ArrayList<>();
 
     @Override
-    public List<Customer> load() {
+    public List<Customer> list() {
         try {
             File file = new File(FilePath);
             if (!file.exists() || file.length() == 0) {
@@ -44,7 +44,8 @@ public class CustomerRepository implements IFile<Customer> {
     }
 
     @Override
-    public void Save(List<Customer> customers) {
+    public void persist(List<Customer> customers) {
+
         try {
             mapper.writeValue(new File(FilePath), customers);
         } catch (IOException e) {
@@ -54,34 +55,45 @@ public class CustomerRepository implements IFile<Customer> {
     }
 
     @Override
-    public Customer GetOne(String id) {
-        List<Customer> customers = load();
-        int customerId = Integer.parseInt(id);
+    public void add(Customer entity) {
+        List<Customer> categories = list();
+
+        for (Customer e : categories) {
+            if (e.getCustomerID() == entity.getCustomerID()) {
+                System.out.println("No puedes realizar un duplicado del id " + entity.getCustomerID());
+                return;
+            }
+
+            categories.add(entity);
+            persist(categories);
+            System.out.println("Empleado agregado correctamente");
+        }
+    }
+
+    @Override
+    public Customer findById(Integer id) {
+        List<Customer> customers = list();
         Optional<Customer> results = customers.stream()
-                .filter(c -> c.getCustomerID() == customerId).findFirst();
+                .filter(c -> c.getCustomerID() == id).findFirst();
         return results.orElse(null);
     }
 
+
+
     @Override
-    public List<Customer> GetAll() {
-        return load();
+    public void delete(Integer id) {
+        List<Customer> customers = list();
+        customers.removeIf(c -> c.getCustomerID() == id);
+        persist(customers);
     }
 
     @Override
-    public void Delete(String id) {
-        List<Customer> customers = load();
-        customers.removeIf(c -> c.getCustomerID() == Integer.parseInt(id));
-        Save(customers);
-    }
-
-    @Override
-    public void Update(Customer entity) {
-        List<Customer> employees = load();
-        // int employeeID = Integer.parseInt(id);
+    public void update(Customer entity) {
+        List<Customer> employees = list();
         List<Customer> updateCustomer = employees.stream()
                 .map(c -> c.getCustomerID() == entity.getCustomerID() ? entity : c)
                 .collect(Collectors.toList());
-        Save(updateCustomer);
+        persist(updateCustomer);
 
     }
 

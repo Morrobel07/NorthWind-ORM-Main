@@ -15,18 +15,19 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
+import models.Categorie;
 import models.Employee;
 import models.Order;
 import models.OrderDetails;
 
-public class OrderDetailsRepository implements IFile<OrderDetails> {
+public class OrderDetailsRepository implements IFile<OrderDetails,Integer> {
 
     private static final String FilePath = "src/data/data_OrderDetails.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     public List<Employee> employees = new ArrayList<>();
 
     @Override
-    public List<OrderDetails> load() {
+    public List<OrderDetails> list() {
         try {
             File file = new File(FilePath);
             if (!file.exists() || file.length() == 0) {
@@ -42,7 +43,7 @@ public class OrderDetailsRepository implements IFile<OrderDetails> {
     }
 
     @Override
-    public void Save(List<OrderDetails> orderDetails) {
+    public void persist (List<OrderDetails> orderDetails) {
         try {
             mapper.writeValue(new File(FilePath), orderDetails);
         } catch (IOException e) {
@@ -52,35 +53,46 @@ public class OrderDetailsRepository implements IFile<OrderDetails> {
     }
 
     @Override
-    public OrderDetails GetOne(String id) {
-        List<OrderDetails> ordersDetails = load();
-        // int orderDetailsID = Integer.parseInt(id);
+    public void add(OrderDetails entity) {
+        List<OrderDetails> orderDetails = list();
+
+        for (OrderDetails e : orderDetails) {
+            if (e.getOrderID() == entity.getOrderID()) {
+                System.out.println("No puedes realizar un duplicado del id " + entity.getOrderID());
+                return;
+            }
+
+            orderDetails.add(entity);
+            persist(orderDetails);
+            System.out.println("Empleado agregado correctamente");
+        }
+    }
+
+    @Override
+    public OrderDetails findById(Integer id) {
+        List<OrderDetails> ordersDetails = list();
         Optional<OrderDetails> results = ordersDetails.stream()
                 .filter(c -> c.getOrderID().equals(id)).findFirst();
         return results.orElse(null);
     }
 
-    @Override
-    public List<OrderDetails> GetAll() {
-        return load();
-    }
+
 
     @Override
-    public void Delete(String id) {
-        List<OrderDetails> orderDetails = load();
+    public void delete(Integer id) {
+        List<OrderDetails> orderDetails = list();
         orderDetails.removeIf(c -> c.getOrderID().equals(id));
         orderDetails.clear();
-        Save(orderDetails);
+        persist(orderDetails);
     }
 
     @Override
-    public void Update(OrderDetails entity) {
-        List<OrderDetails> orderDetails = load();
-        // int employeeID = Integer.parseInt(id);
+    public void update(OrderDetails entity) {
+        List<OrderDetails> orderDetails = list();
         List<OrderDetails> updateOrderDetails = orderDetails.stream()
                 .map(c -> c.getOrderID() == entity.getOrderID() ? entity : c)
                 .collect(Collectors.toList());
-        Save(updateOrderDetails);
+        persist(updateOrderDetails);
 
     }
 

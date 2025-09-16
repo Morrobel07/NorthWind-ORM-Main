@@ -17,13 +17,13 @@ import comons.IFile;
 import comons.SeedData;
 import comons.SeedData.*;
 import models.Categorie;
+import models.Employee;
 import models.Order;
 
-public class CategorieRepository implements IFile<Categorie> {
+public class CategorieRepository implements IFile<Categorie,Integer> {
 
     private static final String FilePath= "src/data/data_Categorie.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    public List<Categorie> categories = new ArrayList<>();
 
 
 
@@ -44,7 +44,7 @@ public class CategorieRepository implements IFile<Categorie> {
     }
 
     @Override
-    public void persist(Categorie categories)  {
+    public void persist(List<Categorie> categories )  {
         try {
             mapper.writeValue(new File(FilePath), categories);
         } catch (IOException e) {
@@ -54,38 +54,47 @@ public class CategorieRepository implements IFile<Categorie> {
     }
 
     @Override
-    public Categorie findById (String id) {
+    public void add(Categorie entity) {
         List<Categorie> categories = list();
-        int categorieID = Integer.parseInt(id);
-        Optional<Categorie> results = categories.stream()
-                .filter(c -> c.getCategoryID() == categorieID).findFirst();
-        return results.orElse(null);
+
+        for (Categorie e : categories) {
+            if (e.getCategoryID() == entity.getCategoryID()) {
+                System.out.println("No puedes realizar un duplicado del id " + entity.getCategoryID());
+                return;
+            }
+
+            categories.add(entity);
+            persist(categories);
+            System.out.println("Empleado agregado correctamente");
+        }
     }
 
+        @Override
+        public Categorie findById (Integer id) {
+            List<Categorie> categories = list();
+            Optional<Categorie> results = categories.stream()
+                    .filter(c -> c.getCategoryID() == id).findFirst();
+            return results.orElse(null);
+        }
+
+        @Override
+        public void delete(Integer id) {
+            List<Categorie> categories = list();
+            categories.removeIf(c -> c.getCategoryID() == id);
+            persist(categories);
+        }
+
+        @Override
+        public void update(Categorie entity) {
+            List<Categorie> categories = list();
+            List<Categorie> updatedcCategories = categories.stream()
+                    .map(c  -> c.getCategoryID() == entity.getCategoryID() ? entity : c)
+                    .collect(Collectors.toList());
+            persist(updatedcCategories);
+
+        }
 
 
-
-    public List<Categorie> GetAll() {
-        return list();
-    }
-
-    @Override
-    public void delete(String id) {
-        List<Categorie> categories = list();
-        categories.removeIf(c -> c.getCategoryID() == Integer.parseInt(id));
-        persist(categories);
-    }
-
-    @Override
-    public void update(Categorie entity) {
-        List<Categorie> categories = list();
-       //int categorieID = Integer.parseInt(id);
-        List<Categorie> updatedcCategories = categories.stream()
-                .map(c  -> c.getCategoryID() == entity.getCategoryID() ? entity : c)
-                .collect(Collectors.toList());
-        persist(updatedcCategories);
-
-    }
 
 
 }

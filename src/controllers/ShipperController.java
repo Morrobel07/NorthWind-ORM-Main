@@ -15,7 +15,7 @@ public class ShipperController {
 
     public List<Shipper> getAllShippers() {
         try {
-            return repository.GetAll();
+            return repository.list();
         } catch (Exception e) {
             System.out.println("Error al obtener el shipping " + e.getMessage());
             return null;
@@ -24,7 +24,7 @@ public class ShipperController {
 
     public Shipper getShipperById(String id) {
         try {
-            return repository.GetOne(id);
+            return repository.findById(id);
         } catch (Exception e) {
             System.out.println("Error al obtener todos los shipping " + e.getMessage());
             return null;
@@ -33,12 +33,21 @@ public class ShipperController {
 
     public void addShipper(Shipper shipper) {
         try {
-            List<Shipper> shippers = getAllShippers();
 
-            int newId = shippers.isEmpty() ? 1 : shippers.stream().mapToInt(e -> e.getShipperID()).max().orElse(0) + 1;
-            shipper.setShipperID(newId);
-            shippers.add(shipper);
-            repository.Save(shippers);
+            List<Shipper> shippers = getAllShippers();
+            // Implementación para evitar duplicados
+            for (Shipper e : shippers) {
+                if (e.getShipperID() == shipper.getShipperID()) {
+                    System.out.println("No puedes realizar un duplicado del id " + shipper.getShipperID());
+                    return;
+                }
+            }
+            repository.add(shipper);
+            // int newId = shippers.isEmpty() ? 1 : shippers.stream().mapToInt(e ->
+            // e.getShipperID()).max().orElse(0) + 1;
+            // shipper.setShipperID(newId);
+
+            //repository.add(shippers);
             System.out.println("Shipping agregado correctamente");
         } catch (Exception e) {
             System.out.println("Error al agregar shipping" + e.getMessage());
@@ -48,7 +57,7 @@ public class ShipperController {
 
     public void updateShipper(Shipper shipper) {
         try {
-            repository.Update(shipper);
+            repository.update(shipper);
             System.out.println("Shipping actualizado correctamente");
         } catch (Exception e) {
             System.out.println("Error al actualizar shipping" + e.getMessage());
@@ -57,7 +66,7 @@ public class ShipperController {
 
     public void deleteShipper(String id) {
         try {
-            repository.Delete(id);
+            repository.delete();
         } catch (Exception e) {
             System.out.println("Error al eliminar shipping" + e.getMessage());
         }

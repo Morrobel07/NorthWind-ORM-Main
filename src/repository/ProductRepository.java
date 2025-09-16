@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
+import models.Categorie;
 import models.Employee;
 import models.Product;
 
-public class ProductRepository implements IFile<Product> {
+public class ProductRepository implements IFile<Product,Integer> {
 
     private static final String FilePath= "src/data/data_Product.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
@@ -26,7 +27,7 @@ public class ProductRepository implements IFile<Product> {
 
 
     @Override
-    public List<Product> load()    {
+    public List<Product> list()    {
         try{
             File file = new File(FilePath);
             if (!file.exists() || file.length() == 0) {
@@ -41,7 +42,7 @@ public class ProductRepository implements IFile<Product> {
     }
 
     @Override
-    public void Save(List<Product> products)  {
+    public void persist(List<Product> products)  {
         try {
             mapper.writeValue(new File(FilePath), products);
         } catch (IOException e) {
@@ -51,36 +52,47 @@ public class ProductRepository implements IFile<Product> {
     }
 
     @Override
-    public Product GetOne (String id) {
-        List<Product> products = load();
-        int productID = Integer.parseInt(id);
+    public void add(Product entity) {
+        List<Product> products = list();
+
+        for (Product e : products) {
+            if (e.getProductID() == entity.getProductID()) {
+                System.out.println("No puedes realizar un duplicado del id " + entity.getProductID());
+                return;
+            }
+
+            products.add(entity);
+            persist(products);
+            System.out.println("Empleado agregado correctamente");
+        }
+    }
+
+    @Override
+    public Product findById (Integer id) {
+        List<Product> products = list();
         Optional<Product> results = products.stream()
-                .filter(c -> c.getProductID() == productID).findFirst();
+                .filter(c -> c.getProductID() == id).findFirst();
         return results.orElse(null);
     }
 
 
 
+
+
     @Override
-    public List<Product> GetAll() {
-        return load();
+    public void delete(Integer id) {
+        List<Product> products = list();
+        products.removeIf(c -> c.getProductID() == id);
+        persist(products);
     }
 
     @Override
-    public void Delete(String id) {
-        List<Product> products = load();
-        products.removeIf(c -> c.getProductID() == Integer.parseInt(id));
-        Save(products);
-    }
-
-    @Override
-    public void Update(Product entity) {
-        List<Product> products = load();
-       //int employeeID = Integer.parseInt(id);
+    public void update(Product entity) {
+        List<Product> products = list();
         List<Product> updatedEmployees = products.stream()
                 .map(c  -> c.getProductID() == entity.getProductID() ? entity : c)
                 .collect(Collectors.toList());
-        Save(updatedEmployees);
+        persist(updatedEmployees);
 
     }
 

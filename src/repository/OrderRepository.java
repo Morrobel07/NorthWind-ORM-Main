@@ -14,19 +14,19 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
+import models.Categorie;
 import models.Employee;
 import models.Order;
 
-public class OrderRepository implements IFile<Order>   {
+public class OrderRepository implements IFile<Order,Integer>   {
 
     private static final String FilePath= "src/data/data_order.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    public List<Order> orders = new ArrayList<>();
 
 
 
     @Override
-    public List<Order> load()    {
+    public List<Order> list()    {
         try{
             File file = new File(FilePath);
             if (!file.exists() || file.length() == 0) {
@@ -41,7 +41,7 @@ public class OrderRepository implements IFile<Order>   {
     }
 
     @Override
-    public void Save(List<Order> orders)  {
+    public void persist(List<Order> orders)  {
         try {
             mapper.writeValue(new File(FilePath), orders);
         } catch (IOException e) {
@@ -51,36 +51,49 @@ public class OrderRepository implements IFile<Order>   {
     }
 
     @Override
-    public Order GetOne (String id) {
-        List<Order> orders = load();
-        int orderId = Integer.parseInt(id);
+    public void add(Order entity) {
+        List<Order> orders = list();
+
+        for (Order e : orders) {
+            if (e.getOrderID() == entity.getOrderID()) {
+                System.out.println("No puedes realizar un duplicado del id " + entity.getOrderID());
+                return;
+            }
+
+            orders.add(entity);
+            persist(orders);
+            System.out.println("Empleado agregado correctamente");
+        }
+    }
+
+
+    @Override
+    public Order findById (Integer id) {
+        List<Order> orders = list();
         Optional<Order> results = orders.stream()
-                .filter(c -> c.getOrderID() == orderId).findFirst();
+                .filter(c -> c.getOrderID() == id).findFirst();
         return results.orElse(null);
     }
 
 
 
+
+
     @Override
-    public List<Order> GetAll() {
-        return load();
+    public void delete(Integer id) {
+        List<Order> employees = list();
+        employees.removeIf(c -> c.getOrderID() == id);
+        persist(employees);
     }
 
     @Override
-    public void Delete(String id) {
-        List<Order> employees = load();
-        employees.removeIf(c -> c.getOrderID() == Integer.parseInt(id));
-        Save(employees);
-    }
-
-    @Override
-    public void Update(Order entity) {
-        List<Order>  orders = load();
+    public void update(Order entity) {
+        List<Order>  orders = list();
        //int employeeID = Integer.parseInt(id);
         List<Order> updatedEmployees = orders.stream()
                 .map(c  -> c.getOrderID() == entity.getOrderID() ? entity : c)
                 .collect(Collectors.toList());
-        Save(updatedEmployees);
+        persist(updatedEmployees);
 
     }
 
