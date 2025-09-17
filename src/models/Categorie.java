@@ -1,5 +1,10 @@
 package models;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+//@JsonDeserialize(builder = Categorie.Builder.class)
 public class Categorie {
 
     private int categoryID;
@@ -14,13 +19,13 @@ public class Categorie {
         this.picture = builder.picture;
     }
 
+
+
     public int getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
-    }
+
 
     public static class Builder {
         private int categoryID;

@@ -15,13 +15,14 @@ import java.util.Scanner;
 import java.util.function.Supplier;
 
 import comons.SeedData.*;
-import models.Product;
+import models.*;
 import models.Shipper;
 import repository.*;
 import repository.EmployeeRepository;
 
 public class App {
         public static void main(String[] args) {
+
 
                 Customer customer;
                 Employee employee;
@@ -39,8 +40,8 @@ public class App {
                         System.out.println("2)Eliminar registros");
                         System.out.println("3)Listar registros");
                         System.out.println("4) Salir");
-                        System.out.println("Selecciona una opción");
-                        System.out.println("\n");
+                        System.out.println("Selecciona una opción: ");
+                        //System.out.println("\n");
                         option = Integer.parseInt(input.nextLine());
                         // MENU OPTION
                         switch (option) {
