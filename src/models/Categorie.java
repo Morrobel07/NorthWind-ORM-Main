@@ -14,7 +14,7 @@ public class Categorie {
         this.picture = builder.picture;
     }
 
-    public int getCategoryID() {
+    public Integer getCategoryID() {
         return categoryID;
     }
 

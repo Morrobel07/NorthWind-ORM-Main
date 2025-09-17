@@ -33,7 +33,7 @@ public class MySupplier {
         this.homePage = builder.homePage;
     }
 
-    public int getSupplierID() {
+    public Integer getSupplierID() {
         return supplierID;
     }
 
