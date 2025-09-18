@@ -39,13 +39,13 @@ public class Order {
         this.shipCountry = builder.shipCountry;
     }
 
-    public int getOrderID() {
+    public Integer getOrderID() {
         return orderID;
     }
 
     public void setOrderID(int orderID) {
 
-        //this.orderID = orderID;
+        // this.orderID = orderID;
     }
 
     public static class Builder {

@@ -29,7 +29,7 @@ public class Product {
         this.discontinued = builder.discontinued;
     }
 
-    public int getProductID() {
+    public Integer getProductID() {
         return productID;
     }
 

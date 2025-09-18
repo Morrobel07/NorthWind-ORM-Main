@@ -2,7 +2,7 @@ package models;
 
 public class Shipper {
 
-    private int shipperID;
+    private Integer shipperID;
     private String companyName;
     private String phone;
 
@@ -17,7 +17,7 @@ public class Shipper {
 
     }
 
-    public int getShipperID() {
+    public Integer getShipperID() {
         return shipperID;
     }
 

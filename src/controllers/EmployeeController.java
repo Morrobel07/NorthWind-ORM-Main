@@ -8,9 +8,9 @@ import repository.EmployeeRepository;
 import java.util.List;
 
 public class EmployeeController {
-    private final IFile<Employee,Integer> repository;
+    private final IFile<Employee, Integer> repository;
 
-    public EmployeeController(IFile<Employee,Integer> repository) {
+    public EmployeeController(IFile<Employee, Integer> repository) {
         this.repository = repository;
     }
 
@@ -50,22 +50,24 @@ public class EmployeeController {
      * @param employee El objeto Employee a agregar.
      */
     public void addEmployee(Employee employee) {
+
         try {
+
             List<Employee> employees = getAllEmployees();
             for (Employee e : employees) {
+
                 if (e.getEmployeeID() == employee.getEmployeeID()) {
                     System.out.println("No puedes realizar un duplicado del id " + employee.getEmployeeID());
                     return;
                 }
-                repository.add(employee);
-                System.out.println("Empleado agregado correctamente");
-
             }
+            repository.add(employee);
+            System.out.println("Empleado agregado correctamente");
+
         } catch (Exception e) {
             System.out.println("Error al agregar empleado" + e.getMessage());
         }
     }
-
 
     /**
      * Actualiza la información de un empleado existente.

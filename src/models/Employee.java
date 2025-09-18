@@ -47,7 +47,7 @@ public class Employee {
         this.photoPath = builder.photoPath;
     }
 
-    public int getEmployeeID() {
+    public Integer getEmployeeID() {
         return employeeID;
     }
 

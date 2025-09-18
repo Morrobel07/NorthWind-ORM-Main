@@ -29,7 +29,7 @@ public class Customer {
 
     }
 
-    public int getCustomerID() {
+    public Integer getCustomerID() {
         return this.customerID;
     }
 
