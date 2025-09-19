@@ -11,6 +11,10 @@ public class Categorie {
     private final String description;
     private final String picture;
 
+    public Categorie() {
+
+    }
+
     private Categorie(Builder builder) {
         this.categoryID = builder.categoryID;
         this.categoryName = builder.categoryName;

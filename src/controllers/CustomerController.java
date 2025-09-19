@@ -35,7 +35,6 @@ public class CustomerController {
         try {
             List<Customer> customers = getAllCustomers();
 
-
             for (Customer c : customers) {
                 if (c.getCustomerID() == customer.getCustomerID()) {
                     System.out.println("No puedes realizar un duplicado del id " + customer.getCustomerID());

@@ -19,6 +19,10 @@ public class Customer {
     private String phone;
     private String fax;
 
+    public Customer() {
+
+    }
+
     private Customer(Builder builder) {
         this.customerID = builder.customerID;
         this.companyName = builder.companyName;
