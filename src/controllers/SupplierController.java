@@ -40,8 +40,8 @@ public class SupplierController {
                     System.out.println("No puedes realizar un duplicado del id " + supplier.getSupplierID());
                     return;
                 }
-                suppliers.add(supplier);
             }
+            repository.addObject(supplier);
             System.out.println("Proveedor agregado correctamente");
         } catch (Exception e) {
             System.out.println("Error al agregar proveedor" + e.getMessage());

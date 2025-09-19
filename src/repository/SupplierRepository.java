@@ -55,7 +55,7 @@ public class SupplierRepository implements IFile<MySupplier,Integer> {
 
     }
 
-    public void add(MySupplier entity) {
+    public void addObject(MySupplier entity) {
         List<MySupplier> suppliers = list();
 
         for (MySupplier e : suppliers) {

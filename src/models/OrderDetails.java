@@ -1,5 +1,9 @@
 package models;
 
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(builder=OrderDetails.Builder.class)
 public class OrderDetails {
 
     private Order orderDetailsId;
@@ -28,6 +32,8 @@ public class OrderDetails {
         this.orderDetailsId = orderID;
     }
 
+
+    @JsonDeserialize(builder=OrderDetails.Builder.class)
     public static class Builder {
         private Order orderDetailsId;
         private Product productID;

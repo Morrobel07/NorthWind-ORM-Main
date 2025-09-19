@@ -60,7 +60,7 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
 
 
    @Override
-    public void add(Employee entity){
+    public void addObject(Employee entity){
        List<Employee> employees = list();
 
         for (Employee e : employees){

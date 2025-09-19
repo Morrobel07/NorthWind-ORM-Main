@@ -1,5 +1,10 @@
 package models;
 
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+@JsonDeserialize(builder = Customer.Builder.class)
 public class Customer {
 
     private int customerID;
@@ -37,6 +42,8 @@ public class Customer {
         this.customerID = customerID;
     }
 
+
+    @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
 
         private int customerID;

@@ -42,7 +42,7 @@ public class ShipperController {
                     return;
                 }
             }
-            repository.add(shipper);
+            repository.addObject(shipper);
             System.out.println("Shipping agregado correctamente");
         } catch (Exception e) {
             System.out.println("Error al agregar shipping" + e.getMessage());

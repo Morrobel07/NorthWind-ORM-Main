@@ -42,7 +42,7 @@ public class CustomerController {
                     return;
                 }
             }
-            customers.add(customer);
+            repository.addObject(customer);
             System.out.println("Cliente agregado correctamente");
 
         } catch (Exception e) {

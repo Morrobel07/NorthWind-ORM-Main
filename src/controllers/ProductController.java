@@ -40,7 +40,7 @@ public class ProductController {
                     return;
                 }
             }
-            products.add(product);
+            repository.addObject(product);
             System.out.println("Producto agregado correctamente");
         } catch (Exception e) {
             System.out.println("Error al agregar producto" + e.getMessage());

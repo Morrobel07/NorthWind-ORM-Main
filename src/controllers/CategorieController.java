@@ -41,10 +41,11 @@ public class CategorieController {
                     System.out.println("No puedes realizar un duplicado del id " + categorie.getCategoryID());
                     return;
                 }
-                categories.add(categorie);
-                System.out.println("Categoria agregada correctamente");
 
             }
+            repository.addObject(categorie);
+            System.out.println("Categoria agregada correctamente");
+
 
         } catch (Exception e) {
             System.out.println("Error al agregar categoria" + e.getMessage());

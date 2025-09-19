@@ -24,7 +24,6 @@ public class CustomerRepository implements IFile<Customer,Integer> {
 
     private static final String FilePath = "src/data/data_Customer.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    public List<Customer> customers = new ArrayList<>();
 
     @Override
     public List<Customer> list() {
@@ -55,19 +54,19 @@ public class CustomerRepository implements IFile<Customer,Integer> {
     }
 
     @Override
-    public void add(Customer entity) {
-        List<Customer> categories = list();
+    public void addObject(Customer entity) {
+        List<Customer> customers = list();
 
-        for (Customer e : categories) {
-            if (e.getCustomerID() == entity.getCustomerID()) {
-                System.out.println("No puedes realizar un duplicado del id " + entity.getCustomerID());
+        for (Customer existingCustomer : customers) {
+            if (existingCustomer.getCustomerID().equals(entity.getCustomerID())) {
+                System.out.println("Error: Ya existe un cliente con el ID " + entity.getCustomerID());
                 return;
             }
-
-            categories.add(entity);
-            persist(categories);
-            System.out.println("Empleado agregado correctamente");
         }
+
+        customers.add(entity);
+        persist(customers);
+        System.out.println("Cliente agregado correctamente.");
     }
 
     @Override

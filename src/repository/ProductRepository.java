@@ -52,7 +52,7 @@ public class ProductRepository implements IFile<Product,Integer> {
     }
 
     @Override
-    public void add(Product entity) {
+    public void addObject(Product entity) {
         List<Product> products = list();
 
         for (Product e : products) {

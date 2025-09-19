@@ -40,7 +40,7 @@ public class OrderController {
                     return;
                 }
             }
-            orders.add(order);
+            repository.addObject(order);
             System.out.println("Orden agregada correctamente");
 
             System.out.println("Orden agregada correctamente");

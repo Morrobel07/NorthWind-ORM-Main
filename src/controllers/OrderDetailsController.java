@@ -39,9 +39,10 @@ public class OrderDetailsController {
                       System.out.println("No puedes realizar un duplicado del id " + orderdetails.getOrderID());
                       return;
                   }
-                  orderDetails.add(orderdetails);
-                  System.out.println("Informacion agregada correctamente");
+
               }
+              repository.addObject(orderdetails);
+              System.out.println("Informacion agregada correctamente");
            } catch (Exception e) {
               System.out.println( "Error al agregar la informacion"+ e.getMessage());
           }

@@ -54,7 +54,7 @@ public class CategorieRepository implements IFile<Categorie,Integer> {
     }
 
     @Override
-    public void add(Categorie entity) {
+    public void addObject(Categorie entity) {
         List<Categorie> categories = list();
 
         for (Categorie e : categories) {
@@ -62,11 +62,10 @@ public class CategorieRepository implements IFile<Categorie,Integer> {
                 System.out.println("No puedes realizar un duplicado del id " + entity.getCategoryID());
                 return;
             }
-
-            categories.add(entity);
-            persist(categories);
-            System.out.println("Empleado agregado correctamente");
         }
+        categories.add(entity);
+        persist(categories);
+        System.out.println("Empleado agregado correctamente");
     }
 
         @Override

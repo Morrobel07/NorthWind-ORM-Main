@@ -51,7 +51,7 @@ public class OrderRepository implements IFile<Order,Integer>   {
     }
 
     @Override
-    public void add(Order entity) {
+    public void addObject(Order entity) {
         List<Order> orders = list();
 
         for (Order e : orders) {

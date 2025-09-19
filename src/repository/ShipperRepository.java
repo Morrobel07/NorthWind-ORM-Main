@@ -53,7 +53,7 @@ public class ShipperRepository implements IFile<Shipper, Integer> {
 
     }
 
-    public void add(Shipper entity) {
+    public void addObject(Shipper entity) {
         List<Shipper> shippers = list();
 
         for (Shipper e : shippers) {

@@ -1,7 +1,12 @@
 package models;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import java.time.LocalDate;
 
+
+@JsonDeserialize(builder = Order.Builder.class)
 public class Order {
 
     private int orderID;
@@ -48,6 +53,8 @@ public class Order {
         // this.orderID = orderID;
     }
 
+
+    @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
         private int orderID;
         private Customer customersID;

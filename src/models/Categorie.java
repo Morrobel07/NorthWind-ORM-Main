@@ -1,11 +1,15 @@
 package models;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+@JsonDeserialize(builder = Categorie.Builder.class)
 public class Categorie {
 
-    private int categoryID;
-    private String categoryName;
-    private String description;
-    private String picture;
+    private final Integer categoryID;
+    private final String categoryName;
+    private final String description;
+    private final String picture;
 
     private Categorie(Builder builder) {
         this.categoryID = builder.categoryID;
@@ -14,21 +18,32 @@ public class Categorie {
         this.picture = builder.picture;
     }
 
-    public int getCategoryID() {
+
+
+    public Integer getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public String getCategoryName() {
+        return categoryName;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
-        private int categoryID;
+        private Integer categoryID;
         private String categoryName;
         private String description;
         private String picture;
 
-        public Builder categoryID(int categoryID) {
+        public Builder categoryID(Integer categoryID) {
             this.categoryID = categoryID;
             return this;
         }
@@ -51,17 +66,14 @@ public class Categorie {
         public Categorie build() {
             return new Categorie(this);
         }
-
     }
 
     @Override
     public String toString() {
-        return "Categorie {\n" +
-                "categoryId=" + categoryID + ",\n" +
-                "categoryName='" + categoryName + "',\n" +
-                "description='" + description + "',\n" +
-                "picture='" + picture + "'\n" +
-                "}";
+        return "Categorie{" +
+                "categoryID=" + categoryID +
+                ", categoryName='" + categoryName + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
-
 }

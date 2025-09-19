@@ -61,7 +61,7 @@ public class EmployeeController {
                     return;
                 }
             }
-            repository.add(employee);
+            repository.addObject(employee);
             System.out.println("Empleado agregado correctamente");
 
         } catch (Exception e) {

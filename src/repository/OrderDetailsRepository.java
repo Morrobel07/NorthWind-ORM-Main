@@ -53,7 +53,7 @@ public class OrderDetailsRepository implements IFile<OrderDetails,Integer> {
     }
 
     @Override
-    public void add(OrderDetails entity) {
+    public void addObject(OrderDetails entity) {
         List<OrderDetails> orderDetails = list();
 
         for (OrderDetails e : orderDetails) {

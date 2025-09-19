@@ -1,7 +1,12 @@
 package models;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import java.time.LocalDate;
 
+
+@JsonDeserialize(builder = Employee.Builder.class)
 public class Employee {
 
     private int employeeID;
@@ -23,8 +28,8 @@ public class Employee {
     private int reportsTo;
     private String photoPath;
 
-    public Employee() {
-    }
+
+
 
     public Employee(Builder builder) {
         this.employeeID = builder.employeeID;
@@ -55,6 +60,7 @@ public class Employee {
         this.employeeID = employeeID;
     }
 
+    @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
 
         private int employeeID;
