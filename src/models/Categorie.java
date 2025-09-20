@@ -11,6 +11,10 @@ public class Categorie {
     private  String description;
     private  String picture;
 
+    public Categorie() {
+        // Constructor sin argumentos para la inicialización en las pruebas
+    }
+
 
     private Categorie(Builder builder) {
         this.categoryID = builder.categoryID;

@@ -28,8 +28,9 @@ public class Employee {
     private int reportsTo;
     private String photoPath;
 
-
-
+    public Employee() {
+        // Constructor sin argumentos para la inicialización en las pruebas
+    }
 
     public Employee(Builder builder) {
         this.employeeID = builder.employeeID;
@@ -52,12 +53,76 @@ public class Employee {
         this.photoPath = builder.photoPath;
     }
 
-    public Integer getEmployeeID() {
+    public int getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getTitleOfCourtesy() {
+        return titleOfCourtesy;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public LocalDate getHireDate() {
+        return hireDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public int getReportsTo() {
+        return reportsTo;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
     }
 
     @JsonPOJOBuilder(withPrefix = "")
@@ -92,8 +157,8 @@ public class Employee {
             return this;
         }
 
-        public Builder firstName(String firsName) {
-            this.firstName = firsName;
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
             return this;
         }
 
@@ -107,8 +172,8 @@ public class Employee {
             return this;
         }
 
-        public Builder birthDate(LocalDate birDate) {
-            this.birthDate = birDate;
+        public Builder birthDate(LocalDate birthDate) {
+            this.birthDate = birthDate;
             return this;
         }
 

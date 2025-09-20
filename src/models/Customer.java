@@ -38,14 +38,49 @@ public class Customer {
 
     }
 
-    public Integer getCustomerID() {
+    public int getCustomerID() {
         return this.customerID;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public String getCompanyName() {
+        return companyName;
     }
 
+    public String getContactName() {
+        return contactName;
+    }
+
+    public String getContactTitle() {
+        return contactTitle;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getFax() {
+        return fax;
+    }
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
@@ -77,8 +112,8 @@ public class Customer {
             return this;
         }
 
-        public Builder contactTitle(String contacTitle) {
-            this.contactTitle = contacTitle;
+        public Builder contactTitle(String contactTitle) {
+            this.contactTitle = contactTitle;
             return this;
         }
 

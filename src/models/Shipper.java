@@ -14,7 +14,7 @@ public class Shipper {
     public Shipper() {
     }
 
-    public Shipper(Builder builder) {
+    private Shipper(Builder builder) {
 
         this.shipperID = builder.shipperID;
         this.companyName = builder.companyName;
@@ -22,12 +22,16 @@ public class Shipper {
 
     }
 
-    public Integer getShipperID() {
+    public int getShipperID() {
         return shipperID;
     }
 
-    public void setShipperID(int shipperID) {
-        this.shipperID = shipperID;
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     @JsonPOJOBuilder(withPrefix = "")

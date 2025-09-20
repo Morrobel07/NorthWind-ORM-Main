@@ -44,15 +44,53 @@ public class Order {
         this.shipCountry = builder.shipCountry;
     }
 
-    public Integer getOrderID() {
+    public int getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(int orderID) {
-
-        // this.orderID = orderID;
+    public Customer getCustomersID() {
+        return customersID;
     }
 
+    public Employee getEmployeeID() {
+        return employeeID;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public LocalDate getRequiredDate() {
+        return requiredDate;
+    }
+
+    public LocalDate getShippedDate() {
+        return shippedDate;
+    }
+
+    public Shipper getShipVia() {
+        return shipVia;
+    }
+
+    public double getFreight() {
+        return freight;
+    }
+
+    public String getShipName() {
+        return shipName;
+    }
+
+    public String getShipAddress() {
+        return shipAddress;
+    }
+
+    public String getShipCity() {
+        return shipCity;
+    }
+
+    public String getShipCountry() {
+        return shipCountry;
+    }
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
@@ -153,7 +191,7 @@ public class Order {
                 "customer=" + customersID + ",\n" +
                 "employee=" + employeeID + ",\n" +
                 "orderDate=" + orderDate + ",\n" +
-                " requiereDate" + requiredDate + ",\n" +
+                "requiredDate=" + requiredDate + ",\n" +
                 "shippedDate=" + shippedDate + ",\n" +
                 "shipper=" + shipVia + ",\n" +
                 "freight=" + freight + ",\n" +
@@ -161,7 +199,7 @@ public class Order {
                 "shipAddress='" + shipAddress + "',\n" +
                 "shipCity='" + shipCity + "',\n" +
                 "shipRegion='" + shipRegion + "',\n" +
-                "shipostalcode" + shipPostalCode + "',\n" +
+                "shipPostalCode='" + shipPostalCode + "',\n" +
                 "shipCountry='" + shipCountry + "'\n" +
                 "}";
     }

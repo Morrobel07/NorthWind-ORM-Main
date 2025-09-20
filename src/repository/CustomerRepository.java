@@ -58,7 +58,7 @@ public class CustomerRepository implements IFile<Customer,Integer> {
         List<Customer> customers = list();
 
         for (Customer existingCustomer : customers) {
-            if (existingCustomer.getCustomerID().equals(entity.getCustomerID())) {
+            if (existingCustomer.getCustomerID() ==(entity.getCustomerID())) {
                 System.out.println("Error: Ya existe un cliente con el ID " + entity.getCustomerID());
                 return;
             }

@@ -34,12 +34,44 @@ public class Product {
         this.discontinued = builder.discontinued;
     }
 
-    public Integer getProductID() {
+    public int getProductID() {
         return productID;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public String getProductName() {
+        return productName;
+    }
+
+    public MySupplier getSupplierID() {
+        return supplierID;
+    }
+
+    public Categorie getCategoryID() {
+        return categoryID;
+    }
+
+    public String getQuantityPerUnit() {
+        return quantityPerUnit;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public int getUnitsInStock() {
+        return unitsInStock;
+    }
+
+    public int getUnitsOnOrder() {
+        return unitsOnOrder;
+    }
+
+    public int getReorderLevel() {
+        return reorderLevel;
+    }
+
+    public boolean isDiscontinued() {
+        return discontinued;
     }
 
     @JsonPOJOBuilder(withPrefix = "")
@@ -114,10 +146,10 @@ public class Product {
     public String toString() {
         return "Product {\n" +
                 "productID=" + productID + ",\n" +
-                "productName=" + productName + ",\n" +
-                "SuplierId=" + supplierID + ",\n" +
-                "categoryId=" + categoryID + ",\n" +
-                "quantityPerUnit=" + quantityPerUnit + ",\n" +
+                "productName='" + productName + "',\n" +
+                "supplierID=" + supplierID + ",\n" +
+                "categoryID=" + categoryID + ",\n" +
+                "quantityPerUnit='" + quantityPerUnit + "',\n" +
                 "unitPrice=" + unitPrice + ",\n" +
                 "unitsInStock=" + unitsInStock + ",\n" +
                 "unitsOnOrder=" + unitsOnOrder + ",\n" +
