@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.time.LocalDate;
 
-
 @JsonDeserialize(builder = Order.Builder.class)
 public class Order {
 
@@ -44,7 +43,7 @@ public class Order {
         this.shipCountry = builder.shipCountry;
     }
 
-    public int getOrderID() {
+    public Integer getOrderID() {
         return orderID;
     }
 

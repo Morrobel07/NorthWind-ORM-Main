@@ -1,6 +1,5 @@
 package models;
 
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -38,7 +37,7 @@ public class MySupplier {
         this.homePage = builder.homePage;
     }
 
-    public int getSupplierID() {
+    public Integer getSupplierID() {
         return supplierID;
     }
 

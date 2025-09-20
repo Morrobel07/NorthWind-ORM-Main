@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.time.LocalDate;
 
-
 @JsonDeserialize(builder = Employee.Builder.class)
 public class Employee {
 
@@ -53,7 +52,7 @@ public class Employee {
         this.photoPath = builder.photoPath;
     }
 
-    public int getEmployeeID() {
+    public Integer getEmployeeID() {
         return employeeID;
     }
 
