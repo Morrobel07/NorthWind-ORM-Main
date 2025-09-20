@@ -186,6 +186,7 @@ public class App {
                                                 default:
                                                         break;
                                         }
+                                        break;
 
                                 }
                                 case 3: {
@@ -199,82 +200,133 @@ public class App {
                                                 case 1: {
                                                         System.out.println(
                                                                         "Ingresa el id del customer que desea encontrar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        listEntities list = listEntities.CUSTOMER;
-                                                        list.find(id);
-                                                        break;
+                                                        try {
+                                                                int id = input.nextInt();
+                                                                input.nextLine();
+                                                                listEntities list = listEntities.CUSTOMER;
+                                                                list.find(id);
+                                                                break;
+                                                        } catch (Exception e) {
+                                                                // TODO: handle exception
+                                                                System.out.println("Error al encontrar el id " + e);
+                                                                return;
+                                                        }
+
                                                 }
 
                                                 case 2: {
                                                         System.out.println(
                                                                         "Ingresa el id del Emplyee que desea encontrar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        listEntities list = listEntities.EMPLOYEE;
-                                                        list.find(id);
-                                                        break;
+                                                        try {
+                                                                int id = input.nextInt();
+                                                                input.nextLine();
+                                                                listEntities list = listEntities.EMPLOYEE;
+                                                                list.find(id);
+                                                                break;
+                                                        } catch (Exception e) {
+                                                                System.out.println("Error al encontrar el id " + e);
+                                                                return;
+                                                        }
+
                                                 }
                                                 case 3: {
                                                         System.out.println(
                                                                         "Ingresa el id del Shipper que desea encontrar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        listEntities list = listEntities.SHIPPER;
-                                                        list.find(id);
-                                                        break;
+                                                        try {
+                                                                int id = input.nextInt();
+                                                                input.nextLine();
+                                                                listEntities list = listEntities.SHIPPER;
+                                                                list.find(id);
+                                                                break;
+                                                        } catch (Exception e) {
+                                                                System.out.println("Error al encontrar el id " + e);
+                                                                return;
+                                                        }
+
                                                 }
                                                 case 4: {
                                                         System.out.println(
                                                                         "Ingresa el id del Order que desea buscar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        listEntities list = listEntities.ORDER;
-                                                        list.find(id);
-                                                        break;
+                                                        try {
+                                                                int id = input.nextInt();
+                                                                input.nextLine();
+                                                                listEntities list = listEntities.ORDER;
+                                                                list.find(id);
+                                                                break;
+                                                        } catch (Exception e) {
+                                                                System.out.println("Error al ingresar el id " + e);
+                                                                return;
+                                                        }
 
                                                 }
                                                 case 5: {
                                                         System.out.println(
                                                                         "Ingresa el id del Supplier que deseas buscar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        listEntities list = listEntities.SUPPLIER;
-                                                        list.find(id);
-                                                        break;
+                                                        try {
+                                                                int id = input.nextInt();
+                                                                input.nextLine();
+                                                                listEntities list = listEntities.SUPPLIER;
+                                                                list.find(id);
+                                                                break;
+                                                        } catch (Exception e) {
+                                                                System.out.println("Error al encontrar el id " + e);
+                                                                return;
+                                                        }
 
                                                 }
                                                 case 6: {
                                                         System.out.println(
                                                                         "Ingresa el id del Categorie que desea buscar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        listEntities list = listEntities.CATEGORIE;
-                                                        list.find(id);
-                                                        break;
+                                                        try {
+                                                                int id = input.nextInt();
+                                                                input.nextLine();
+                                                                listEntities list = listEntities.CATEGORIE;
+                                                                list.find(id);
+                                                                break;
+                                                        } catch (Exception e) {
+                                                                System.out.println("Error al buscar el id " + e);
+                                                                return;
+                                                        }
+
                                                 }
                                                 case 7: {
                                                         System.out.println(
                                                                         "Ingresa el id del Product que desea buscar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        listEntities list = listEntities.PRODUCT;
-                                                        list.find(id);
-                                                        break;
+                                                        try {
+                                                                int id = input.nextInt();
+                                                                input.nextLine();
+                                                                listEntities list = listEntities.PRODUCT;
+                                                                list.find(id);
+                                                                break;
+                                                        } catch (Exception e) {
+                                                                System.out.println("Error al buscar el id " + e);
+                                                                break;
+                                                        }
+
                                                 }
                                                 case 8: {
                                                         System.out.println(
                                                                         "Ingresa el id de la Order details que desea buscar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        listEntities list = listEntities.ORDER_DETAILS;
-                                                        list.find(id);
-                                                        break;
+                                                        try {
+                                                                int id = input.nextInt();
+                                                                input.nextLine();
+                                                                listEntities list = listEntities.ORDER_DETAILS;
+                                                                list.find(id);
+                                                                break;
+                                                        } catch (Exception e) {
+                                                                System.out.println("Error al buscar el id " + e);
+                                                                return;
+                                                        }
+
                                                 }
 
                                                 default:
+
                                                         break;
+
                                         }
+                                        break;
+
                                 }
 
                                 default:

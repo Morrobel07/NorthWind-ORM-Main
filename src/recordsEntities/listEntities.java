@@ -22,6 +22,7 @@ public enum listEntities {
     CUSTOMER, EMPLOYEE, SHIPPER, ORDER, SUPPLIER, CATEGORIE, PRODUCT, ORDER_DETAILS;
 
     public void find(int id) {
+
         switch (this) {
             case CUSTOMER: {
                 System.out.println(new CustomerController(new CustomerRepository()).getCustomerById(id));

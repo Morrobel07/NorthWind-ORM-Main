@@ -24,6 +24,7 @@ public class CustomerController {
 
     public Customer getCustomerById(Integer id) {
         try {
+
             return repository.findById(id);
         } catch (Exception e) {
             System.out.println("Error al obtener todos los clientes " + e.getMessage());

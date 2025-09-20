@@ -97,9 +97,7 @@ public enum createEntities {
                                 new CustomerController(new CustomerRepository())
                                                 .addCustomer(customer);
                                 // ERROR MORROBEL
-                                System.out.println(
-                                                new CustomerController(new CustomerRepository())
-                                                                .getAllCustomers());
+
                                 break;
                         }
                         case EMPLOYEE: {
