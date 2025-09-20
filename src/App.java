@@ -34,9 +34,9 @@ public class App {
                         System.out.println("2)Eliminar registros");
                         System.out.println("3)Listar registros");
                         System.out.println("4) Salir");
-                        System.out.println("Selecciona una opción");
-                        System.out.println("\n");
+                        System.out.print("Selecciona una opción ");
                         option = Integer.parseInt(input.nextLine());
+                        System.out.println("\n");
 
                         // MENU OPTION
                         switch (option) {
