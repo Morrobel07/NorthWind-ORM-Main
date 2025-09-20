@@ -6,10 +6,11 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = Categorie.Builder.class)
 public class Categorie {
 
-    private final Integer categoryID;
-    private final String categoryName;
-    private final String description;
-    private final String picture;
+    private  Integer categoryID;
+    private  String categoryName;
+    private  String description;
+    private  String picture;
+
 
     public Categorie() {
 
