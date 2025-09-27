@@ -9,6 +9,8 @@
 - Create records for every entity
 - Implement pattern build
 - Implement custom Exceptions, to each entity
+- Use Lombok
+- Implement testing
 
 ## Folder Structure
 
