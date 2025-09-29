@@ -1,13 +1,17 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import comons.SeedData;
+import comons.Options.Crud;
+import comons.Options.Crud.*;
 import controllers.*;
 import models.Categorie;
 import models.Customer;
 import models.Employee;
-import models.MySupplier;
+import models.Suppliers;
 import models.Order;
 import models.OrderDetails;
-
+import comons.Options.listEntities;
+import java.lang.classfile.ClassFile.Option;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,178 +22,41 @@ import java.util.function.Supplier;
 import comons.SeedData.*;
 import models.Product;
 import models.Shipper;
-import recordsEntities.*;
 import repository.*;
 
 public class App {
         public static void main(String[] args) {
 
                 Scanner input = new Scanner(System.in);
-                int option;
-
+                String option;
+                CategorieRepository categorieRep = new CategorieRepository();
+                categorieRep.delete(50);
                 do {
                         System.out.println("\n");
                         System.out.println("Bienvenido a la tienda de productos");
+                        System.out.println("A continuación se le mostrará las opciones disponibles...");
                         System.out.println("1) Crear registros");
                         System.out.println("2)Eliminar registros");
                         System.out.println("3)Listar registros");
                         System.out.println("4) Salir");
                         System.out.print("Selecciona una opción ");
-                        option = Integer.parseInt(input.nextLine());
+                        option = input.nextLine();
+
                         System.out.println("\n");
 
                         // MENU OPTION
                         switch (option) {
-                                case 1: {// FIRST OPTION
-                                        System.out.println("Elige el registro que deseas crear");
-                                        System.out.println(
-                                                        "Es necesario ingresarlos en el orden que se presenta debajo si no hay registros creados");
-                                        System.out.println(// ENTIDADES
-                                                        "1) Customer 2)Employees 3)Shippers 4)Order 5)Supplier 6)Categorie 7)Product 8)Order Details");
-                                        String entities = input.nextLine();
-                                        switch (entities) {
-                                                case "1": {// customer
-                                                        createEntities createEntity = createEntities.CUSTOMER;
-                                                        createEntity.crear();
-                                                        break;
+                                case "1": {
+                                        Crud.CREATE.Create();
+                                        break;
 
-                                                }
-
-                                                case "2": {
-                                                        createEntities createEntiity = createEntities.EMPLOYEE;
-                                                        createEntiity.crear();
-                                                        break;
-                                                }
-                                                case "3": {
-                                                        createEntities createEntity = createEntities.SHIPPER;
-                                                        createEntity.crear();
-                                                        break;
-                                                }
-                                                case "4": {
-                                                        createEntities createEntity = createEntities.ORDER;
-                                                        createEntity.crear();
-                                                        break;
-                                                }
-                                                case "5": {
-                                                        createEntities creatEntity = createEntities.SUPPLIER;
-                                                        creatEntity.crear();
-                                                        break;
-                                                }
-                                                case "6": {
-                                                        createEntities creatEntity = createEntities.CATEGORIE;
-                                                        creatEntity.crear();
-                                                        break;
-
-                                                }
-                                                case "7": {
-                                                        createEntities creatEntity = createEntities.PRODUCT;
-                                                        creatEntity.crear();
-                                                        break;
-
-                                                }
-                                                case "8": {// Order details
-                                                        createEntities creatEntity = createEntities.ORDER_DETAILS;
-                                                        creatEntity.crear();
-                                                        break;
-                                                }
-
-                                                default:
-                                                        break;
-                                        }
+                                }
+                                case "2": {
 
                                         break;
 
                                 }
-                                case 2: {
-                                        System.out.println("Qué registro desea eliminar ?");
-                                        System.out.println(
-                                                        "1)Customer 2)Employees 3)Shippers 4)Order 5)Supplier 6)Categorie 7)Product 8)Order details");
-                                        int delete = input.nextInt();
-                                        input.nextLine();
-                                        switch (delete) {
-                                                case 1: {
-                                                        System.out.println(
-                                                                        "Ingresa el id del customer que desea eliminar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        entitiesDelete register = entitiesDelete.CUSTOMER;
-                                                        register.delete(id);
-                                                        break;
-                                                }
-
-                                                case 2: {
-                                                        System.out.println(
-                                                                        "Ingresa el id del Emplyee que desea eliminar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        entitiesDelete register = entitiesDelete.EMPLOYEE;
-                                                        register.delete(id);
-                                                        break;
-                                                }
-                                                case 3: {
-                                                        System.out.println(
-                                                                        "Ingresa el id del Shipper que desea eliminar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        entitiesDelete register = entitiesDelete.SHIPPER;
-                                                        register.delete(id);
-                                                        break;
-                                                }
-                                                case 4: {
-                                                        System.out.println(
-                                                                        "Ingresa el id del Order que desea eliminar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        entitiesDelete register = entitiesDelete.ORDER;
-                                                        register.delete(id);
-                                                        break;
-
-                                                }
-                                                case 5: {
-                                                        System.out.println(
-                                                                        "Ingresa el id del Supplier que desea eliminar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        entitiesDelete register = entitiesDelete.SUPPLIER;
-                                                        register.delete(id);
-                                                        break;
-
-                                                }
-                                                case 6: {
-                                                        System.out.println(
-                                                                        "Ingresa el id del Categorie que desea eliminar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        entitiesDelete register = entitiesDelete.CATEGORIE;
-                                                        register.delete(id);
-                                                        break;
-                                                }
-                                                case 7: {
-                                                        System.out.println(
-                                                                        "Ingresa el id del Product que desea eliminar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        entitiesDelete register = entitiesDelete.PRODUCT;
-                                                        register.delete(id);
-                                                        break;
-                                                }
-                                                case 8: {
-                                                        System.out.println(
-                                                                        "Ingresa el id de la Order details que desea eliminar");
-                                                        int id = input.nextInt();
-                                                        input.nextLine();
-                                                        entitiesDelete register = entitiesDelete.ORDER_DETAILS;
-                                                        register.delete(id);
-                                                        break;
-                                                }
-
-                                                default:
-                                                        break;
-                                        }
-                                        break;
-
-                                }
-                                case 3: {
+                                case "3": {
 
                                         System.out.println("Qué registro desea buscar ?");
                                         System.out.println(
@@ -328,13 +195,19 @@ public class App {
                                         break;
 
                                 }
+                                case "4": {
+                                        System.out.println("Gracias por usar el sistema... saliendo");
+                                        break;
+                                }
 
                                 default:
-                                        System.out.println("Error al elegir una opción");
+
+                                        System.out.println("ERROR AL ELEGIR UNA OPCÓN");
+
                                         break;
                         }
 
-                } while (option != 4);
+                } while (!"4".equals(option));
                 input.close();
 
         }

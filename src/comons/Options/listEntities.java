@@ -1,4 +1,4 @@
-package recordsEntities;
+package comons.Options;
 
 import controllers.CategorieController;
 import controllers.CustomerController;
@@ -8,6 +8,7 @@ import controllers.OrderDetailsController;
 import controllers.ProductController;
 import controllers.ShipperController;
 import controllers.SupplierController;
+
 import repository.CategorieRepository;
 import repository.CustomerRepository;
 import repository.EmployeeRepository;
@@ -17,41 +18,42 @@ import repository.ProductRepository;
 import repository.ShipperRepository;
 import repository.SupplierRepository;
 
-public enum entitiesDelete {
+public enum listEntities {
     CUSTOMER, EMPLOYEE, SHIPPER, ORDER, SUPPLIER, CATEGORIE, PRODUCT, ORDER_DETAILS;
 
-    public void delete(int id) {
+    public void find(int id) {
+
         switch (this) {
             case CUSTOMER: {
-                new CustomerController(new CustomerRepository()).deleteCustomer(id);
+                System.out.println(new CustomerController(new CustomerRepository()).getCustomerById(id));
                 break;
             }
             case EMPLOYEE: {
-                new EmployeeController(new EmployeeRepository()).deleteEmployee(id);
+                System.out.println(new EmployeeController(new EmployeeRepository()).getEmployeeById(id));
                 break;
             }
             case SHIPPER: {
-                new ShipperController(new ShipperRepository()).deleteShipper(id);
+                System.out.println(new ShipperController(new ShipperRepository()).getShipperById(id));
                 break;
             }
             case ORDER: {
-                new OrderController(new OrderRepository()).deleteOrder(id);
+                System.out.println(new OrderController(new OrderRepository()).getOrderById(id));
                 break;
             }
             case SUPPLIER: {
-                new SupplierController(new SupplierRepository()).deleteSupplier(id);
+                System.out.println(new SupplierController(new SupplierRepository()).getSupplierById(id));
                 break;
             }
             case CATEGORIE: {
-                new CategorieController(new CategorieRepository()).deleteCategorie(id);
+                System.out.println(new CategorieController(new CategorieRepository()).getCategorieById(id));
                 break;
             }
             case PRODUCT: {
-                new ProductController(new ProductRepository()).deleteProduct(id);
+                System.out.println(new ProductController(new ProductRepository()).getProductById(id));
                 break;
             }
             case ORDER_DETAILS: {
-                new OrderDetailsController(new OrderDetailsRepository()).deleteOrderDetails(id);
+                System.out.println(new OrderDetailsController(new OrderDetailsRepository()).getOrderDetailsById(id));
                 break;
             }
 

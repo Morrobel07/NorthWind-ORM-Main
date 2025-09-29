@@ -19,22 +19,22 @@ import comons.IFile;
 import comons.SeedData;
 import models.Categorie;
 import models.Employee;
-import models.MySupplier;
+import models.Suppliers;
 
-public class SupplierRepository implements IFile<MySupplier,Integer> {
+public class SupplierRepository implements IFile<Suppliers, Integer> {
 
     private static final String FilePath = "src/data/data_Supplier.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    public List<MySupplier> suppliers = new ArrayList<>();
+    public List<Suppliers> suppliers = new ArrayList<>();
 
     @Override
-    public List<MySupplier> list() {
+    public List<Suppliers> list() {
         try {
             File file = new File(FilePath);
             if (!file.exists() || file.length() == 0) {
                 return new ArrayList<>();
             }
-            return mapper.readValue(file, new TypeReference<List<MySupplier>>() {
+            return mapper.readValue(file, new TypeReference<List<Suppliers>>() {
             });
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -43,10 +43,8 @@ public class SupplierRepository implements IFile<MySupplier,Integer> {
 
     }
 
-
-
     @Override
-    public void persist(List<MySupplier> suppliers) {
+    public void persist(List<Suppliers> suppliers) {
         try {
             mapper.writeValue(new File(FilePath), suppliers);
         } catch (IOException e) {
@@ -55,10 +53,10 @@ public class SupplierRepository implements IFile<MySupplier,Integer> {
 
     }
 
-    public void addObject(MySupplier entity) {
-        List<MySupplier> suppliers = list();
+    public void addObject(Suppliers entity) {
+        List<Suppliers> suppliers = list();
 
-        for (MySupplier e : suppliers) {
+        for (Suppliers e : suppliers) {
             if (e.getSupplierID() == entity.getSupplierID()) {
                 System.out.println("No puedes realizar un duplicado del id " + entity.getSupplierID());
                 return;
@@ -71,26 +69,24 @@ public class SupplierRepository implements IFile<MySupplier,Integer> {
     }
 
     @Override
-    public MySupplier findById(Integer id) {
-        List<MySupplier> suppliers = list();
-        Optional<MySupplier> results = suppliers.stream()
+    public Suppliers findById(Integer id) {
+        List<Suppliers> suppliers = list();
+        Optional<Suppliers> results = suppliers.stream()
                 .filter(c -> c.getSupplierID() == id).findFirst();
         return results.orElse(null);
     }
 
-
-
     @Override
     public void delete(Integer id) {
-        List<MySupplier> suppliers = list();
+        List<Suppliers> suppliers = list();
         suppliers.removeIf(c -> c.getSupplierID() == id);
         persist(suppliers);
     }
 
     @Override
-    public void update(MySupplier entity) {
-        List<MySupplier> suppliers = list();
-        List<MySupplier> updatedSuppliers = suppliers.stream()
+    public void update(Suppliers entity) {
+        List<Suppliers> suppliers = list();
+        List<Suppliers> updatedSuppliers = suppliers.stream()
                 .map(c -> c.getSupplierID() == entity.getSupplierID() ? entity : c)
                 .collect(Collectors.toList());
         persist(updatedSuppliers);

@@ -1,4 +1,4 @@
-package recordsEntities;
+package comons.Options;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +15,7 @@ import controllers.SupplierController;
 import models.Categorie;
 import models.Customer;
 import models.Employee;
-import models.MySupplier;
+import models.Suppliers;
 import models.Order;
 import models.OrderDetails;
 import models.Product;
@@ -36,10 +36,11 @@ public enum createEntities {
         Employee employee;
         Shipper shipper;
         Order order;
-        MySupplier mySupplier;
+        Suppliers mySupplier;
         Categorie categorie;
         Product product;
         OrderDetails orderDetails;
+        Validations validate = new Validations();
 
         Scanner input = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/y");
@@ -47,40 +48,62 @@ public enum createEntities {
         public void crear() {
                 switch (this) {
                         case CUSTOMER: {
-                                System.out.println("Ingresa el id del customer");
-                                int id;
-                                try {
-                                        id = input.nextInt();
-                                        input.nextLine();
-                                } catch (Exception e) {
-
-                                        System.out.println("Error al introducir el id " + e);
-                                        return;
-                                }
 
                                 System.out.println("Ingresa el nombre de la comopañía");
                                 String companyName = input.nextLine();
+                                // validando
+                                if (!validate.validationsStrings(companyName)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa el nombre de contacto");
                                 String contactName = input.nextLine();
+                                if (!validate.validationsStrings(contactName)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa el titulo del contacto");
                                 String contactTitle = input.nextLine();
-                                System.out.println("Ingresa la dirección");
-                                String address = input.nextLine();
+                                if (!validate.validationsStrings(contactTitle)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa la ciudad");
                                 String city = input.nextLine();
+                                if (!validate.validationsStrings(companyName)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa la region");
                                 String region = input.nextLine();
-                                System.out.println("Ingresa codigo postal");
-                                String postalCode = input.nextLine();
+                                if (!validate.validationsStrings(region)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa el país");
                                 String country = input.nextLine();
+                                if (!validate.validationsStrings(country)) {
+                                        break;
+                                }
+                                System.out.println("Ingresa la dirección");
+                                String address = input.nextLine();
+                                if (!validate.addressValidations(address)) {
+                                        break;
+                                }
+
+                                System.out.println("Ingresa codigo postal");
+                                String postalCode = input.nextLine();
+                                if (!validate.postalCodeValidations(postalCode)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa el número de teléfono");
                                 String phone = input.nextLine();
+                                if (!validate.numberPhoneValidations(phone)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa el fax");
                                 String fax = input.nextLine();
+                                if (!validate.numberPhoneValidations(fax)) {
+                                        break;
+                                }
 
                                 customer = new Customer.Builder()
-                                                .customerID(id)
+
                                                 .companyName(companyName)
                                                 .contactName(contactName)
                                                 .contactTitle(contactTitle)
@@ -101,26 +124,29 @@ public enum createEntities {
                                 break;
                         }
                         case EMPLOYEE: {
-                                System.out.println("Ingrese el Id de Employee");
-                                int id;
-                                try {
-                                        id = input.nextInt();
-                                        input.nextLine();
-                                } catch (Exception e) {
 
-                                        System.out.println("Error al introducir el id " + e);
-                                        return;
-                                }
                                 System.out.println("Ingresa el apellido");
                                 String lastName = input.nextLine();
+                                if (!validate.validationsStrings(lastName)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar Nombre");
                                 String name = input.nextLine();
+                                if (!validate.validationsStrings(name)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa el titulo");
                                 String title = input.nextLine();
+                                if (!validate.validationsStrings(title)) {
+                                        break;
+                                }
                                 System.out.println("Ingresa el title Of courtesy");
                                 String titleOfcourtesy = input.nextLine();
+                                if (!validate.validationsStrings(titleOfcourtesy)) {
+                                        break;
+                                }
                                 System.out.println(
-                                                "Ingresar su fecha de cumpleaños (orden: día, mes y año)");
+                                                "Ingresar su fecha de cumpleaños (orden del formato: 31/12/1999)");
                                 LocalDate birtDate;
                                 LocalDate hireDate;
                                 try {
@@ -131,30 +157,50 @@ public enum createEntities {
                                                         formatter);
                                 } catch (Exception e) {
 
-                                        System.out.println("Formato de fecha incorrecta" + e);
-                                        return;
+                                        System.out.println("Formato de fecha incorrecta");
+                                        break;
                                 }
 
                                 System.out.println("Ingresar su dirección");
                                 String address = input.nextLine();
+                                if (!validate.addressValidations(address)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar la ciudad");
                                 String city = input.nextLine();
+                                if (!validate.validationsStrings(city)) {
+                                        break;
+                                }
                                 System.out.println("Ingrear la region");
                                 String region = input.nextLine();
+                                if (!validate.validationsStrings(region)) {
+                                        break;
+                                }
                                 System.out.println("ingresar el código postal");
                                 String postalCode = input.nextLine();
+                                if (!validate.postalCodeValidations(postalCode)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar país");
                                 String country = input.nextLine();
+                                if (!validate.validationsStrings(country)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar número de telefono");
                                 String phone = input.nextLine();
+                                if (!validate.numberPhoneValidations(phone)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar la extension");
                                 String extension = input.nextLine();
-                                System.out.println("Ingresar su foto");
-                                String photo = input.nextLine();
+                                if (!validate.extensionNumber(extension)) {
+                                        break;
+                                }
+                                // foto
                                 System.out.println("Ingresar Nota");
                                 String note = input.nextLine();
                                 employee = new Employee.Builder()
-                                                .employeeID(id)
+
                                                 .lastName(lastName)
                                                 .firstName(name)
                                                 .title(title)
@@ -167,7 +213,7 @@ public enum createEntities {
                                                 .country(country)
                                                 .homePhone(phone)
                                                 .extension(extension)
-                                                .photo(photo)
+                                                // foto
                                                 .notes(note)
                                                 .region(region)
                                                 .build();
@@ -176,22 +222,19 @@ public enum createEntities {
                                 break;
                         }
                         case SHIPPER: {
-                                System.out.println("Ingresar el id Shipper");
-                                int id;
-                                try {
-                                        id = input.nextInt();
-                                        input.nextLine();
-                                } catch (Exception e) {
 
-                                        System.out.println("Error al introducir el id " + e);
-                                        return;
-                                }
-                                System.out.println("Ingresar nombre de la compañía");
+                                System.out.println("Ingresar nombre del Shipper");
                                 String companyName = input.nextLine();
+                                if (!validate.validationsStrings(companyName)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar el número de teléfono");
                                 String phone = input.nextLine();
+                                if (!validate.numberPhoneValidations(phone)) {
+                                        break;
+                                }
                                 shipper = new Shipper.Builder()
-                                                .shipperID(id)
+
                                                 .companyName(companyName)
                                                 .phone(phone)
                                                 .build();
@@ -201,20 +244,19 @@ public enum createEntities {
                                 break;
                         }
                         case ORDER: {
-                                System.out.println("Ingrese el id de la orden");
-                                int id;
-                                try {
-                                        id = input.nextInt();
-                                        input.nextLine();
-                                } catch (Exception e) {
 
-                                        System.out.println("Error al introducir el id " + e);
-                                        return;
-                                }
                                 System.out.println(
                                                 "Ingresar el id del customer a quien pertenece esta orden");
-                                int findCustomerId = input.nextInt();
-                                input.nextLine();
+                                int findCustomerId;
+                                try {
+                                        findCustomerId = input.nextInt();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\n*****HERROR! ");
+                                        System.out.println("Herror al ingresar un id válido");
+                                        break;
+                                }
+
                                 // buscando el objeto Customer que tenga el mismo id que ingresó
                                 // el usuario
                                 CustomerRepository customerRepository = new CustomerRepository();
@@ -222,14 +264,23 @@ public enum createEntities {
                                                 customerRepository);
                                 Customer customerId = customerController
                                                 .getCustomerById(findCustomerId);
-                                if (customerId.getCustomerID() == null) {
+                                if (customerId == null) {
+                                        System.out.print("\n*****HERROR! ");
                                         System.out.println("El id igresado no existe");
-                                        return;
+                                        break;
                                 }
                                 System.out.println(
                                                 "Ingresar el id del empleado quien realiza la Orden de compra");
-                                int findEmployeeid = input.nextInt();
-                                input.nextLine();
+                                int findEmployeeid;
+                                try {
+                                        findEmployeeid = input.nextInt();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\n*****HERROR! ");
+                                        System.out.println("Herror al ingresar un id válido");
+                                        break;
+                                }
+
                                 // Buscando el objeto Employee por su id
                                 EmployeeRepository employeeRepository = new EmployeeRepository();
                                 EmployeeController employeeController = new EmployeeController(
@@ -237,12 +288,13 @@ public enum createEntities {
                                 Employee employeeId = employeeController
                                                 .getEmployeeById(findEmployeeid);
 
-                                if (employeeId.getEmployeeID() == null) {
+                                if (employeeId == null) {
+                                        System.out.print("\n*****HERROR! ");
                                         System.out.println("El id ingresado no existe");
-                                        return;
+                                        break;
                                 }
                                 System.out.println(
-                                                "Ingresa la fecha de la Orden de compra (día, mes y año)");
+                                                "Ingresa la fecha de la Orden de compra (orden del formato: 31/12/1999)");
                                 LocalDate orderDate;
                                 LocalDate requirDate;
                                 LocalDate shippedDate;
@@ -257,42 +309,76 @@ public enum createEntities {
                                                         formatter);
                                 } catch (Exception e) {
 
-                                        System.out.println("Formato de fecha incorrecta " + e);
-                                        return;
+                                        System.out.println("Formato de fecha incorrecta ");
+                                        break;
                                 }
 
-                                System.out.println("Ingresar el id de la compañía de envíos");
-                                Integer shipViaId = input.nextInt();
-                                input.nextLine();
+                                System.out.println("Ingresar el id de la compañía de Shipper");
+                                Integer shipViaId;
+                                try {
+                                        shipViaId = input.nextInt();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\n*****HERROR! ");
+                                        System.out.println("debe ingresar un id válido");
+                                        break;
+                                }
+
                                 // Buscando Objeto shipper por su id
                                 ShipperRepository shipperRepository = new ShipperRepository();
                                 ShipperController shipperController = new ShipperController(
                                                 shipperRepository);
                                 Shipper shipId = shipperController.getShipperById(shipViaId);
 
-                                if (shipId.getShipperID() == null) {
+                                if (shipId == null) {
                                         System.out.println("el id ingresado no existe");
-                                        return;
+                                        break;
                                 }
 
                                 System.out.println("Ingresar la carga");
-                                double freight = input.nextDouble();
-                                input.nextLine();
+                                double freight;
+                                try {
+                                        freight = input.nextDouble();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\n*****HERROR");
+                                        System.out.println("Valor de la carga incorrecto");
+                                        break;
+                                }
+
                                 System.out.println("Enter the ship Name");
                                 String shipName = input.nextLine();
+                                if (!validate.validationsStrings(shipName)) {
+                                        break;
+                                }
                                 System.out.println("Enter the ship address");
                                 String shipAddress = input.nextLine();
+                                if (!validate.addressValidations(shipAddress)) {
+                                        break;
+                                }
                                 System.out.println("Enter the ship City");
                                 String shipCity = input.nextLine();
+                                if (!validate.validationsStrings(shipCity)) {
+                                        break;
+                                }
                                 System.out.println("Enter the ship Region");
                                 String shipRegion = input.nextLine();
+                                if (!validate.validationsStrings(shipRegion)) {
+                                        break;
+                                }
                                 System.out.println("Enter the ship postal code");
                                 String shipPostalCode = input.nextLine();
+                                if (!validate.postalCodeValidations(shipPostalCode)) {
+                                        break;
+                                }
                                 System.out.println("Enter the ship country");
                                 String shipCountry = input.nextLine();
+                                if (!validate.validationsStrings(shipCountry)) {
+                                        break;
+                                }
 
                                 order = new Order.Builder()
-                                                .orderID(id)
+
                                                 .customersID(customerId)
                                                 .employeeID(employeeId)
                                                 .orderDate(orderDate)
@@ -311,41 +397,64 @@ public enum createEntities {
                                 break;
                         }
                         case SUPPLIER: {
-                                System.out.println("Ingresar el id del Proveedor (Suppliers)");
-                                int id;
-                                try {
-                                        id = input.nextInt();
-                                        input.nextLine();
-                                } catch (Exception e) {
 
-                                        System.out.println("Error al introducir el id " + e);
-                                        return;
-                                }
                                 System.out.println("Ingresar Nombre del proveedor");
                                 String companyName = input.nextLine();
+                                if (!validate.validationsStrings(companyName)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar nombre de contacto");
                                 String contactName = input.nextLine();
+                                if (!validate.validationsStrings(contactName)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar titulo de contacto");
                                 String contacTilte = input.nextLine();
+                                if (!validate.validationsStrings(contacTilte)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar dirección");
                                 String address = input.nextLine();
+                                if (!validate.addressValidations(address)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar ciudad");
                                 String city = input.nextLine();
+                                if (!validate.validationsStrings(city)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar region");
                                 String region = input.nextLine();
+                                if (!validate.validationsStrings(region)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar codigo postal");
                                 String postaCode = input.nextLine();
+                                if (!validate.postalCodeValidations(postaCode)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar país");
                                 String country = input.nextLine();
+                                if (!validate.validationsStrings(country)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar número de telefono");
                                 String phone = input.nextLine();
+                                if (!validate.numberPhoneValidations(phone)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar fax");
                                 String fax = input.nextLine();
+                                if (!validate.numberPhoneValidations(fax)) {
+                                        break;
+                                }
                                 System.out.println("Ingresar página web");
                                 String homePage = input.nextLine();
+                                if (!validate.validationsStrings(homePage)) {
+                                        break;
+                                }
+                                mySupplier = new Suppliers.Builder()
 
-                                mySupplier = new MySupplier.Builder()
-                                                .supplierID(id)
                                                 .companyName(companyName)
                                                 .contactName(contactName)
                                                 .contactTitle(contacTilte)
@@ -363,22 +472,19 @@ public enum createEntities {
                                 break;
                         }
                         case CATEGORIE: {
-                                System.out.println("Ingresar id de la Categoria");
-                                int id;
-                                try {
-                                        id = input.nextInt();
-                                        input.nextLine();
-                                } catch (Exception e) {
 
-                                        System.out.println("Error al introducir el id " + e);
-                                        return;
-                                }
                                 System.out.println("Ingresar Nombre de la categoría");
                                 String categorieName = input.nextLine();
+                                if (!validate.validationsStrings(categorieName)) {
+                                        break;
+                                }
                                 System.out.println("Ingrear descripción");
                                 String description = input.nextLine();
+                                if (!validate.validationsStrings(description)) {
+                                        break;
+                                }
                                 categorie = new Categorie.Builder()
-                                                .categoryID(id)
+
                                                 .categoryName(categorieName)
                                                 .description(description)
                                                 .build();
@@ -387,29 +493,32 @@ public enum createEntities {
                                 break;
                         }
                         case PRODUCT: {
-                                System.out.println("Ingresar id del Producto");
-                                int id;
-                                try {
-                                        id = input.nextInt();
-                                        input.nextLine();
-                                } catch (Exception e) {
 
-                                        System.out.println("Error al introducir el id " + e);
-                                        return;
-                                }
                                 System.out.println("Ingresar Nombre del producto");
                                 String productieName = input.nextLine();
+                                if (!validate.validationsStrings(productieName)) {
+                                        break;
+                                }
                                 System.out.println(
                                                 "Ingrearel id del proveedor del producto (Supplier)");
-                                int findSupplierId = input.nextInt();
-                                input.nextLine();
+                                int findSupplierId;
+                                // validando id
+                                try {
+                                        findSupplierId = input.nextInt();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\n*****HERROR! ");
+                                        System.out.println("debe ingresar un id válido");
+                                        break;
+                                }
                                 // Buscando supplier
-                                MySupplier supplierId = new SupplierController(
+                                Suppliers supplierId = new SupplierController(
                                                 new SupplierRepository())
                                                 .getSupplierById(findSupplierId);
-                                if (supplierId.getSupplierID() == null) {
+                                if (supplierId == null) {
+                                        System.out.print("\n*****HERROR! ");
                                         System.out.println("El id del proveedor no existe");
-                                        return;
+                                        break;
                                 }
                                 System.out.println(
                                                 "Ingresar el id de de la categoría que pertenece este producto");
@@ -419,41 +528,80 @@ public enum createEntities {
                                         input.nextLine();
 
                                 } catch (Exception e) {
-
-                                        System.out.println("Error al introducir el id " + e);
-                                        return;
+                                        System.out.println("\n*****HERROR! ");
+                                        System.out.println("Error al introducir el id ");
+                                        break;
                                 }
 
                                 // Buscando categorie
                                 Categorie categorieId = new CategorieController(
                                                 new CategorieRepository())
                                                 .getCategorieById(findCategorieId);
-                                if (categorieId.getCategoryID() == null) {
+                                if (categorieId == null) {
                                         System.out.println("El id de la categoría no existe");
                                         return;
                                 }
                                 System.out.println("Ingresar la cantidad por unidad");
                                 String quantity = input.nextLine();
+
                                 System.out.println("Ingresar el precio unitario");
-                                double unitPrice = input.nextDouble();
-                                input.nextLine();
+                                double unitPrice;
+                                try {
+                                        unitPrice = input.nextDouble();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\nHERROR! ");
+                                        System.out.println("debe ingresar un valor válido");
+                                        break;
+                                }
+
                                 System.out.println("Ingresar unidades en Stock");
-                                int unitsInStock = input.nextInt();
-                                input.nextLine();
+                                int unitsInStock;
+                                try {
+                                        unitsInStock = input.nextInt();
+                                        input.nextLine();
+
+                                } catch (Exception e) {
+                                        System.out.print("\nHERROR! ");
+                                        System.out.println("debe ingresar un valor válido");
+                                        break;
+                                }
                                 System.out.println("Ingresar unidades ordenadas");
-                                int unitsOnOrder = input.nextInt();
-                                input.nextLine();
+                                int unitsOnOrder;
+                                try {
+                                        unitsOnOrder = input.nextInt();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\nHERROR! ");
+                                        System.out.println("debe ingresar un valor válido");
+                                        break;
+                                }
                                 System.out.println("Ingresar nivel de orden");
-                                int reorderLevel = input.nextInt();
+                                int reorderLevel;
+                                try {
+                                        reorderLevel = input.nextInt();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\nHERROR! ");
+                                        System.out.println("debe ingresar un valor válido");
+                                        break;
+                                }
                                 System.out.println("Descontinuado. escribir (true/false)");
-                                boolean discontinued = input.nextBoolean();
+                                boolean discontinued = false; // valor por defecto
+                                try {
+                                        discontinued = input.nextBoolean();
+                                } catch (Exception e) {
+                                        System.out.print("\nHERROR! ");
+                                        System.out.println("debe ingresar un valor válido");
+                                        break;
+                                }
 
                                 product = new Product.Builder()
-                                                .productID(id)
+
                                                 .productName(productieName)
                                                 .supplierID(supplierId)
                                                 .categoryID(categorieId)
-                                                .quantityPerUnit(quantity)
+
                                                 .quantityPerUnit(quantity)
                                                 .unitPrice(unitPrice)
                                                 .unitsInStock(unitsInStock)
@@ -474,16 +622,16 @@ public enum createEntities {
                                         input.nextLine();
                                 } catch (Exception e) {
 
-                                        System.out.println("Error al introducirr el id " + e);
-                                        return;
+                                        System.out.println("Error al introducirr el id ");
+                                        break;
                                 }
                                 // Buscando e id de la orden
                                 Order orderid = new OrderController(new OrderRepository())
                                                 .getOrderById(findOrderId);
 
-                                if (orderid.getOrderID() == null) {
+                                if (orderid == null) {
                                         System.out.println("el id de la Orden no existe ");
-                                        return;
+                                        break;
                                 }
 
                                 System.out.println("Ingresarl el id del producto");
@@ -494,26 +642,47 @@ public enum createEntities {
 
                                 } catch (Exception e) {
 
-                                        System.out.println("Error al introducir id " + e);
-                                        return;
+                                        System.out.println("Error al introducir id ");
+                                        break;
                                 }
                                 Product productId = new ProductController(
                                                 new ProductRepository())
                                                 .getProductById(findProductId);
-                                if (productId.getProductID() == null) {
+                                if (productId == null) {
                                         System.out.println("El id del producto no existe");
-                                        return;
+                                        break;
                                 }
                                 System.out.println("Ingresar precio Unitario");
-                                int unitPrice = input.nextInt();
-                                input.nextLine();
+                                int unitPrice;
+                                try {
+                                        unitPrice = input.nextInt();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\nHERROR! ");
+                                        System.out.println("debe ingresar un valor válido");
+                                        break;
+                                }
                                 System.out.println("Ingresar cantidad");
-                                int quantity = input.nextInt();
-                                input.nextLine();
+                                int quantity;
+                                try {
+                                        quantity = input.nextInt();
+                                        input.nextLine();
+                                } catch (Exception e) {
+                                        System.out.print("\nHERROR! ");
+                                        System.out.println("debe ingresar un valor válido");
+                                        break;
+                                }
                                 System.out.println("Ingresar descuento");
-                                double discount = input.nextDouble();
-                                input.nextLine();
+                                double discount;
+                                try {
+                                        discount = input.nextDouble();
+                                        input.nextLine();
 
+                                } catch (Exception e) {
+                                        System.out.print("\nHERROR! ");
+                                        System.out.println("debe ingresar un valor válido");
+                                        break;
+                                }
                                 orderDetails = new OrderDetails.Builder()
 
                                                 .orderID(orderid)

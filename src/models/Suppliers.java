@@ -3,8 +3,8 @@ package models;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-@JsonDeserialize(builder = MySupplier.Builder.class)
-public class MySupplier {
+@JsonDeserialize(builder = Suppliers.Builder.class)
+public class Suppliers {
 
     private int supplierID;
     private String companyName;
@@ -19,10 +19,10 @@ public class MySupplier {
     private String fax;
     private String homePage;
 
-    public MySupplier() {
+    public Suppliers() {
     }
 
-    private MySupplier(Builder builder) {
+    private Suppliers(Builder builder) {
         this.supplierID = builder.supplierID;
         this.companyName = builder.companyName;
         this.contactName = builder.contactName;
@@ -160,8 +160,8 @@ public class MySupplier {
             return this;
         }
 
-        public MySupplier build() {
-            return new MySupplier(this);
+        public Suppliers build() {
+            return new Suppliers(this);
         }
     }
 

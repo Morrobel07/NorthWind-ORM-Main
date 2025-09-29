@@ -8,7 +8,7 @@ public class Product {
 
     private int productID;
     private String productName;
-    private MySupplier supplierID;
+    private Suppliers supplierID;
     private Categorie categoryID;
     private String quantityPerUnit;
     private double unitPrice;
@@ -41,7 +41,7 @@ public class Product {
         return productName;
     }
 
-    public MySupplier getSupplierID() {
+    public Suppliers getSupplierID() {
         return supplierID;
     }
 
@@ -77,7 +77,7 @@ public class Product {
     public static class Builder {
         private int productID;
         private String productName;
-        private MySupplier supplierID;
+        private Suppliers supplierID;
         private Categorie categoryID;
         private String quantityPerUnit;
         private double unitPrice;
@@ -96,7 +96,7 @@ public class Product {
             return this;
         }
 
-        public Builder supplierID(MySupplier supplierID) {
+        public Builder supplierID(Suppliers supplierID) {
             this.supplierID = supplierID;
             return this;
         }

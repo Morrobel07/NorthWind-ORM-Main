@@ -18,8 +18,6 @@ public class SeedData {
     private static CategorieRepository repoCategorie = new CategorieRepository();
     private static CustomerRepository repoCustomer = new CustomerRepository();
 
-
-
     public List<Employee> seedDataEmployees() {
 
         List<Employee> employees = repoE.list(); //
@@ -46,11 +44,11 @@ public class SeedData {
         return employees;
     }
 
-    public List<MySupplier> seedDataSuppliers() {
-        List<MySupplier> suppliers = repoS.list();
+    public List<Suppliers> seedDataSuppliers() {
+        List<Suppliers> suppliers = repoS.list();
         if (suppliers.isEmpty()) {
             suppliers.add(
-                    new MySupplier.Builder()
+                    new Suppliers.Builder()
                             .companyName("Fedex")
                             .contactName("Gerardo fedex")
                             .contactTitle("Gerardo")

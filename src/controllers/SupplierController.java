@@ -1,19 +1,19 @@
 package controllers;
 
 import comons.IFile;
-import models.MySupplier;
+import models.Suppliers;
 import repository.SupplierRepository;
 
 import java.util.List;
 
 public class SupplierController {
-    private final IFile<MySupplier, Integer> repository;
+    private final IFile<Suppliers, Integer> repository;
 
-    public SupplierController(IFile<MySupplier, Integer> repository) {
+    public SupplierController(IFile<Suppliers, Integer> repository) {
         this.repository = repository;
     }
 
-    public List<MySupplier> getAllSuppliers() {
+    public List<Suppliers> getAllSuppliers() {
         try {
             return repository.list();
         } catch (Exception e) {
@@ -22,7 +22,7 @@ public class SupplierController {
         }
     }
 
-    public MySupplier getSupplierById(Integer id) {
+    public Suppliers getSupplierById(Integer id) {
         try {
             return repository.findById(id);
         } catch (Exception e) {
@@ -31,11 +31,11 @@ public class SupplierController {
         }
     }
 
-    public void addSupplier(MySupplier supplier) {
+    public void addSupplier(Suppliers supplier) {
         try {
-            List<MySupplier> suppliers = getAllSuppliers();
+            List<Suppliers> suppliers = getAllSuppliers();
 
-            for (MySupplier sup : suppliers) {
+            for (Suppliers sup : suppliers) {
                 if (sup.getSupplierID() == supplier.getSupplierID()) {
                     System.out.println("No puedes realizar un duplicado del id " + supplier.getSupplierID());
                     return;
@@ -49,7 +49,7 @@ public class SupplierController {
 
     }
 
-    public void updateSupplier(MySupplier supplier) {
+    public void updateSupplier(Suppliers supplier) {
         try {
             repository.update(supplier);
             System.out.println("Proveedor actualizado correctamente");

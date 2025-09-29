@@ -18,7 +18,7 @@ class TestUnit {
     // podemos crear instancias de prueba.
     private Customer testCustomer;
     private Categorie testCategory;
-    private MySupplier testSupplier;
+    private Suppliers testSupplier;
     private Employee testEmployee;
     private Shipper testShipper;
 
@@ -27,10 +27,11 @@ class TestUnit {
     @BeforeEach
     void setUp() {
         System.out.println("Preparando una nueva prueba...");
-        // Inicializamos objetos dummy usando sus builders para asegurar un estado consistente.
+        // Inicializamos objetos dummy usando sus builders para asegurar un estado
+        // consistente.
         testCustomer = new Customer.Builder().customerID(999).companyName("Test Customer").build();
         testCategory = new Categorie.Builder().categoryID(999).categoryName("Test Category").build();
-        testSupplier = new MySupplier.Builder().supplierID(999).companyName("Test Supplier").build();
+        testSupplier = new Suppliers.Builder().supplierID(999).companyName("Test Supplier").build();
         testEmployee = new Employee.Builder().employeeID(999).firstName("Test").lastName("Employee").build();
         testShipper = new Shipper.Builder().shipperID(999).companyName("Test Shipper").build();
     }
@@ -130,7 +131,8 @@ class TestUnit {
         assertEquals(10248, order.getOrderID());
         assertEquals(orderDate, order.getOrderDate());
         assertEquals(shipCity, order.getShipCity());
-        assertSame(testCustomer, order.getCustomersID(), "El cliente de la orden debe ser la misma instancia de prueba");
+        assertSame(testCustomer, order.getCustomersID(),
+                "El cliente de la orden debe ser la misma instancia de prueba");
     }
 
     @Test
