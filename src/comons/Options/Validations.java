@@ -8,9 +8,10 @@ public class Validations {
 
     public boolean validationsStrings(String input) {
         // strings A-z
-        if (!input.matches("[a-zA-Z.\\s]+") || input.length() > 30) {
+
+        if (!input.matches("[a-zA-Z.\\s]+") || input.length() > 30 || input.trim().isEmpty()) {
             System.out.print("\n*****HERROR! ");
-            System.out.println("Solo puedes introducir letras en este campo con un máximo de 20 caracteres");
+            System.out.println("Solo puedes introducir letras en este campo con un máximo de 30 caracteres");
             return false;
         } else {
             return true;
@@ -19,7 +20,7 @@ public class Validations {
 
     // strings desde la a-z, espacios y el signo '#'
     public boolean addressValidations(String input) {
-        if (!input.matches("[a-zA-Z0-9#,\\s]+") || input.length() > 30) {
+        if (!input.matches("[a-zA-Z0-9#,\\s]+") || input.length() > 30 || input.trim().isEmpty()) {
             System.out.print("\n*****HERROR! ");
             System.out.println("Solo puedes introducir letras, números, espacios y el signo '#' en este campo");
             return false;
@@ -30,7 +31,7 @@ public class Validations {
 
     // validations postal
     public boolean postalCodeValidations(String input) {
-        if (!input.matches("[0-9]+") || input.length() > 5) {
+        if (!input.matches("[0-9]+") || input.length() > 5 || input.trim().isEmpty()) {
             System.out.print("\n****HERROR! ");
             System.out.println("Solo puedes introducir números en este campo con un máximo de 5 digitos");
             return false;
@@ -56,6 +57,16 @@ public class Validations {
             return false;
         } else
             return true;
+    }
+
+    public boolean quantityValidation(String input) {
+        if (!input.matches("[1-9]+")) {
+            System.out.print("\n*****HERROR! ");
+            System.out.println("Solo puedes ingresar números enteros mayor que 0");
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }
