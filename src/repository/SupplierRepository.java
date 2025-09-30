@@ -44,6 +44,9 @@ public class SupplierRepository implements IFile<Suppliers, Integer> {
 
     @Override
     public void persist(List<Suppliers> suppliers) {
+       mapper.enable(SerializationFeature.INDENT_OUTPUT);
+       suppliers.sort((c1, c2) -> c1.getSupplierID().compareTo(c2.getSupplierID()));
+
         try {
             mapper.writeValue(new File(FilePath), suppliers);
         } catch (IOException e) {
@@ -55,16 +58,25 @@ public class SupplierRepository implements IFile<Suppliers, Integer> {
     public void addObject(Suppliers entity) {
         List<Suppliers> suppliers = list();
 
-        for (Suppliers e : suppliers) {
-            if (e.getSupplierID() == entity.getSupplierID()) {
-                System.out.println("No puedes realizar un duplicado del id " + entity.getSupplierID());
+        if (entity.getSupplierID() != null && entity.getSupplierID() != 0) {
+            boolean exist = suppliers.stream()
+                    .anyMatch(c -> c.getSupplierID().equals(entity.getSupplierID()));
+            if (exist)
+            {
+                System.out.println("Error: ya existe un supplier con ese id" + entity.getSupplierID());
                 return;
             }
-
-            suppliers.add(entity);
-            persist(suppliers);
-            System.out.println("Empleado agregado correctamente");
         }
+        int maxId = suppliers.stream()
+                .mapToInt(e -> e.getSupplierID())
+                .max()
+                .orElse(0);
+        entity.setSupplierID(maxId + 1);
+
+        suppliers.add(entity);
+        persist(suppliers);
+        System.out.println("Supplier agregado correctamente.");
+
     }
 
     @Override

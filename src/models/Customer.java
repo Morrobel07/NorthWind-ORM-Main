@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @JsonDeserialize
 @JsonPOJOBuilder(withPrefix = "")
 

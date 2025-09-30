@@ -43,6 +43,8 @@ public class ShipperRepository implements IFile<Shipper, Integer> {
 
     @Override
     public void persist(List<Shipper> shippers) {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        shippers.sort((c1, c2) -> c1.getShipperID().compareTo(c2.getShipperID()));
         try {
             mapper.writeValue(new File(FilePath), shippers);
         } catch (IOException e) {
@@ -54,16 +56,24 @@ public class ShipperRepository implements IFile<Shipper, Integer> {
     public void addObject(Shipper entity) {
         List<Shipper> shippers = list();
 
-        for (Shipper e : shippers) {
-            if (e.getShipperID() == entity.getShipperID()) {
-                System.out.println("No puedes realizar un duplicado del id " + entity.getShipperID());
+        if (entity.getShipperID() != null && entity.getShipperID() != 0) {
+            boolean exist = shippers.stream()
+                    .anyMatch(c -> c.getShipperID().equals(entity.getShipperID()));
+            if (exist) {
+                System.out.println("Error: ya exixste un envio con ese id" + entity.getShipperID());
                 return;
             }
-
-            shippers.add(entity);
-            persist(shippers);
-            System.out.println("Empleado agregado correctamente");
         }
+        int maxId = shippers.stream()
+                .mapToInt(e -> e.getShipperID())
+                .max()
+                .orElse(0);
+        entity.setShipperID(maxId + 1);
+
+        shippers.add(entity);
+        persist(shippers);
+        System.out.println("Envio agregado correctamente.");
+
     }
 
     @Override

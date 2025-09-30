@@ -3,6 +3,7 @@ package comons.Options;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.function.Supplier;
 
 import controllers.CategorieController;
 import controllers.CustomerController;
@@ -109,7 +110,7 @@ public enum createEntities {
                                         fax = input.nextLine();
                                 } while (!validate.numberPhoneValidations(fax));
 
-                                customer = new Customer.Builder()
+                                 Customer customer =  Customer.builder()
                                                 .companyName(companyName)
                                                 .contactName(contactName)
                                                 .contactTitle(contactTitle)
@@ -225,7 +226,7 @@ public enum createEntities {
                                         note = input.nextLine();
                                 } while (!validate.validationsStrings(note));
 
-                                employee = new Employee.Builder()
+                                Employee employee =  Employee.builder()
 
                                                 .lastName(lastName)
                                                 .firstName(name)
@@ -260,7 +261,7 @@ public enum createEntities {
                                         phone = input.nextLine();
                                 } while (!validate.numberPhoneValidations(phone));
 
-                                shipper = new Shipper.Builder()
+                                Shipper shipper =  Shipper.builder()
 
                                                 .companyName(companyName)
                                                 .phone(phone)
@@ -445,7 +446,7 @@ public enum createEntities {
                                         shipCountry = input.nextLine();
                                 } while (!validate.validationsStrings(shipCountry));
 
-                                order = new Order.Builder()
+                                 Order order =  Order.builder()
 
                                                 .customersID(customerId)
                                                 .employeeID(employeeId)
@@ -531,7 +532,7 @@ public enum createEntities {
                                         homePage = input.nextLine();
                                 } while (!validate.validationsStrings(homePage));
 
-                                mySupplier = new Suppliers.Builder()
+                                Suppliers supplier = Suppliers.builder()
 
                                                 .companyName(companyName)
                                                 .contactName(contactName)
@@ -564,7 +565,7 @@ public enum createEntities {
 
                                 } while (!validate.validationsStrings(description));
 
-                                categorie = new Categorie.Builder()
+                                 Categorie categorie =  Categorie.builder()
 
                                                 .categoryName(categorieName)
                                                 .description(description)
@@ -732,7 +733,7 @@ public enum createEntities {
                                         }
                                 } while (condition7);
 
-                                product = new Product.Builder()
+                                 Product product =  Product.builder()
 
                                                 .productName(productieName)
                                                 .supplierID(supplierId)
@@ -853,9 +854,9 @@ public enum createEntities {
                                         }
                                 } while (condition5);
 
-                                orderDetails = new OrderDetails.Builder()
+                                OrderDetails orderDetails =  OrderDetails.builder()
 
-                                                .orderID(orderid)
+                                                .orderDetailsId(orderid)
                                                 .productID(productId)
                                                 .unitPrice(unitPrice)
                                                 .quantity(quantity)

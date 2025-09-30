@@ -3,6 +3,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -42,6 +44,9 @@ public class OrderRepository implements IFile<Order,Integer>   {
 
     @Override
     public void persist(List<Order> orders)  {
+       mapper.enable(SerializationFeature.INDENT_OUTPUT);
+       orders.sort((c1, c2) -> c1.getOrderID().compareTo(c2.getOrderID()));
+
         try {
             mapper.writeValue(new File(FilePath), orders);
         } catch (IOException e) {
@@ -54,16 +59,29 @@ public class OrderRepository implements IFile<Order,Integer>   {
     public void addObject(Order entity) {
         List<Order> orders = list();
 
-        for (Order e : orders) {
-            if (e.getOrderID() == entity.getOrderID()) {
-                System.out.println("No puedes realizar un duplicado del id " + entity.getOrderID());
+        if(entity.getOrderID() != null && entity.getOrderID() != 0){
+            boolean exist = orders.stream()
+                    .anyMatch(c -> c.getOrderID().equals(entity.getOrderID()));
+            if(exist) {
+                System.out.println("Error: ya existe una Order con ese id" + entity.getOrderID());
                 return;
             }
-
-            orders.add(entity);
-            persist(orders);
-            System.out.println("Empleado agregado correctamente");
         }
+        int maxId =
+                orders.stream()
+                        .mapToInt(e -> e.getOrderID())
+                        .max()
+                        .orElse(0);
+        entity.setOrderID(maxId + 1);
+
+        orders.add(entity);
+        persist(orders);
+        System.out.println("Order agregada correctamente.");
+
+        orders.add(entity);
+        persist(orders);
+        System.out.println("Order agregada correctamente.");
+
     }
 
 

@@ -1,1 +1,6 @@
-[]
+[ {
+  "categoryID" : 1,
+  "categoryName" : "Masorca",
+  "description" : "producto hecho del maiz",
+  "picture" : null
+} ]

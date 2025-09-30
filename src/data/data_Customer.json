@@ -1,1 +1,37 @@
-[{"customerID":5,"companyName":"developers","contactName":"sonic","contactTitle":"sonicDevps","address":"alcarrizos","city":"bani","region":"peravia","postalCode":"94000","country":"rep dom","phone":"8524569874","fax":"789654"}]
+[ {
+  "customerID" : 6,
+  "companyName" : "rivera",
+  "contactName" : "ssss",
+  "contactTitle" : "sss",
+  "address" : "ss",
+  "city" : "sss",
+  "region" : "sss",
+  "postalCode" : "94000",
+  "country" : "sss",
+  "phone" : "809-333-4444",
+  "fax" : "8095229999"
+}, {
+  "customerID" : 7,
+  "companyName" : "rivera",
+  "contactName" : "minerva",
+  "contactTitle" : "socia",
+  "address" : "a la izquierda",
+  "city" : "bani",
+  "region" : "barrio la paja",
+  "postalCode" : "94000",
+  "country" : "dominicana",
+  "phone" : "8296774343",
+  "fax" : "8095228649"
+}, {
+  "customerID" : 8,
+  "companyName" : "robotica ernesto",
+  "contactName" : "ososo",
+  "contactTitle" : "slsl",
+  "address" : "calle rosita #13",
+  "city" : "londres",
+  "region" : "machupuchi",
+  "postalCode" : "84000",
+  "country" : "reino unido ",
+  "phone" : "8095228567",
+  "fax" : "8095225689"
+} ]

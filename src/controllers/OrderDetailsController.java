@@ -35,8 +35,8 @@ public class OrderDetailsController {
           try {
               List<OrderDetails> orderDetails = getAllOrderDetails();
               for (OrderDetails o : orderDetails) {
-                  if (o.getOrderID() == orderdetails.getOrderID()) {
-                      System.out.println("No puedes realizar un duplicado del id " + orderdetails.getOrderID());
+                  if (o.getOrderDetailsId() == orderdetails.getOrderDetailsId()) {
+                      System.out.println("No puedes realizar un duplicado del id " + orderdetails.getOrderDetailsId());
                       return;
                   }
 

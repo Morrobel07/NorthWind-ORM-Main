@@ -43,6 +43,9 @@ public class CategorieRepository implements IFile<Categorie,Integer> {
 
     @Override
     public void persist(List<Categorie> categories )  {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        categories.sort((c1, c2) -> c1.getCategoryID().compareTo(c2.getCategoryID()));
+
         try {
             mapper.writeValue(new File(FilePath), categories);
         } catch (IOException e) {
@@ -55,15 +58,27 @@ public class CategorieRepository implements IFile<Categorie,Integer> {
     public void addObject(Categorie entity) {
         List<Categorie> categories = list();
 
-        for (Categorie e : categories) {
-            if (e.getCategoryID() == entity.getCategoryID()) {
-                System.out.println("No puedes realizar un duplicado del id " + entity.getCategoryID());
+
+        if (entity.getCategoryID() != null && entity.getCategoryID() != 0 ) {
+            boolean exist = categories.stream()
+                    .anyMatch(c -> c.getCategoryID().equals(entity.getCategoryID()));
+            if (exist) {
+                System.out.println("Error: ya existe una categoria");
                 return;
             }
         }
+
+        int maxId = categories.stream()
+                .mapToInt(e -> e.getCategoryID())
+                .max()
+                .orElse(0);
+
+        entity.setCategoryID(maxId + 1);
+
         categories.add(entity);
         persist(categories);
-        System.out.println("Empleado agregado correctamente");
+        System.out.println("Categoria agregada correctamente.");
+
     }
 
         @Override

@@ -43,6 +43,8 @@ public class CustomerRepository implements IFile<Customer,Integer> {
 
     @Override
     public void persist(List<Customer> customers) {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        customers.sort((c1, c2) -> c1.getCustomerID().compareTo(c2.getCustomerID()));
 
         try {
             mapper.writeValue(new File(FilePath), customers);

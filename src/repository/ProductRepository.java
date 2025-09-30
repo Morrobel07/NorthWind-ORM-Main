@@ -22,7 +22,6 @@ public class ProductRepository implements IFile<Product,Integer> {
 
     private static final String FilePath= "src/data/data_Product.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    public List<Product> products = new ArrayList<>();
 
 
 
@@ -43,6 +42,9 @@ public class ProductRepository implements IFile<Product,Integer> {
 
     @Override
     public void persist(List<Product> products)  {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        products.sort((c1, c2) -> c1.getProductID().compareTo(c2.getProductID()));
+
         try {
             mapper.writeValue(new File(FilePath), products);
         } catch (IOException e) {
@@ -55,16 +57,25 @@ public class ProductRepository implements IFile<Product,Integer> {
     public void addObject(Product entity) {
         List<Product> products = list();
 
-        for (Product e : products) {
-            if (e.getProductID() == entity.getProductID()) {
-                System.out.println("No puedes realizar un duplicado del id " + entity.getProductID());
-                return;
-            }
+       if(entity.getProductID() != null && entity.getProductID() != 0 )
+       {
+           boolean exist = products.stream()
+                   .anyMatch(c -> c.getProductID().equals(entity.getProductID()));
+           if(exist){
+               System.out.println("Error: ya existe un producto con ese id" + entity.getProductID());
+               return;
+           }
+       }
+       int maxId = products.stream()
+               .mapToInt(e -> e.getProductID())
+               .max()
+               .orElse(0);
+       entity.setProductID(maxId + 1);
 
-            products.add(entity);
-            persist(products);
-            System.out.println("Empleado agregado correctamente");
-        }
+       products.add(entity);
+       persist(products);
+       System.out.println("Producto agregado correctamente.");
+
     }
 
     @Override

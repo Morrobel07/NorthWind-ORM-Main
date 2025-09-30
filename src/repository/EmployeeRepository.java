@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.Optional;
@@ -47,6 +48,8 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
      */
     @Override
     public void persist(List<Employee> employees )  {
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        employees.sort((c1, c2) -> c1.getEmployeeID());
 
 
         try {
@@ -61,18 +64,26 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
    @Override
     public void addObject(Employee entity){
        List<Employee> employees = list();
+       if (entity.getEmployeeID() != null && entity.getEmployeeID() != 0 ) {
+           boolean exist = employees.stream()
+                   .anyMatch(c -> c.getEmployeeID().equals(entity.getEmployeeID()));
+           if (exist) {
+               System.out.println("Error: ya existe un empleado con ese id" + entity.getEmployeeID());
+               return;
+           }
 
-        for (Employee e : employees){
-            if(e.getEmployeeID() == entity.getEmployeeID()){
-                System.out.println("No puedes realizar un duplicado del id " + entity.getEmployeeID());
-                return;
-            }
-            employees.add(entity);
-            persist(employees);
-            System.out.println("Empleado agregado correctamente");
-        }
+           int maxId = employees.stream()
+                   .mapToInt(e -> e.getEmployeeID())
+                   .max()
+                   .orElse(0);
 
+           entity.setEmployeeID(maxId + 1);
 
+           employees.add(entity);
+           persist(employees);
+           System.out.println("Empleado agregado correctamente.");
+
+       }
     }
 
 
