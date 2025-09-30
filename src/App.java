@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import comons.SeedData;
 import comons.Options.Crud;
 import comons.Options.Crud.*;
 import controllers.*;
@@ -11,7 +10,6 @@ import models.Suppliers;
 import models.Order;
 import models.OrderDetails;
 import comons.Options.listEntities;
-import java.lang.classfile.ClassFile.Option;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,7 +17,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
-import comons.SeedData.*;
 import models.Product;
 import models.Shipper;
 import repository.*;

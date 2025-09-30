@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
-import comons.SeedData;
 import models.Categorie;
 import models.Employee;
 import models.Shipper;
@@ -25,7 +24,6 @@ public class ShipperRepository implements IFile<Shipper, Integer> {
     private static final String FilePath = "src/data/data_shipper.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     public List<Employee> employees = new ArrayList<>();
-    private SeedData seed;
 
     @Override
     public List<Shipper> list() {

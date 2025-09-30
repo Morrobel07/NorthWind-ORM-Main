@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import comons.IFile;
-import comons.SeedData;
 import models.Categorie;
 import models.Customer;
 import models.Employee;
@@ -57,12 +56,23 @@ public class CustomerRepository implements IFile<Customer,Integer> {
     public void addObject(Customer entity) {
         List<Customer> customers = list();
 
-        for (Customer existingCustomer : customers) {
-            if (existingCustomer.getCustomerID() ==(entity.getCustomerID())) {
-                System.out.println("Error: Ya existe un cliente con el ID " + entity.getCustomerID());
+
+        if (entity.getCustomerID() != null && entity.getCustomerID() != 0 )
+        {
+            boolean exist = customers.stream()
+                    .anyMatch(c -> c.getCustomerID().equals(entity.getCustomerID()));
+            if(exist){
+                System.out.println("Error: ya existe un cliente con ese id" + entity.getCustomerID());
                 return;
             }
         }
+
+        int maxId = customers.stream()
+                .mapToInt(e -> e.getCustomerID())
+                .max()
+                .orElse(0);
+
+        entity.setCustomerID(maxId + 1);
 
         customers.add(entity);
         persist(customers);
@@ -73,7 +83,8 @@ public class CustomerRepository implements IFile<Customer,Integer> {
     public Customer findById(Integer id) {
         List<Customer> customers = list();
         Optional<Customer> results = customers.stream()
-                .filter(c -> c.getCustomerID() == id).findFirst();
+                .filter(c -> c.getCustomerID() == id)
+                .findFirst();
         return results.orElse(null);
     }
 
@@ -88,8 +99,8 @@ public class CustomerRepository implements IFile<Customer,Integer> {
 
     @Override
     public void update(Customer entity) {
-        List<Customer> employees = list();
-        List<Customer> updateCustomer = employees.stream()
+        List<Customer> customers = list();
+        List<Customer> updateCustomer = customers.stream()
                 .map(c -> c.getCustomerID() == entity.getCustomerID() ? entity : c)
                 .collect(Collectors.toList());
         persist(updateCustomer);

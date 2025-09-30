@@ -102,7 +102,7 @@ public enum createEntities {
                                         break;
                                 }
 
-                                customer = new Customer.Builder()
+                                 Customer customer =  Customer.builder()
 
                                                 .companyName(companyName)
                                                 .contactName(contactName)
