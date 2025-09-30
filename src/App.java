@@ -26,8 +26,7 @@ public class App {
 
                 Scanner input = new Scanner(System.in);
                 String option;
-                CategorieRepository categorieRep = new CategorieRepository();
-                categorieRep.delete(50);
+
                 do {
                         System.out.println("\n");
                         System.out.println("Bienvenido a la tienda de productos");
@@ -44,12 +43,12 @@ public class App {
                         // MENU OPTION
                         switch (option) {
                                 case "1": {
-                                        Crud.CREATE.Create();
+                                        Crud.CREATE.options();
                                         break;
 
                                 }
                                 case "2": {
-
+                                        Crud.DELETE.options();
                                         break;
 
                                 }
@@ -71,8 +70,8 @@ public class App {
                                                                 list.find(id);
                                                                 break;
                                                         } catch (Exception e) {
-                                                                // TODO: handle exception
-                                                                System.out.println("Error al encontrar el id " + e);
+
+                                                                System.out.println("Error al encontrar el id ");
                                                                 return;
                                                         }
 

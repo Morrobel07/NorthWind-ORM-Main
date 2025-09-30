@@ -2,12 +2,14 @@ package comons.Options;
 
 import java.util.Scanner;
 
+import repository.CustomerRepository;
+
 public enum Crud {
     CREATE, READ, UPDATE, DELETE;
 
     Scanner input = new Scanner(System.in);
 
-    public void Create() {
+    public void options() {
         switch (this) {
             case CREATE: {
                 // FIRST OPTION
@@ -16,144 +18,127 @@ public enum Crud {
                 System.out.println(// ENTIDADES
                         "1) Customer 2)Employees 3)Shippers 4)Order 5)Supplier 6)Categorie 7)Product 8)Order Details");
                 String entities = input.nextLine();
-                // TODO: ajustar creaciones
+
                 switch (entities) {
                     case "1": {// customer
-                        createEntities createEntity = createEntities.CUSTOMER;
-                        createEntity.crear();
-                        break;
+                        createEntities.CUSTOMER.create();
 
+                        break;
                     }
 
                     case "2": {
-                        createEntities createEntiity = createEntities.EMPLOYEE;
-                        createEntiity.crear();
+                        createEntities.EMPLOYEE.create();
+
                         break;
                     }
                     case "3": {
-                        createEntities createEntity = createEntities.SHIPPER;
-                        createEntity.crear();
+                        createEntities.SHIPPER.create();
+
                         break;
                     }
                     case "4": {
-                        createEntities createEntity = createEntities.ORDER;
-                        createEntity.crear();
+                        createEntities.ORDER.create();
+
                         break;
                     }
                     case "5": {
-                        createEntities creatEntity = createEntities.SUPPLIER;
-                        creatEntity.crear();
+                        createEntities.SUPPLIER.create();
+
                         break;
                     }
                     case "6": {
-                        createEntities creatEntity = createEntities.CATEGORIE;
-                        creatEntity.crear();
+                        createEntities.CATEGORIE.create();
+
                         break;
 
                     }
                     case "7": {
-                        createEntities creatEntity = createEntities.PRODUCT;
-                        creatEntity.crear();
+                        createEntities.PRODUCT.create();
+
                         break;
 
                     }
                     case "8": {// Order details
-                        createEntities creatEntity = createEntities.ORDER_DETAILS;
-                        creatEntity.crear();
+                        createEntities.ORDER_DETAILS.create();
+
                         break;
                     }
 
                     default:
+                        System.out.print("\n*****HERROR! ");
+                        System.out.println("debe elegir una opción válida");
                         break;
                 }
 
                 break;
             }
+            case READ: {
+
+                break;
+            }
+            // TODO: ajustar delet
             case DELETE: {
+
                 System.out.println("Qué registro desea eliminar ?");
                 System.out.println(
                         "1)Customer 2)Employees 3)Shippers 4)Order 5)Supplier 6)Categorie 7)Product 8)Order details");
-                int delete = input.nextInt();
-                input.nextLine();
-                switch (delete) {
-                    // TODO: ajustar delete en App
+                int entities = 0;
+                boolean validInput;
+                do {
+                    System.out.println("Ingresar una opción válida:");
+                    String entrada = input.nextLine().trim(); // elimina espacios
+
+                    if (entrada.matches("[0-9]+")) {
+                        entities = Integer.parseInt(entrada);
+                        validInput = false;
+                    } else {
+                        System.out.println("*****HERROR! Debe ingresar un número entero válido");
+                        validInput = true;
+                    }
+                } while (validInput);
+
+                switch (entities) {
+
                     case 1: {
-                        System.out.println(
-                                "Ingresa el id del customer que desea eliminar");
-                        int id = input.nextInt();
-                        input.nextLine();
-                        entitiesDelete register = entitiesDelete.CUSTOMER;
-                        register.delete(id);
+                        DeleteEntities.CUSTOMER.delete(entities);
                         break;
                     }
 
                     case 2: {
-                        System.out.println(
-                                "Ingresa el id del Emplyee que desea eliminar");
-                        int id = input.nextInt();
-                        input.nextLine();
-                        entitiesDelete register = entitiesDelete.EMPLOYEE;
-                        register.delete(id);
+                        DeleteEntities.EMPLOYEE.delete(entities);
                         break;
                     }
                     case 3: {
-                        System.out.println(
-                                "Ingresa el id del Shipper que desea eliminar");
-                        int id = input.nextInt();
-                        input.nextLine();
-                        entitiesDelete register = entitiesDelete.SHIPPER;
-                        register.delete(id);
+                        DeleteEntities.SHIPPER.delete(entities);
                         break;
                     }
                     case 4: {
-                        System.out.println(
-                                "Ingresa el id del Order que desea eliminar");
-                        int id = input.nextInt();
-                        input.nextLine();
-                        entitiesDelete register = entitiesDelete.ORDER;
-                        register.delete(id);
+                        DeleteEntities.ORDER.delete(entities);
                         break;
 
                     }
                     case 5: {
-                        System.out.println(
-                                "Ingresa el id del Supplier que desea eliminar");
-                        int id = input.nextInt();
-                        input.nextLine();
-                        entitiesDelete register = entitiesDelete.SUPPLIER;
-                        register.delete(id);
+                        DeleteEntities.SUPPLIER.delete(entities);
                         break;
 
                     }
                     case 6: {
-                        System.out.println(
-                                "Ingresa el id del Categorie que desea eliminar");
-                        int id = input.nextInt();
-                        input.nextLine();
-                        entitiesDelete register = entitiesDelete.CATEGORIE;
-                        register.delete(id);
+                        DeleteEntities.CATEGORIE.delete(entities);
+                        ;
                         break;
                     }
                     case 7: {
-                        System.out.println(
-                                "Ingresa el id del Product que desea eliminar");
-                        int id = input.nextInt();
-                        input.nextLine();
-                        entitiesDelete register = entitiesDelete.PRODUCT;
-                        register.delete(id);
+                        DeleteEntities.PRODUCT.delete(entities);
                         break;
                     }
                     case 8: {
-                        System.out.println(
-                                "Ingresa el id de la Order details que desea eliminar");
-                        int id = input.nextInt();
-                        input.nextLine();
-                        entitiesDelete register = entitiesDelete.ORDER_DETAILS;
-                        register.delete(id);
+                        DeleteEntities.ORDER_DETAILS.delete(entities);
                         break;
                     }
 
                     default:
+                        System.out.print("\n*****HERROR! ");
+                        System.out.println("Opción incorrecta...");
                         break;
                 }
             }
