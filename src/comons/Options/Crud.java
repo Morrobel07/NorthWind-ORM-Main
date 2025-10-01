@@ -141,10 +141,68 @@ public enum Crud {
                         System.out.println("Opción incorrecta...");
                         break;
                 }
+
+
             }
 
-            default:
-                break;
+            case UPDATE: {
+                System.out.println("Qué registro desea actualizar ?");
+                System.out.println(
+                        "1)Customer 2)Employees 3)Shippers 4)Order 5)Supplier 6)Categorie 7)Product 8)Order details");
+
+                int entities = input.nextInt();
+
+                switch (entities) {
+
+                    case 1: {
+                        updateEntities.CUSTOMER.update(entities);
+                        break;
+                    }
+
+                    case 2: {
+                        updateEntities.EMPLOYEE.update(entities);
+                        break;
+                    }
+                    case 3: {
+                        updateEntities.SHIPPER.update(entities);
+                        break;
+                    }
+                    case 4: {
+                        updateEntities.ORDER.update(entities);
+                        break;
+
+                    }
+                    case 5: {
+                        updateEntities.SUPPLIER.update(entities);
+                        break;
+
+                    }
+                    case 6: {
+                        updateEntities.CATEGORIE.update(entities);
+                        break;
+                    }
+                    case 7: {
+                        updateEntities.PRODUCT.update(entities);
+                        break;
+                    }
+                    case 8: {
+                        updateEntities.ORDER_DETAILS.update(entities);
+                        break;
+                    }
+
+                    default:
+                        System.out.print("\n*****HERROR! ");
+                        System.out.println("Opción incorrecta...");
+                        break;
+                }
+            }
+
+
+
+
+        }
+
+
         }
     }
-}
+

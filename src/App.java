@@ -34,7 +34,8 @@ public class App {
                         System.out.println("1) Crear registros");
                         System.out.println("2)Eliminar registros");
                         System.out.println("3)Listar registros");
-                        System.out.println("4) Salir");
+                        System.out.println("4)Actualizar registros");
+                        System.out.println("5) Salir");
                         System.out.print("Selecciona una opción ");
                         option = input.nextLine();
 
@@ -190,8 +191,15 @@ public class App {
                                         }
                                         break;
 
+
                                 }
                                 case "4": {
+                                        Crud.UPDATE.options();
+                                        break;
+
+
+                                }
+                                case "5": {
                                         System.out.println("Gracias por usar el sistema... saliendo");
                                         break;
                                 }
@@ -203,7 +211,7 @@ public class App {
                                         break;
                         }
 
-                } while (!"4".equals(option));
+                } while (!"5".equals(option));
                 input.close();
 
         }
