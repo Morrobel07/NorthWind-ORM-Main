@@ -1,5 +1,7 @@
 package comons.Options;
 
+import java.util.Scanner;
+
 import controllers.CategorieController;
 import controllers.CustomerController;
 import controllers.EmployeeController;
@@ -21,45 +23,237 @@ import repository.SupplierRepository;
 public enum listEntities {
     CUSTOMER, EMPLOYEE, SHIPPER, ORDER, SUPPLIER, CATEGORIE, PRODUCT, ORDER_DETAILS;
 
-    public void find(int id) {
+    Scanner input = new Scanner(System.in);
+
+    public void list(int id) {
 
         switch (this) {
+
             case CUSTOMER: {
-                System.out.println(new CustomerController(new CustomerRepository()).getCustomerById(id));
+                boolean condition;
+                do {
+                    condition = false;
+                    try {
+                        System.out.println(
+                                "Ingresa el id del customer que desea encontrar");
+                        id = Integer.parseInt(input.nextLine());
+
+                        if (new CustomerRepository().findById(id) == null) {
+                            System.out.print("\n*****ERROR! ");
+                            System.out.println("El id no existe");
+                            condition = true;
+                        }
+
+                        System.out.println(new CustomerRepository().findById(id));
+
+                    } catch (Exception e) {
+
+                        System.out.println("\n*****ERROR! ");
+                        System.out.println("has ingresado un valor incorrecto");
+                        condition = true;
+                    }
+
+                } while (condition);
                 break;
             }
+
             case EMPLOYEE: {
-                System.out.println(new EmployeeController(new EmployeeRepository()).getEmployeeById(id));
+                boolean condition;
+                do {
+                    condition = false;
+                    try {
+                        System.out.println(
+                                "Ingresa el id del Empleado que desea encontrar");
+                        id = Integer.parseInt(input.nextLine());
+
+                        if (new EmployeeRepository().findById(id) == null) {
+                            System.out.print("\n*****ERROR! ");
+                            System.out.println("El id no existe");
+                            condition = true;
+                        }
+
+                        System.out.println(new EmployeeRepository().findById(id));
+
+                    } catch (Exception e) {
+
+                        System.out.println("\n*****ERROR! ");
+                        System.out.println("has ingresado un valor incorrecto");
+                        condition = true;
+                    }
+
+                } while (condition);
                 break;
+
             }
             case SHIPPER: {
-                System.out.println(new ShipperController(new ShipperRepository()).getShipperById(id));
+                boolean condition;
+                do {
+                    condition = false;
+                    try {
+                        System.out.println(
+                                "Ingresa el id del Shipper que desea encontrar");
+                        id = Integer.parseInt(input.nextLine());
+
+                        if (new ShipperRepository().findById(id) == null) {
+                            System.out.print("\n*****ERROR! ");
+                            System.out.println("El id no existe");
+                            condition = true;
+                        }
+
+                        System.out.println(new ShipperRepository().findById(id));
+
+                    } catch (Exception e) {
+
+                        System.out.println("\n*****ERROR! ");
+                        System.out.println("has ingresado un valor incorrecto");
+                        condition = true;
+                    }
+
+                } while (condition);
                 break;
+
             }
             case ORDER: {
-                System.out.println(new OrderController(new OrderRepository()).getOrderById(id));
+                boolean condition;
+                do {
+                    condition = false;
+                    try {
+                        System.out.println(
+                                "Ingresa el id de la Orden que desea encontrar");
+                        id = Integer.parseInt(input.nextLine());
+
+                        if (new OrderRepository().findById(id) == null) {
+                            System.out.print("\n*****ERROR! ");
+                            System.out.println("El id no existe");
+                            condition = true;
+                        }
+
+                        System.out.println(new OrderRepository().findById(id));
+
+                    } catch (Exception e) {
+
+                        System.out.println("\n*****ERROR! ");
+                        System.out.println("has ingresado un valor incorrecto");
+                        condition = true;
+                    }
+
+                } while (condition);
                 break;
             }
             case SUPPLIER: {
-                System.out.println(new SupplierController(new SupplierRepository()).getSupplierById(id));
+                boolean condition;
+                do {
+                    condition = false;
+                    try {
+                        System.out.println(
+                                "Ingresa el id del Suplidor que desea encontrar");
+                        id = Integer.parseInt(input.nextLine());
+
+                        if (new SupplierRepository().findById(id) == null) {
+                            System.out.print("\n*****ERROR! ");
+                            System.out.println("El id no existe");
+                            condition = true;
+                        }
+
+                        System.out.println(new SupplierRepository().findById(id));
+
+                    } catch (Exception e) {
+
+                        System.out.println("\n*****ERROR! ");
+                        System.out.println("has ingresado un valor incorrecto");
+                        condition = true;
+                    }
+
+                } while (condition);
                 break;
+
             }
             case CATEGORIE: {
-                System.out.println(new CategorieController(new CategorieRepository()).getCategorieById(id));
+                boolean condition;
+                do {
+                    condition = false;
+                    try {
+                        System.out.println(
+                                "Ingresa el id de la Categoria que desea encontrar");
+                        id = Integer.parseInt(input.nextLine());
+
+                        if (new CategorieRepository().findById(id) == null) {
+                            System.out.print("\n*****ERROR! ");
+                            System.out.println("El id no existe");
+                            condition = true;
+                        }
+
+                        System.out.println(new CategorieRepository().findById(id));
+
+                    } catch (Exception e) {
+
+                        System.out.println("\n*****ERROR! ");
+                        System.out.println("has ingresado un valor incorrecto");
+                        condition = true;
+                    }
+
+                } while (condition);
                 break;
             }
             case PRODUCT: {
-                System.out.println(new ProductController(new ProductRepository()).getProductById(id));
+                boolean condition;
+                do {
+                    condition = false;
+                    try {
+                        System.out.println(
+                                "Ingresa el id del Producto que desea encontrar");
+                        id = Integer.parseInt(input.nextLine());
+
+                        if (new ProductRepository().findById(id) == null) {
+                            System.out.print("\n*****ERROR! ");
+                            System.out.println("El id no existe");
+                            condition = true;
+                        }
+
+                        System.out.println(new ProductRepository().findById(id));
+
+                    } catch (Exception e) {
+
+                        System.out.println("\n*****ERROR! ");
+                        System.out.println("has ingresado un valor incorrecto");
+                        condition = true;
+                    }
+
+                } while (condition);
                 break;
             }
             case ORDER_DETAILS: {
-                System.out.println(new OrderDetailsController(new OrderDetailsRepository()).getOrderDetailsById(id));
+                boolean condition;
+                do {
+                    condition = false;
+                    try {
+                        System.out.println(
+                                "Ingresa el id de la orden detallada que desea encontrar");
+                        id = Integer.parseInt(input.nextLine());
+
+                        if (new OrderDetailsRepository().findById(id) == null) {
+                            System.out.print("\n*****ERROR! ");
+                            System.out.println("El id no existe");
+                            condition = true;
+                        }
+
+                        System.out.println(new OrderDetailsRepository().findById(id));
+
+                    } catch (Exception e) {
+
+                        System.out.println("\n*****ERROR! ");
+                        System.out.println("has ingresado un valor incorrecto");
+                        condition = true;
+                    }
+
+                } while (condition);
                 break;
             }
 
             default:
-
+                System.out.println("Opción incorrecta");
                 break;
+
         }
     }
 }

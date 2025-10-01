@@ -1,6 +1,5 @@
 package comons.Options;
 
-import java.text.BreakIterator;
 import java.util.Scanner;
 
 import repository.CategorieRepository;
@@ -33,13 +32,13 @@ public enum DeleteEntities {
                             new CustomerRepository().delete(id);
                             condition = false;
                         } else {
-                            System.out.print("\n*****HERROR ");
+                            System.out.print("\n*****ERROR ");
                             System.out.println("El id que intenta eliminar no existe");
                             condition = true;
                         }
 
                     } catch (Exception e) {
-                        System.out.print("*****!HERROR ");
+                        System.out.print("*****!ERROR ");
                         System.out.println("El valor del id es inválido....");
                         condition = true;
                         input.nextLine();
@@ -61,13 +60,13 @@ public enum DeleteEntities {
                             new EmployeeRepository().delete(id);
                             condition = false;
                         } else {
-                            System.out.print("\n*****HERROR ");
+                            System.out.print("\n*****ERROR ");
                             System.out.println("El id que intenta eliminar no existe");
                             condition = true;
                         }
 
                     } catch (Exception e) {
-                        System.out.print("*****!HERROR ");
+                        System.out.print("*****!ERROR ");
                         System.out.println("El valor del id es inválido....");
                         condition = true;
                         input.nextLine();
@@ -90,13 +89,13 @@ public enum DeleteEntities {
                             new ShipperRepository().delete(id);
                             condition = false;
                         } else {
-                            System.out.print("\n*****HERROR ");
+                            System.out.print("\n*****ERROR ");
                             System.out.println("El id que intenta eliminar no existe");
                             condition = true;
                         }
 
                     } catch (Exception e) {
-                        System.out.print("*****!HERROR ");
+                        System.out.print("*****!ERROR ");
                         System.out.println("El valor del id es inválido....");
                         condition = true;
                         input.nextLine();
@@ -118,13 +117,13 @@ public enum DeleteEntities {
                             new OrderRepository().delete(id);
                             condition = false;
                         } else {
-                            System.out.print("\n*****HERROR ");
+                            System.out.print("\n*****ERROR ");
                             System.out.println("El id que intenta eliminar no existe");
                             condition = true;
                         }
 
                     } catch (Exception e) {
-                        System.out.print("*****!HERROR ");
+                        System.out.print("*****!ERROR ");
                         System.out.println("El valor del id es inválido....");
                         condition = true;
                         input.nextLine();
@@ -146,13 +145,13 @@ public enum DeleteEntities {
                             new SupplierRepository().delete(id);
                             condition = false;
                         } else {
-                            System.out.print("\n*****HERROR ");
+                            System.out.print("\n*****ERROR ");
                             System.out.println("El id que intenta eliminar no existe");
                             condition = true;
                         }
 
                     } catch (Exception e) {
-                        System.out.print("*****!HERROR ");
+                        System.out.print("*****!ERROR ");
                         System.out.println("El valor del id es inválido....");
                         condition = true;
                         input.nextLine();
@@ -174,13 +173,13 @@ public enum DeleteEntities {
                             new CategorieRepository().delete(id);
                             condition = false;
                         } else {
-                            System.out.print("\n*****HERROR ");
+                            System.out.print("\n*****ERROR ");
                             System.out.println("El id que intenta eliminar no existe");
                             condition = true;
                         }
 
                     } catch (Exception e) {
-                        System.out.print("*****!HERROR ");
+                        System.out.print("*****!ERROR ");
                         System.out.println("El valor del id es inválido....");
                         condition = true;
                         input.nextLine();

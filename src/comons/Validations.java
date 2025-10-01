@@ -1,15 +1,16 @@
-package comons.Options;
+package comons;
 
 public class Validations {
 
-    public Validations() {
+    public Validations() {// ESTE ENUM CONTIENE FUNCIONES PARA VALIDAR LOS CAMPOS EN EL ENUM CREATE
+                          // ENTITIES
 
     }
 
     public boolean validationsStrings(String input) {
         // strings A-z
 
-        if (!input.matches("[a-zA-Z.\\s]+") || input.length() > 30 || input.trim().isEmpty()) {
+        if (!input.matches("[a-zA-ZÁ-ÿ.\\s]+") || input.length() > 30 || input.trim().isEmpty()) {
             System.out.print("\n*****HERROR! ");
             System.out.println("Solo puedes introducir letras en este campo con un máximo de 30 caracteres");
             return false;
