@@ -3,8 +3,8 @@ package comons.Options;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.function.Supplier;
 
+import comons.Validations;
 import controllers.CategorieController;
 import controllers.CustomerController;
 import controllers.EmployeeController;
@@ -46,7 +46,7 @@ public enum createEntities {
         Scanner input = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/y");
 
-        public void create() {
+        public void create() {// CREANDO ENTIDADES Y VALIDANDO CADA UNA DE ELLAS
                 switch (this) {
                         case CUSTOMER: {
                                 // validando nombre
@@ -100,7 +100,9 @@ public enum createEntities {
 
                                 String phone;
                                 do {
-                                        System.out.println("Ingresa el número de teléfono");
+                                        System.out.println(
+                                                        "Ingresar el número de teléfono (formato válido: (809)(829)(849) puede ser todo junto o separado por guion)");
+                                        System.out.println("Ejemplo: 8093808521 o 809-380-8521");
                                         phone = input.nextLine();
                                 } while (!validate.numberPhoneValidations(phone));
 
@@ -110,7 +112,7 @@ public enum createEntities {
                                         fax = input.nextLine();
                                 } while (!validate.numberPhoneValidations(fax));
 
-                                 Customer customer =  Customer.builder()
+                                Customer customer = Customer.builder()
                                                 .companyName(companyName)
                                                 .contactName(contactName)
                                                 .contactTitle(contactTitle)
@@ -208,7 +210,9 @@ public enum createEntities {
 
                                 String phone;
                                 do {
-                                        System.out.println("Ingresar número de telefono");
+                                        System.out.println(
+                                                        "Ingresar el número de teléfono (formato válido: (809)(829)(849) puede ser todo junto o separado por guion)");
+                                        System.out.println("Ejemplo: 8093808521 o 809-380-8521");
                                         phone = input.nextLine();
                                 } while (!validate.numberPhoneValidations(phone));
 
@@ -226,7 +230,7 @@ public enum createEntities {
                                         note = input.nextLine();
                                 } while (!validate.validationsStrings(note));
 
-                                Employee employee =  Employee.builder()
+                                Employee employee = Employee.builder()
 
                                                 .lastName(lastName)
                                                 .firstName(name)
@@ -257,11 +261,13 @@ public enum createEntities {
 
                                 String phone;
                                 do {
-                                        System.out.println("Ingresar el número de teléfono");
+                                        System.out.println(
+                                                        "Ingresar el número de teléfono (formato válido: (809)(829)(849) puede ser todo junto o separado por guion)");
+                                        System.out.println("Ejemplo: 8093808521 o 809-380-8521");
                                         phone = input.nextLine();
                                 } while (!validate.numberPhoneValidations(phone));
 
-                                Shipper shipper =  Shipper.builder()
+                                Shipper shipper = Shipper.builder()
 
                                                 .companyName(companyName)
                                                 .phone(phone)
@@ -280,8 +286,8 @@ public enum createEntities {
                                         try {
                                                 System.out.println(
                                                                 "Ingresar el id del customer a quien pertenece esta orden");
-                                                findCustomerId = input.nextInt();
-                                                input.nextLine();
+                                                findCustomerId = Integer.parseInt(input.nextLine());
+                                                // input.nextLine();
                                                 condition1 = false;
                                                 // buscando el objeto Customer que tenga el mismo id que ingresó
                                                 // el usuario
@@ -292,17 +298,16 @@ public enum createEntities {
                                                                 .getCustomerById(findCustomerId);
 
                                                 if (customerId == null) {
-                                                        System.out.print("\n*****HERROR! ");
+                                                        System.out.print("\n*****ERROR! ");
                                                         System.out.println("El id igresado no existe");
                                                         condition1 = true;
                                                 }
 
                                         } catch (Exception e) {
 
-                                                System.out.print("\n*****HERROR! ");
+                                                System.out.print("\n*****ERROR! ");
                                                 System.out.println("Herror al ingresar un id válido");
                                                 condition1 = true;
-                                                input.nextLine();
 
                                         }
                                 } while (condition1);
@@ -316,8 +321,8 @@ public enum createEntities {
                                                 System.out.println(
                                                                 "Ingresar el id del empleado quien realiza la Orden de compra");
 
-                                                findEmployeeid = input.nextInt();
-                                                input.nextLine();
+                                                findEmployeeid = Integer.parseInt(input.nextLine());
+
                                                 condition2 = false;
                                                 // Buscando el objeto Employee por su id
                                                 EmployeeRepository employeeRepository = new EmployeeRepository();
@@ -327,12 +332,12 @@ public enum createEntities {
                                                                 .getEmployeeById(findEmployeeid);
 
                                                 if (employeeId == null) {
-                                                        System.out.print("\n*****HERROR! ");
+                                                        System.out.print("\n*****ERROR! ");
                                                         System.out.println("El id ingresado no existe");
                                                         condition2 = true;
                                                 }
                                         } catch (Exception e) {
-                                                System.out.print("\n*****HERROR! ");
+                                                System.out.print("\n*****ERROR! ");
                                                 System.out.println("Herror al ingresar un id válido");
                                                 input.nextLine();
                                                 condition2 = true;
@@ -369,8 +374,8 @@ public enum createEntities {
                                 do {
                                         try {
                                                 System.out.println("Ingresar el id de la compañía de Shipper");
-                                                shipViaId = input.nextInt();
-                                                input.nextLine();
+                                                shipViaId = Integer.parseInt(input.nextLine());
+
                                                 condition4 = false;
                                                 // Buscando Objeto shipper por su id
                                                 ShipperRepository shipperRepository = new ShipperRepository();
@@ -379,13 +384,13 @@ public enum createEntities {
                                                 shipId = shipperController.getShipperById(shipViaId);
 
                                                 if (shipId == null) {
-                                                        System.out.print("\n*****HERROR! ");
+                                                        System.out.print("\n*****ERROR! ");
                                                         System.out.println("el id ingresado no existe");
                                                         condition4 = true;
                                                 }
 
                                         } catch (Exception e) {
-                                                System.out.print("\n*****HERROR! ");
+                                                System.out.print("\n*****ERROR! ");
                                                 System.out.println("debe ingresar un id válido");
                                                 input.nextLine();
                                                 condition4 = true;
@@ -403,7 +408,7 @@ public enum createEntities {
                                                 input.nextLine();
                                                 condition5 = false;
                                         } catch (Exception e) {
-                                                System.out.print("\n*****HERROR");
+                                                System.out.print("\n*****ERROR");
                                                 System.out.println("Valor de la carga incorrecto");
                                                 condition5 = true;
                                                 input.nextLine();
@@ -446,7 +451,7 @@ public enum createEntities {
                                         shipCountry = input.nextLine();
                                 } while (!validate.validationsStrings(shipCountry));
 
-                                 Order order =  Order.builder()
+                                Order order = Order.builder()
 
                                                 .customersID(customerId)
                                                 .employeeID(employeeId)
@@ -516,7 +521,9 @@ public enum createEntities {
 
                                 String phone;
                                 do {
-                                        System.out.println("Ingresar número de telefono");
+                                        System.out.println(
+                                                        "Ingresar el número de teléfono (formato válido: (809)(829)(849) puede ser todo junto o separado por guion)");
+                                        System.out.println("Ejemplo: 8093808521 o 809-380-8521");
                                         phone = input.nextLine();
                                 } while (!validate.numberPhoneValidations(phone));
 
@@ -546,9 +553,8 @@ public enum createEntities {
                                                 .fax(fax)
                                                 .homePage(homePage)
                                                 .build();
-                                new SupplierController(new SupplierRepository())
-                                                .addSupplier(mySupplier);
-                                new SupplierController(new SupplierRepository()).addSupplier(mySupplier);
+
+                                new SupplierController(new SupplierRepository()).addSupplier(supplier);
                                 break;
                         }
                         case CATEGORIE: {
@@ -565,7 +571,7 @@ public enum createEntities {
 
                                 } while (!validate.validationsStrings(description));
 
-                                 Categorie categorie =  Categorie.builder()
+                                Categorie categorie = Categorie.builder()
 
                                                 .categoryName(categorieName)
                                                 .description(description)
@@ -590,22 +596,22 @@ public enum createEntities {
                                                 System.out.println(
                                                                 "Ingrearel id del proveedor del producto (Supplier)");
 
-                                                findSupplierId = input.nextInt();
-                                                input.nextLine();
+                                                findSupplierId = Integer.parseInt(input.nextLine());
+
                                                 condition = false;
                                                 supplierId = new SupplierController(
                                                                 new SupplierRepository())
                                                                 .getSupplierById(findSupplierId);
                                                 if (supplierId == null) {
-                                                        System.out.print("\n*****HERROR! ");
+                                                        System.out.print("\n*****ERROR! ");
                                                         System.out.println("El id del proveedor no existe");
                                                         condition = true;
                                                 }
                                         } catch (Exception e) {
-                                                System.out.print("\n*****HERROR! ");
+                                                System.out.print("\n*****ERROR! ");
                                                 System.out.println("debe ingresar un id válido");
                                                 condition = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition);
 
@@ -618,8 +624,8 @@ public enum createEntities {
                                                 System.out.println(
                                                                 "Ingresar el id de de la categoría que pertenece este producto");
 
-                                                findCategorieId = input.nextInt();
-                                                input.nextLine();
+                                                findCategorieId = Integer.parseInt(input.nextLine());
+
                                                 condition2 = false;
                                                 // Buscando categorie
                                                 categorieId = new CategorieController(
@@ -631,10 +637,10 @@ public enum createEntities {
                                                 }
 
                                         } catch (Exception e) {
-                                                System.out.println("\n*****HERROR! ");
+                                                System.out.println("\n*****ERROR! ");
                                                 System.out.println("Error al introducir el id ");
                                                 condition2 = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition2);
 
@@ -650,11 +656,10 @@ public enum createEntities {
                                 do {
                                         try {
                                                 System.out.println("Ingresar el precio unitario");
-                                                unitPrice = input.nextDouble();
-                                                input.nextLine();
+                                                unitPrice = Double.parseDouble(input.nextLine());
 
                                                 if (unitPrice <= 0) {
-                                                        System.out.print("\nHERROR! ");
+                                                        System.out.print("\nERROR! ");
                                                         System.out.println("El precio debe ser mayor que cero");
                                                         condition3 = true;
                                                 } else {
@@ -662,10 +667,10 @@ public enum createEntities {
                                                 }
 
                                         } catch (Exception e) {
-                                                System.out.print("\nHERROR! ");
+                                                System.out.print("\nERROR! ");
                                                 System.out.println("Debe ingresar un valor válido");
                                                 condition3 = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition3);
 
@@ -674,15 +679,15 @@ public enum createEntities {
                                 do {
                                         try {
                                                 System.out.println("Ingresar unidades en Stock");
-                                                unitsInStock = input.nextInt();
-                                                input.nextLine();
+                                                unitsInStock = Integer.parseInt(input.nextLine());
+
                                                 condition4 = false;
 
                                         } catch (Exception e) {
-                                                System.out.print("\nHERROR! ");
+                                                System.out.print("\nERROR! ");
                                                 System.out.println("debe ingresar un valor válido");
                                                 condition4 = true;
-                                                input.nextLine();
+
                                         }
 
                                 } while (condition4);
@@ -692,14 +697,15 @@ public enum createEntities {
                                 do {
                                         try {
                                                 System.out.println("Ingresar unidades ordenadas");
-                                                unitsOnOrder = input.nextInt();
-                                                input.nextLine();
+                                                unitsOnOrder = Integer.parseInt(input.nextLine());
+
                                                 condition5 = false;
+
                                         } catch (Exception e) {
-                                                System.out.print("\nHERROR! ");
+                                                System.out.print("\nERROR! ");
                                                 System.out.println("debe ingresar un valor válido");
                                                 condition5 = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition5);
 
@@ -708,14 +714,15 @@ public enum createEntities {
                                 do {
                                         try {
                                                 System.out.println("Ingresar nivel de orden");
-                                                reorderLevel = input.nextInt();
-                                                input.nextLine();
+                                                reorderLevel = Integer.parseInt(input.nextLine());
+
                                                 condition6 = false;
+
                                         } catch (Exception e) {
-                                                System.out.print("\nHERROR! ");
+                                                System.out.print("\nERROR! ");
                                                 System.out.println("debe ingresar un valor válido");
                                                 condition6 = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition6);
 
@@ -733,7 +740,7 @@ public enum createEntities {
                                         }
                                 } while (condition7);
 
-                                 Product product =  Product.builder()
+                                Product product = Product.builder()
 
                                                 .productName(productieName)
                                                 .supplierID(supplierId)
@@ -758,8 +765,8 @@ public enum createEntities {
                                 do {
                                         try {// Buscando e id de la orden
                                                 System.out.println("Ingresar el id de la Orden");
-                                                findOrderId = input.nextInt();
-                                                input.nextLine();
+                                                findOrderId = Integer.parseInt(input.nextLine());
+
                                                 condition = false;
                                                 orderid = new OrderController(new OrderRepository())
                                                                 .getOrderById(findOrderId);
@@ -770,10 +777,10 @@ public enum createEntities {
                                                 }
                                         } catch (Exception e) {
 
-                                                System.out.print("\n****HERROR! ");
+                                                System.out.print("\n****ERROR! ");
                                                 System.out.println("Error al introducirr el id");
                                                 condition = true;
-                                                input.nextLine();
+
                                         }
 
                                 } while (condition);
@@ -785,8 +792,8 @@ public enum createEntities {
 
                                         try {
                                                 System.out.println("Ingresar el id del producto");
-                                                findProductId = input.nextInt();
-                                                input.nextLine();
+                                                findProductId = Integer.parseInt(input.nextLine());
+
                                                 condition2 = false;
                                                 productId = new ProductController(
                                                                 new ProductRepository())
@@ -800,7 +807,7 @@ public enum createEntities {
 
                                                 System.out.println("Error al introducir id ");
                                                 condition2 = true;
-                                                input.nextLine();
+
                                         }
 
                                 } while (condition2);
@@ -811,14 +818,14 @@ public enum createEntities {
 
                                         try {
                                                 System.out.println("Ingresar precio Unitario");
-                                                unitPrice = input.nextInt();
-                                                input.nextLine();
+                                                unitPrice = Integer.parseInt(input.nextLine());
+
                                                 condition3 = false;
                                         } catch (Exception e) {
-                                                System.out.print("\nHERROR! ");
+                                                System.out.print("\nERROR! ");
                                                 System.out.println("debe ingresar un valor válido");
                                                 condition3 = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition3);
 
@@ -827,14 +834,14 @@ public enum createEntities {
                                 do {
                                         try {
                                                 System.out.println("Ingresar cantidad");
-                                                quantity = input.nextInt();
-                                                input.nextLine();
+                                                quantity = Integer.parseInt(input.nextLine());
+
                                                 condition4 = false;
                                         } catch (Exception e) {
-                                                System.out.print("\nHERROR! ");
+                                                System.out.print("\nERROR! ");
                                                 System.out.println("debe ingresar un valor válido");
                                                 condition4 = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition4);
 
@@ -843,18 +850,18 @@ public enum createEntities {
                                 do {
                                         try {
                                                 System.out.println("Ingresar descuento");
-                                                discount = input.nextDouble();
-                                                input.nextLine();
+                                                discount = Double.parseDouble(input.nextLine());
+
                                                 condition5 = false;
                                         } catch (Exception e) {
-                                                System.out.print("\nHERROR! ");
+                                                System.out.print("\nERROR! ");
                                                 System.out.println("debe ingresar un valor válido");
                                                 condition5 = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition5);
 
-                                OrderDetails orderDetails =  OrderDetails.builder()
+                                OrderDetails orderDetails = OrderDetails.builder()
 
                                                 .orderDetailsId(orderid)
                                                 .productID(productId)
