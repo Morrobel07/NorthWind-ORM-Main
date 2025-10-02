@@ -2,4 +2,8 @@
   "shipperID" : 1,
   "companyName" : "marruecos net",
   "phone" : "8095224499"
+}, {
+  "shipperID" : 2,
+  "companyName" : "banisur",
+  "phone" : "809-522-5543"
 } ]

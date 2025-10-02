@@ -1,1 +1,20 @@
-[]
+[ {
+  "employeeID" : 1,
+  "lastName" : "maria",
+  "firstName" : "maria",
+  "title" : "oz",
+  "titleOfCourtesy" : "oz",
+  "birthDate" : [ 1999, 12, 31 ],
+  "hireDate" : [ 1999, 12, 31 ],
+  "address" : "inglaterra",
+  "city" : "marruecos",
+  "region" : "kaka",
+  "postalCode" : "94",
+  "country" : "rd",
+  "homePhone" : "809-522-5566",
+  "extension" : "3",
+  "photo" : null,
+  "notes" : "kd",
+  "reportsTo" : 0,
+  "photoPath" : null
+} ]

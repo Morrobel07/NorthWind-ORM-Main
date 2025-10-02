@@ -19,9 +19,6 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
     private static final String FilePath= "src/data/data_Employee.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
-
-
-
     /**
      * Carga la lista de empleados desde un archivo JSON.
      * @return Una lista de objetos Employee. Si el archivo no existe o está vacío, devuelve una lista vacía.
@@ -49,9 +46,7 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
     @Override
     public void persist(List<Employee> employees )  {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        employees.sort((c1, c2) -> c1.getEmployeeID());
-
-
+        employees.sort((c1, c2) -> c1.getEmployeeID().compareTo( c2.getEmployeeID()));
         try {
             mapper.writeValue(new File(FilePath), employees);
         } catch (IOException e) {
@@ -61,7 +56,7 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
     }
 
 
-   @Override
+
     public void addObject(Employee entity){
        List<Employee> employees = list();
        if (entity.getEmployeeID() != null && entity.getEmployeeID() != 0 ) {
@@ -71,6 +66,7 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
                System.out.println("Error: ya existe un empleado con ese id" + entity.getEmployeeID());
                return;
            }
+       }
 
            int maxId = employees.stream()
                    .mapToInt(e -> e.getEmployeeID())
@@ -84,7 +80,8 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
            System.out.println("Empleado agregado correctamente.");
 
        }
-    }
+
+
 
 
 

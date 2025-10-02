@@ -206,7 +206,7 @@ public class App {
 
                                 default:
 
-                                        System.out.println("ERROR AL ELEGIR UNA OPCÓN");
+                                        System.out.println("ERROR AL ELEGIR UNA OPCIÓN");
 
                                         break;
                         }

@@ -23,7 +23,6 @@ public class ShipperRepository implements IFile<Shipper, Integer> {
 
     private static final String FilePath = "src/data/data_shipper.json";
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
-    public List<Employee> employees = new ArrayList<>();
 
     @Override
     public List<Shipper> list() {
@@ -32,8 +31,7 @@ public class ShipperRepository implements IFile<Shipper, Integer> {
             if (!file.exists() || file.length() == 0) {
                 return new ArrayList<>();
             }
-            return mapper.readValue(file, new TypeReference<List<Shipper>>() {
-            });
+            return mapper.readValue(file, new TypeReference<List<Shipper>>() {});
         } catch (IOException ex) {
             ex.printStackTrace();
             return new ArrayList<>();
@@ -52,6 +50,7 @@ public class ShipperRepository implements IFile<Shipper, Integer> {
         }
 
     }
+
 
     public void addObject(Shipper entity) {
         List<Shipper> shippers = list();
