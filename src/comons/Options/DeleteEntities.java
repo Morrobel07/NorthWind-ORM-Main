@@ -1,6 +1,5 @@
 package comons.Options;
 
-import java.text.BreakIterator;
 import java.util.Scanner;
 
 import repository.CategorieRepository;
@@ -12,7 +11,7 @@ import repository.ProductRepository;
 import repository.ShipperRepository;
 import repository.SupplierRepository;
 
-public enum    DeleteEntities {
+public enum DeleteEntities {
     CUSTOMER, EMPLOYEE, SHIPPER, ORDER, SUPPLIER, CATEGORIE, PRODUCT, ORDER_DETAILS;
 
     Scanner input = new Scanner(System.in);
