@@ -39,10 +39,7 @@ public class EmployeeRepository implements IFile<Employee,Integer> {
     }
 
 
-    /**
-     * Guarda una lista de empleados en un archivo JSON, sobrescribiendo el contenido existente.
-     * @param employees La lista de empleados a guardar.
-     */
+
     @Override
     public void persist(List<Employee> employees )  {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
