@@ -2,6 +2,14 @@ package comons.Options;
 
 import java.util.Scanner;
 
+import controllers.CategorieController;
+import controllers.CustomerController;
+import controllers.EmployeeController;
+import controllers.OrderController;
+import controllers.OrderDetailsController;
+import controllers.ProductController;
+import controllers.ShipperController;
+import controllers.SupplierController;
 import repository.CategorieRepository;
 import repository.CustomerRepository;
 import repository.EmployeeRepository;
@@ -22,6 +30,8 @@ public enum listEntities {
 
             case CUSTOMER: {
                 boolean condition;
+                System.out.println("*****Mostrando lista completa de Customers");
+                System.out.println(new CustomerController(new CustomerRepository()).getAllCustomers() + "\n");
                 do {
                     condition = false;
                     try {
@@ -33,9 +43,9 @@ public enum listEntities {
                             System.out.print("\n*****ERROR! ");
                             System.out.println("El id no existe");
                             condition = true;
+                        } else {
+                            System.out.println(new CustomerRepository().findById(id));
                         }
-
-                        System.out.println(new CustomerRepository().findById(id));
 
                     } catch (Exception e) {
 
@@ -49,6 +59,8 @@ public enum listEntities {
             }
 
             case EMPLOYEE: {
+                System.out.println("*****Mostrando lista completa de Empleando");
+                System.out.println(new EmployeeController(new EmployeeRepository()).getAllEmployees());
                 boolean condition;
                 do {
                     condition = false;
@@ -61,9 +73,9 @@ public enum listEntities {
                             System.out.print("\n*****ERROR! ");
                             System.out.println("El id no existe");
                             condition = true;
+                        } else {
+                            System.out.println(new EmployeeRepository().findById(id));
                         }
-
-                        System.out.println(new EmployeeRepository().findById(id));
 
                     } catch (Exception e) {
 
@@ -77,6 +89,8 @@ public enum listEntities {
 
             }
             case SHIPPER: {
+                System.out.println("*****Mostrando lista completa de Shippers");
+                System.out.println(new ShipperController(new ShipperRepository()).getAllShippers() + "\n");
                 boolean condition;
                 do {
                     condition = false;
@@ -89,9 +103,9 @@ public enum listEntities {
                             System.out.print("\n*****ERROR! ");
                             System.out.println("El id no existe");
                             condition = true;
+                        } else {
+                            System.out.println(new ShipperRepository().findById(id));
                         }
-
-                        System.out.println(new ShipperRepository().findById(id));
 
                     } catch (Exception e) {
 
@@ -105,6 +119,8 @@ public enum listEntities {
 
             }
             case ORDER: {
+                System.out.println("*****Mostrando lista completa de Ordenes");
+                System.out.println(new OrderController(new OrderRepository()).getAllOrders() + "\n");
                 boolean condition;
                 do {
                     condition = false;
@@ -117,9 +133,9 @@ public enum listEntities {
                             System.out.print("\n*****ERROR! ");
                             System.out.println("El id no existe");
                             condition = true;
+                        } else {
+                            System.out.println(new OrderRepository().findById(id));
                         }
-
-                        System.out.println(new OrderRepository().findById(id));
 
                     } catch (Exception e) {
 
@@ -133,6 +149,8 @@ public enum listEntities {
             }
             case SUPPLIER: {
                 boolean condition;
+                System.out.println("*****Mostrando lista completa de Supplier");
+                System.out.println(new SupplierController(new SupplierRepository()).getAllSuppliers() + "\n");
                 do {
                     condition = false;
                     try {
@@ -144,9 +162,9 @@ public enum listEntities {
                             System.out.print("\n*****ERROR! ");
                             System.out.println("El id no existe");
                             condition = true;
+                        } else {
+                            System.out.println(new SupplierRepository().findById(id));
                         }
-
-                        System.out.println(new SupplierRepository().findById(id));
 
                     } catch (Exception e) {
 
@@ -161,6 +179,8 @@ public enum listEntities {
             }
             case CATEGORIE: {
                 boolean condition;
+                System.out.println("*****Mostrando lista completa de Categorias");
+                System.out.println(new CategorieController(new CategorieRepository()).getAllCategories() + "\n");
                 do {
                     condition = false;
                     try {
@@ -172,9 +192,9 @@ public enum listEntities {
                             System.out.print("\n*****ERROR! ");
                             System.out.println("El id no existe");
                             condition = true;
+                        } else {
+                            System.out.println(new CategorieRepository().findById(id));
                         }
-
-                        System.out.println(new CategorieRepository().findById(id));
 
                     } catch (Exception e) {
 
@@ -188,6 +208,8 @@ public enum listEntities {
             }
             case PRODUCT: {
                 boolean condition;
+                System.out.println("*****Mostrando lista completa de Product");
+                System.out.println(new ProductController(new ProductRepository()).getAllProducts() + "\n");
                 do {
                     condition = false;
                     try {
@@ -199,9 +221,9 @@ public enum listEntities {
                             System.out.print("\n*****ERROR! ");
                             System.out.println("El id no existe");
                             condition = true;
+                        } else {
+                            System.out.println(new ProductRepository().findById(id));
                         }
-
-                        System.out.println(new ProductRepository().findById(id));
 
                     } catch (Exception e) {
 
@@ -215,6 +237,9 @@ public enum listEntities {
             }
             case ORDER_DETAILS: {
                 boolean condition;
+                System.out.println("*****Mostrando lista completa de Order details");
+                System.out
+                        .println(new OrderDetailsController(new OrderDetailsRepository()).getAllOrderDetails() + "\n");
                 do {
                     condition = false;
                     try {
@@ -226,9 +251,9 @@ public enum listEntities {
                             System.out.print("\n*****ERROR! ");
                             System.out.println("El id no existe");
                             condition = true;
+                        } else {
+                            System.out.println(new OrderDetailsRepository().findById(id));
                         }
-
-                        System.out.println(new OrderDetailsRepository().findById(id));
 
                     } catch (Exception e) {
 

@@ -282,6 +282,9 @@ public enum createEntities {
                                 int findCustomerId;
                                 boolean condition1;
                                 Customer customerId = null;
+                                System.out.println("*****Mostrando customer");
+                                System.out.println(new CustomerController(new CustomerRepository()).getAllCustomers()
+                                                + "\n");
                                 do {
                                         try {
                                                 System.out.println(
@@ -315,6 +318,9 @@ public enum createEntities {
                                 boolean condition2;
                                 int findEmployeeid;
                                 Employee employeeId = null;
+                                System.out.println("*****Mostrando Empleados");
+                                System.out.println(new EmployeeController(new EmployeeRepository()).getAllEmployees()
+                                                + "\n");
                                 do {
 
                                         try {
@@ -339,7 +345,7 @@ public enum createEntities {
                                         } catch (Exception e) {
                                                 System.out.print("\n*****ERROR! ");
                                                 System.out.println("Herror al ingresar un id válido");
-                                                input.nextLine();
+
                                                 condition2 = true;
                                         }
                                 } while (condition2);
@@ -371,6 +377,9 @@ public enum createEntities {
                                 boolean condition4;
                                 Shipper shipId = null;
                                 Integer shipViaId;
+                                System.out.println("*****Mostrando Shippers");
+                                System.out.println(
+                                                new ShipperController(new ShipperRepository()).getAllShippers() + "\n");
                                 do {
                                         try {
                                                 System.out.println("Ingresar el id de la compañía de Shipper");
@@ -392,7 +401,7 @@ public enum createEntities {
                                         } catch (Exception e) {
                                                 System.out.print("\n*****ERROR! ");
                                                 System.out.println("debe ingresar un id válido");
-                                                input.nextLine();
+
                                                 condition4 = true;
                                         }
 
@@ -404,14 +413,14 @@ public enum createEntities {
 
                                         try {
                                                 System.out.println("Ingresar la carga");
-                                                freight = input.nextDouble();
-                                                input.nextLine();
+                                                freight = Double.parseDouble(input.nextLine());
+
                                                 condition5 = false;
                                         } catch (Exception e) {
                                                 System.out.print("\n*****ERROR");
                                                 System.out.println("Valor de la carga incorrecto");
                                                 condition5 = true;
-                                                input.nextLine();
+
                                         }
                                 } while (condition5);
 
@@ -591,6 +600,9 @@ public enum createEntities {
                                 boolean condition;
                                 int findSupplierId;
                                 Suppliers supplierId = null;
+                                System.out.println("*****Mostrando suplidores");
+                                System.out.println(new SupplierController(new SupplierRepository()).getAllSuppliers()
+                                                + "\n");
                                 do {
                                         try {
                                                 System.out.println(
@@ -615,10 +627,12 @@ public enum createEntities {
                                         }
                                 } while (condition);
 
-                                // Buscando supplier
                                 boolean condition2;
                                 int findCategorieId;
                                 Categorie categorieId = null;
+                                System.out.println("*****Mostrando lista de categorias");
+                                System.out.println(new CategorieController(new CategorieRepository()).getAllCategories()
+                                                + "\n");
                                 do {
                                         try {
                                                 System.out.println(
@@ -730,7 +744,7 @@ public enum createEntities {
                                 boolean condition7;
                                 do {
                                         try {
-                                                System.out.println("Descontinuado. escribir (true/false)");
+                                                System.out.println("Producto Descontinuado. escribir (true/false)");
                                                 discontinued = input.nextBoolean();
                                                 condition7 = false;
                                         } catch (Exception e) {
@@ -762,6 +776,8 @@ public enum createEntities {
                                 int findOrderId;
                                 boolean condition;
                                 Order orderid = null;
+                                System.out.println("*****Mostrando Ordenes ");
+                                System.out.println(new OrderController(new OrderRepository()).getAllOrders() + "\n");
                                 do {
                                         try {// Buscando e id de la orden
                                                 System.out.println("Ingresar el id de la Orden");
@@ -788,6 +804,8 @@ public enum createEntities {
                                 int findProductId;
                                 boolean condition2;
                                 Product productId = null;
+                                System.out.println("*****Mostrando Lista de Productos");
+                                System.out.println(new ProductController(new ProductRepository()).getAllProducts());
                                 do {
 
                                         try {
