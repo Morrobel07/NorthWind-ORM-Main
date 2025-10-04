@@ -24,7 +24,6 @@ public class CategorieRepository implements IFile<Categorie,Integer> {
     ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
 
-
     @Override
     public List<Categorie> list()    {
         try{

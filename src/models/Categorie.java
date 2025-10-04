@@ -11,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @JsonDeserialize
+@Data
 @JsonPOJOBuilder(withPrefix = "")
 public class Categorie {
 
